@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>devlingo — learn to code, 5 minutes at a time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+ --green:#58cc02;--green-d:#46a302;--blue:#1cb0f6;--blue-d:#1899d6;
+ --red:#ff4b4b;--red-d:#ea2b2b;--gold:#ffc800;--gold-d:#e0a500;--purple:#ce82ff;
+ --ink:#3c3c3c;--gray:#777;--line:#e5e5e5;--soft:#f7f7f7;--card:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito','Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;color:var(--ink);font-size:16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+button{font-family:inherit}
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:2px solid var(--line)}
+.tb-in{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{font-weight:900;font-size:22px;color:var(--green);letter-spacing:-.5px;display:flex;align-items:center;gap:6px;user-select:none}
+.brand .owl{width:28px;height:28px;filter:drop-shadow(0 2px 0 rgba(0,0,0,.12))}
+.icon{display:inline-block;vertical-align:-.16em;flex:none;stroke:currentColor}
+.stats{display:flex;gap:14px;font-weight:800;font-size:15px}
+.stat{display:flex;align-items:center;gap:4px;color:var(--gold)}
+.stat:first-child{color:var(--gold)} .stat.fire{color:#ff9600} .stat.hp{color:var(--red)}
+/* ---------- tabs ---------- */
+.tabs{background:#fff;border-bottom:2px solid var(--line);position:sticky;top:58px;z-index:40}
+.tabs-in{display:flex}
+.tab{flex:1;background:none;border:none;border-bottom:4px solid transparent;padding:10px 4px 8px;font-weight:800;font-size:12.5px;color:var(--gray);cursor:pointer;letter-spacing:.4px;text-transform:uppercase}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+/* ---------- buttons ---------- */
+.btn{border:none;border-radius:14px;padding:13px 26px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;font-size:14px;cursor:pointer;transition:transform .06s,box-shadow .06s,filter .15s;box-shadow:0 4px 0 var(--sh,#46a302)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--sh)}
+.btn:disabled{filter:grayscale(.6);opacity:.55;cursor:not-allowed}
+.btn-green{background:var(--green);color:#fff;--sh:var(--green-d)}
+.btn-blue{background:var(--blue);color:#fff;--sh:var(--blue-d)}
+.btn-red{background:var(--red);color:#fff;--sh:var(--red-d)}
+.btn-gold{background:var(--gold);color:#7a5b00;--sh:var(--gold-d)}
+.btn-ghost{background:var(--soft);color:var(--gray);--sh:#dcdcdc}
+.btn-big{width:100%;padding:16px;font-size:16px}
+/* ---------- home ---------- */
+.greet{display:flex;align-items:center;gap:16px;padding:20px 4px 6px}
+.greet h1{font-size:24px;font-weight:900}
+.greet p{color:var(--gray);font-size:14px;font-weight:700}
+.ringbox{margin-left:auto;position:relative;width:74px;height:74px;flex:none}
+.ringbox svg{transform:rotate(-90deg)}
+.ringbox .rtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:var(--gold)}
+.ringbox .rtxt small{font-size:9px;color:var(--gray);letter-spacing:.5px}
+/* ---------- units / tree ---------- */
+.unit{border:2px solid var(--line);border-radius:18px;overflow:hidden;margin:18px 0;background:var(--card)}
+.unit-head{padding:14px 16px;display:flex;align-items:center;gap:12px;color:#fff}
+.unit-head .uic{font-size:28px}
+.unit-head h2{font-size:17px;font-weight:900;letter-spacing:.3px}
+.unit-head .prog{margin-left:auto;font-weight:800;font-size:13px;background:rgba(255,255,255,.25);padding:4px 10px;border-radius:20px}
+.unit-body{padding:26px 14px 30px;display:flex;flex-direction:column;gap:22px;background:radial-gradient(circle at 50% 0,#fff 60%,var(--soft))}
+.node-row{display:flex;width:100%}
+.node-row.r0{justify-content:center}
+.node-row.r1{justify-content:flex-start;padding-left:11%}
+.node-row.r2{justify-content:flex-end;padding-right:11%}
+.nodecell{display:flex;flex-direction:column;align-items:center;gap:6px}
+.node{width:74px;height:74px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;position:relative;box-shadow:0 6px 0 rgba(0,0,0,.16);transition:transform .08s}
+.node:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.16)}
+.node .sub{position:absolute;bottom:-8px;background:var(--gold);border-radius:20px;font-size:11px;font-weight:900;color:#7a5b00;padding:2px 8px;border:2px solid #fff}
+.node.locked{background:#e5e5e5;cursor:not-allowed;box-shadow:0 6px 0 #cfcfcf}
+.node.locked:active{transform:none;box-shadow:0 6px 0 #cfcfcf}
+.node.open{background:var(--uc,#58cc02);color:#fff}
+.node.done{background:var(--gold);color:#fff}
+.node.perfect{outline:4px solid var(--purple);outline-offset:3px}
+.node.bounce{animation:bounce 1.8s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.node-label{font-size:12px;font-weight:800;color:var(--gray);text-align:center;max-width:110px;line-height:1.2}
+/* ---------- lesson ---------- */
+.lesson-top{display:flex;align-items:center;gap:12px;padding:14px 4px}
+.xbtn{background:none;border:none;font-size:20px;color:var(--gray);cursor:pointer;font-weight:900;padding:4px 8px}
+.ptrack{flex:1;height:16px;background:var(--line);border-radius:20px;overflow:hidden}
+.pfill{height:100%;background:var(--green);border-radius:20px;transition:width .35s ease}
+.lhearts{font-weight:900;color:var(--red);white-space:nowrap}
+.excard{padding:8px 4px 20px}
+.extype{display:flex;align-items:center;gap:8px;color:var(--blue);font-weight:900;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;margin:10px 0 12px}
+.prompt{font-size:20px;font-weight:800;line-height:1.45;margin-bottom:16px}
+.code{background:#263238;color:#e8f0f2;border-radius:14px;padding:16px;font-family:ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;font-size:14px;line-height:1.6;white-space:pre;overflow-x:auto;margin-bottom:18px;border:1px solid #1c272b}
+.code .blank{background:var(--gold);color:#5c4300;border-radius:6px;padding:1px 10px;font-weight:700}
+.code .ln{color:#5f7a83;user-select:none;display:inline-block;width:2ch;margin-right:12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{border:2px solid var(--line);border-radius:14px;background:#fff;padding:15px 16px;font-weight:800;font-size:15.5px;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;color:var(--ink);transition:border-color .12s,background .12s,transform .12s}
+.opt:hover{border-color:#cfcfcf}
+.opt .k{width:30px;height:30px;border-radius:8px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gray);flex:none;font-weight:900}
+.opt.sel{border-color:var(--blue);background:#ddf4ff}
+.opt.sel .k{border-color:var(--blue);color:var(--blue)}
+.opt.right{border-color:var(--green);background:#d7ffb8}
+.opt.right .k{border-color:var(--green);background:var(--green);color:#fff}
+.opt.wrong{border-color:var(--red);background:#ffdfe0}
+.opt.wrong .k{border-color:var(--red);background:var(--red);color:#fff}
+.opt code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;background:var(--soft);padding:2px 7px;border-radius:6px}
+textarea.editor{width:100%;min-height:150px;border:2px solid var(--line);border-radius:14px;padding:14px;font-family:ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;font-size:14px;line-height:1.6;resize:vertical;background:#fbfdff;color:var(--ink);outline:none}
+textarea.editor:focus{border-color:var(--blue)}
+.runout{border-radius:14px;padding:12px 14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;margin-top:10px;border:2px solid var(--line);background:var(--soft)}
+.runout.err{border-color:var(--red);background:#fff3f3;color:var(--red)}
+.runout.okl{border-color:var(--green);background:#f4ffe9}
+.lesson-foot{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--line);padding:14px 0 18px;margin-top:8px}
+.feedback{border-radius:16px;padding:16px;margin-bottom:14px;display:none;animation:up .25s ease}
+.feedback.show{display:block}
+.feedback.good{background:#d7ffb8;border:2px solid var(--green)}
+.feedback.bad{background:#ffdfe0;border:2px solid var(--red)}
+.feedback h3{font-size:19px;font-weight:900;margin-bottom:4px}
+.feedback.good h3{color:#4e9a06}
+.feedback.bad h3{color:var(--red)}
+.feedback p{font-size:14.5px;font-weight:700;color:#4b4b4b;line-height:1.5}
+.feedback .fa{margin-top:8px;font-weight:800;color:#345}
+@keyframes up{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+/* ---------- sheets / overlays ---------- */
+.overlay{position:fixed;inset:0;background:rgba(18,24,28,.55);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.sheet{background:#fff;border-radius:22px;max-width:420px;width:100%;padding:28px 24px;text-align:center;animation:up .22s ease;max-height:88vh;overflow:auto}
+.sheet .mascot{width:58px;height:58px;display:block;margin:0 auto 6px}
+.sheet h2{font-size:23px;font-weight:900;margin-bottom:4px}
+.sheet .un{color:var(--gray);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1px}
+.sheet .tipbox{background:#ddf4ff;border:2px solid #84d8ff;border-radius:14px;padding:14px;margin:16px 0;font-size:14.5px;font-weight:700;text-align:left;line-height:1.55}
+.sheet .tipbox b{color:var(--blue-d)}
+.sheet .meta{color:var(--gray);font-weight:800;font-size:13.5px;margin-bottom:16px}
+/* ---------- end / fail ---------- */
+.endcard{text-align:center;padding:36px 20px}
+.endcard .bigowl{width:76px;height:76px;animation:bounce 1.6s infinite;display:inline-block}
+.endcard h2{font-size:26px;font-weight:900;margin:8px 0 4px}
+.endcard .sub{color:var(--gray);font-weight:800;margin-bottom:20px}
+.xpbar{display:inline-flex;align-items:center;gap:8px;background:#fff7d6;border:2px solid var(--gold);color:#a97e00;font-weight:900;font-size:20px;border-radius:40px;padding:8px 22px;margin-bottom:20px}
+.rows{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;text-align:left}
+.row{display:flex;justify-content:space-between;background:var(--soft);border-radius:12px;padding:11px 16px;font-weight:800;font-size:14.5px}
+.row span:last-child{color:var(--green)}
+.flaw{background:linear-gradient(135deg,#f3d1ff,#e3c8ff);border:2px solid var(--purple);border-radius:14px;padding:10px;font-weight:900;color:#7b2fd6;margin-bottom:18px;letter-spacing:.5px}
+/* ---------- achievements ---------- */
+.achgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 0}
+.ach{border:2px solid var(--line);border-radius:16px;padding:16px 12px;text-align:center;background:#fff}
+.ach .ic{width:40px;height:40px;margin:0 auto}
+.ach h4{font-size:14px;font-weight:900;margin:6px 0 2px}
+.ach p{font-size:12px;color:var(--gray);font-weight:700;line-height:1.35}
+.ach.locked{filter:grayscale(1);opacity:.55;background:var(--soft)}
+.sechead{padding:20px 4px 0;font-size:20px;font-weight:900}
+.secsub{padding:2px 4px;color:var(--gray);font-weight:700;font-size:14px}
+/* ---------- profile ---------- */
+.pcard{margin:18px 0;border:2px solid var(--line);border-radius:20px;padding:22px;text-align:center;background:linear-gradient(180deg,#fff,#fdfdfd)}
+.avatar{width:88px;height:88px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:4px solid #d7ffb8;color:#fff}
+.avatar .icon{width:52px;height:52px}
+.pcard h2{font-size:24px;font-weight:900}
+.lvl{color:var(--gold);font-weight:900;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.lvlbar{height:14px;background:var(--line);border-radius:20px;overflow:hidden;margin:10px 24px 4px}
+.lvlbar>div{height:100%;background:linear-gradient(90deg,var(--gold),#ffde59)}
+.lvlxp{font-size:12px;color:var(--gray);font-weight:800}
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.statg{border:2px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.statg .v{font-size:24px;font-weight:900}
+.statg .l{font-size:12px;color:var(--gray);font-weight:800;text-transform:uppercase;letter-spacing:.6px}
+/* ---------- league ---------- */
+.lghead{text-align:center;padding:20px 0 6px}
+.lghead .t{width:38px;height:38px;margin:0 auto;color:var(--gold)}
+.lghead h2{font-weight:900;font-size:20px}
+.lgrow{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:14px;padding:11px 14px;margin-bottom:8px;font-weight:800;background:#fff}
+.lgrow .rk{width:26px;color:var(--gray)}
+.lgrow .av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--soft);flex:none}
+.lgrow .xp{margin-left:auto;color:var(--gold)}
+.lgrow.me{border-color:var(--blue);background:#ddf4ff}
+.pbar{height:8px;background:var(--line);border-radius:10px;overflow:hidden;margin:4px 0 18px}
+.pbar>div{height:100%;background:var(--green)}
+/* ---------- toasts ---------- */
+#toasts{position:fixed;top:70px;right:14px;z-index:200;display:flex;flex-direction:column;gap:8px}
+#storage-warning{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:250;width:min(560px,calc(100% - 24px));padding:12px 16px;border:2px solid var(--gold);border-radius:12px;background:#fff7d6;color:#5c4300;font-weight:800;text-align:center}
+.toast{background:#fff;border:2px solid var(--gold);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-weight:900;box-shadow:0 6px 18px rgba(0,0,0,.15);animation:slidein .3s ease;font-size:14px}
+.toast .ti{width:28px;height:28px}
+.toast small{display:block;color:var(--gray);font-weight:700}
+@keyframes slidein{from{transform:translateX(120%)}to{transform:translateX(0)}}
+.center{text-align:center;padding:40px 0;color:var(--gray);font-weight:800}
+/* ---------- polish ---------- */
+.unit{box-shadow:0 4px 0 var(--line)}
+.unit-head{background-image:linear-gradient(135deg,rgba(255,255,255,.22),transparent 60%)}
+.node.open{box-shadow:0 6px 0 rgba(0,0,0,.16),0 0 0 6px color-mix(in srgb,var(--uc) 22%,transparent)}
+.btn:hover:not(:disabled){filter:brightness(1.06)}
+.opt:hover{transform:translateY(-1px)}
+.sheet{box-shadow:0 20px 60px rgba(0,0,0,.25)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---------- welcome + device modes ---------- */
+#welcome{position:fixed;inset:0;z-index:300;background:linear-gradient(160deg,#58cc02,#1cb0f6);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.wcard{background:#fff;border-radius:26px;max-width:460px;width:100%;padding:30px 24px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.28);animation:up .3s ease}
+.wcard .wowl{display:inline-block;color:var(--green);animation:bounce 1.8s infinite}
+.wcard h1{font-size:34px;font-weight:900;color:var(--green);letter-spacing:-1px}
+.wcard p{color:var(--gray);font-weight:800;margin:4px 0 18px}
+.wcard h2{font-size:19px;font-weight:900;margin-bottom:12px}
+.devrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.devbtn{position:relative;border:2px solid var(--line);border-bottom-width:5px;border-radius:18px;background:#fff;padding:20px 8px 16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink);transition:transform .08s,border-color .15s,background .15s}
+.devbtn:hover{border-color:var(--blue);background:#ddf4ff}
+.devbtn:active{transform:translateY(3px);border-bottom-width:2px}
+.devbtn b{font-size:18px;font-weight:900}
+.devbtn small{font-size:12px;color:var(--gray);font-weight:700;line-height:1.3}
+.devbtn em{position:absolute;top:-10px;background:var(--gold);color:#7a5b00;font-style:normal;font-weight:900;font-size:11px;border-radius:20px;padding:2px 10px;letter-spacing:.5px}
+.wcard .whint{font-size:12.5px;margin:16px 0 0}
+.kbhint{font-size:12px;color:var(--gray);font-weight:800;text-align:center;margin-bottom:8px}
+body.dev-pc .wrap{max-width:680px}
+body.dev-mobile{font-size:17px;padding-bottom:calc(66px + env(safe-area-inset-bottom));touch-action:manipulation}
+body.dev-mobile.in-lesson{padding-bottom:0}
+body.dev-mobile .wrap{max-width:100%;padding:0 14px}
+body.dev-mobile .tabs{position:fixed;top:auto;bottom:0;left:0;right:0;border-bottom:none;border-top:2px solid var(--line);z-index:60;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 14px rgba(0,0,0,.05)}
+body.dev-mobile.in-lesson .tabs{display:none}
+body.dev-mobile .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;min-height:58px;padding:9px 2px 6px;border-bottom:none;border-top:4px solid transparent}
+body.dev-mobile .tab.active{border-top-color:var(--blue)}
+body.dev-mobile .tab .icon{width:24px;height:24px}
+body.dev-mobile .topbar{padding-top:env(safe-area-inset-top)}
+body.dev-mobile .node{width:84px;height:84px}
+body.dev-mobile .node-label{font-size:13px}
+body.dev-mobile .opt{padding:17px 16px;min-height:58px;font-size:16px}
+body.dev-mobile .btn{min-height:52px}
+body.dev-mobile .prompt{font-size:19px}
+body.dev-mobile textarea.editor{font-size:16px;min-height:170px}
+body.dev-mobile .code{font-size:13px;padding:14px}
+body.dev-mobile .lesson-foot{padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+body.dev-mobile .overlay{align-items:flex-end;padding:0}
+body.dev-mobile .sheet{max-width:100%;border-radius:24px 24px 0 0;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+body.dev-mobile #toasts{left:12px;right:12px;top:calc(66px + env(safe-area-inset-top))}
+body.dev-mobile .achgrid{gap:10px}
+body.dev-mobile #storage-warning{bottom:76px}
+@media(hover:none){.opt:hover{transform:none;border-color:var(--line)}.btn:hover:not(:disabled){filter:none}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap tb-in">
+  <div class="brand"><span class="owl" aria-hidden="true"></span>devlingo</div>
+  <div class="stats">
+    <span class="stat fire" id="st-streak"></span>
+    <span class="stat" id="st-xp"></span>
+    <span class="stat hp" id="st-hp"></span>
+  </div>
+</div></header>
+<nav class="tabs"><div class="wrap tabs-in">
+  <button class="tab active" data-v="learn" onclick="App.tab('learn')"><span class="icon-home"></span> Learn</button>
+  <button class="tab" data-v="league" onclick="App.tab('league')"><span class="icon-trophy"></span> League</button>
+  <button class="tab" data-v="ach" onclick="App.tab('ach')"><span class="icon-award"></span> Badges</button>
+  <button class="tab" data-v="me" onclick="App.tab('me')"><span class="icon-user"></span> Profile</button>
+</div></nav>
+<main id="view" class="wrap"></main>
+<div id="overlay"></div>
+<div id="toasts"></div>
+<div id="storage-warning" role="status" hidden></div>
+<script>
+"use strict";
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const ICONS={
+ owl:'<path d="M4 10a8 8 0 0 0 16 0V8a8 8 0 0 0-16 0v2Z"/><path d="M4 8 2 3l6 2M20 8l2-5-6 2"/><circle cx="9" cy="10" r="2"/><circle cx="15" cy="10" r="2"/><path d="m12 13-1.5 2h3L12 13ZM9 20v2m6-2v2"/>',
+ flame:'<path d="M12 22c4.4 0 7-3 7-7 0-3.1-1.8-5.3-4.1-8.1-.2 2.1-1 3.2-2.1 3.8C12.8 7.1 10.5 3.8 7 2c.5 4.1-.4 6.1-2 8.5C3.9 12.2 3 13.8 3 15c0 4 3.2 7 9 7Z"/><path d="M12 22c2 0 3-1.5 3-3.2 0-1.3-.8-2.3-2-3.8-.1 1.1-.6 1.7-1.3 2-.1-1.3-.8-2.5-2-3.4.1 2.2-1.3 3.1-1.3 5.1 0 1.8 1.3 3.3 3.6 3.3Z"/>',
+ heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/>',
+ home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z"/>',
+ trophy:'<path d="M8 21h8m-4-4v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 7H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"/>',
+ award:'<circle cx="12" cy="8" r="6"/><path d="m8.2 13-1 8 4.8-2.5 4.8 2.5-1-8"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+ leaf:'<path d="M20 4c-9 0-15 3-15 10a6 6 0 0 0 6 6c7 0 10-7 9-16Z"/><path d="M4 21c3-6 7-9 13-12"/>',
+ wrench:'<path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4L14 13l-3-3 3.7-3.7Z"/>',
+ bolt:'<path d="m13 2-3 8H5l6 12 3-9h5L13 2Z"/>',
+ server:'<rect x="3" y="3" width="18" height="8" rx="2"/><rect x="3" y="13" width="18" height="8" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6m-6 10h6"/>',
+ database:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/>',
+ palette:'<path d="M12 3a9 9 0 1 0 0 18h1.2a2 2 0 0 0 1.4-3.4 1.8 1.8 0 0 1 1.3-3.1H19a2 2 0 0 0 2-2A9 9 0 0 0 12 3Z"/><circle cx="7.5" cy="10" r=".8"/><circle cx="10" cy="6.8" r=".8"/><circle cx="15" cy="7.5" r=".8"/>',
+ book:'<path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5v-17Z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20M8 6h8"/>',
+ lock:'<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/>',
+ star:'<path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1L12 2Z"/>',
+ target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+ gem:'<path d="M6 3h12l4 6-10 13L2 9l4-6Z"/><path d="M2 9h20M6 3l3 6 3 13 3-13 3-6"/>',
+ graduation:'<path d="m2 10 10-6 10 6-10 6-10-6Z"/><path d="M6 12v5c3.5 3 8.5 3 12 0v-5m4-2v7"/>',
+ code:'<path d="m8 7-5 5 5 5m8-10 5 5-5 5m-2-12-4 14"/>',
+ sparkles:'<path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Zm7 11 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14ZM5 2l.7 1.3L7 4l-1.3.7L5 6l-.7-1.3L3 4l1.3-.7L5 2Z"/>',
+ map:'<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15m6-12v15"/>',
+ medal:'<circle cx="12" cy="8" r="6"/><path d="m8.5 13-2 8 5.5-3 5.5 3-2-8"/>',
+ check:'<path d="m5 12 4 4L19 6"/>',
+ close:'<path d="m18 6-12 12M6 6l12 12"/>',
+ globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20Z"/>',
+ calculator:'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8v4H8zm0 8h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/>',
+ hourglass:'<path d="M6 2h12M6 22h12M7 2c0 5 5 6 5 10s-5 5-5 10m10-20c0 5-5 6-5 10s5 5 5 10"/>',
+ bug:'<path d="M8 8h8v9a4 4 0 0 1-8 0V8Zm-3 3H3m3 5H3m18-5h-2m2 5h-2M9 4l-2-2m8 2 2-2m-5 6v10"/>',
+ hash:'<path d="M5 9h14M4 15h14M10 3 8 21m8-18-2 18"/>',
+ paperclip:'<path d="m21 12-8.5 8.5a5 5 0 0 1-7-7L14 5a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L16 7"/>',
+ clipboard:'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2m-6 6h6m-6 4h6"/>',
+ package:'<path d="m12 2 9 5-9 5-9-5 9-5Zm-9 5v10l9 5 9-5V7m-9 5v10"/>',
+ layers:'<path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5m-18 5 9 5 9-5"/>',
+ phone:'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+ monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>'
+};
+function icon(name,size=20,cls=""){return `<svg class="icon ${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||ICONS.code}</svg>`}
+function iconHeart(size=16){return icon("heart",size,"icon-heart")}
+document.querySelectorAll(".tab span[class^='icon-']").forEach(el=>{el.outerHTML=icon(el.className.slice(5),16)});
+document.querySelector(".brand .owl").innerHTML=icon("owl",28);
+const KEY="devlingo-v1";
+function defState(){return {xp:0,today:{d:"",xp:0},streak:0,last:"",lessons:{},ach:[],codeSolved:0,perfects:0,device:null,bots:null,botsDay:"",name:"John"}}
+const defaults=defState();
+let storageUnavailable=false,storedRaw=null,storedState=null;
+try{storedRaw=localStorage.getItem(KEY)}catch(e){storageUnavailable=true;console.error("Could not read saved progress.",e)}
+if(storedRaw){try{storedState=JSON.parse(storedRaw)}catch(e){console.error("Saved progress is invalid; starting with default progress.",e)}}
+if(!storedState||typeof storedState!=="object"||Array.isArray(storedState))storedState={};
+const savedToday=storedState.today&&typeof storedState.today==="object"&&!Array.isArray(storedState.today)?storedState.today:{};
+let S={...defaults,...storedState,
+ xp:Number.isFinite(storedState.xp)?storedState.xp:defaults.xp,
+ streak:Number.isFinite(storedState.streak)?storedState.streak:defaults.streak,
+ codeSolved:Number.isFinite(storedState.codeSolved)?storedState.codeSolved:defaults.codeSolved,
+ perfects:Number.isFinite(storedState.perfects)?storedState.perfects:defaults.perfects,
+ device:(storedState.device==="mobile"||storedState.device==="pc")?storedState.device:null,
+ today:{...defaults.today,...savedToday,xp:Number.isFinite(savedToday.xp)?savedToday.xp:defaults.today.xp},
+ lessons:storedState.lessons&&typeof storedState.lessons==="object"&&!Array.isArray(storedState.lessons)?storedState.lessons:{},
+ ach:Array.isArray(storedState.ach)?storedState.ach:[],
+ bots:Array.isArray(storedState.bots)?storedState.bots:null,
+ name:typeof storedState.name==="string"&&storedState.name.trim()?storedState.name:defaults.name};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){if(!storageUnavailable)console.error("Could not save progress.",e);storageUnavailable=true;const warning=$("#storage-warning");warning.hidden=false;warning.textContent="Progress saving is unavailable in this browser session; your progress may not persist after closing this page."}}
+function dstr(off){const d=new Date();d.setDate(d.getDate()+off);return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function touchDaily(){const t=dstr(0);if(S.last!==t&&S.last!==dstr(-1))S.streak=0;if(S.today.d!==t)S.today={d:t,xp:0}}
+function bumpStreak(){const t=dstr(0);if(S.last!==t){S.streak=(S.last===dstr(-1))?S.streak+1:1;S.last=t}}
+/* ---------- sound ---------- */
+const Sfx={ctx:null,
+ go(){if(!this.ctx){try{this.ctx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(this.ctx&&this.ctx.state==="suspended")this.ctx.resume()},
+ t(f,d,ty,v,w){if(!this.ctx)return;d=d||.12;ty=ty||"sine";v=v||.1;w=w||0;const o=this.ctx.createOscillator(),g=this.ctx.createGain(),t0=this.ctx.currentTime+w;o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,t0);g.gain.exponentialRampToValueAtTime(.001,t0+d);o.connect(g);g.connect(this.ctx.destination);o.start(t0);o.stop(t0+d+.03)},
+ ok(){this.go();this.t(660,.1);this.t(880,.14,"sine",.1,.09)},
+ no(){this.go();this.t(220,.16,"sawtooth",.055);this.t(175,.2,"sawtooth",.055,.09)},
+ win(){this.go();[523,659,784,1047].forEach((f,i)=>this.t(f,.15,"sine",.11,i*.12))},
+ click(){this.go();this.t(700,.05,"sine",.045)}};
+/* ---------- code runner (really executes the code, with a fake clock) ---------- */
+async function runCode(code,test){
+ const logs=[];let err=null,tid=0,now=0;const timers=new Map();
+ const fmt=v=>{if(typeof v==="string")return v;if(v===undefined)return"undefined";if(typeof v==="function")return"[Function]";try{return JSON.stringify(v)}catch(e){return String(v)}};
+ const log=(...a)=>{logs.push(a.map(fmt).join(" "))};
+ const con={log:log,error:log,info:log,warn:log};
+ const st=(fn,ms,...a)=>{const id=++tid;timers.set(id,{fn:fn,a:a,id:id,at:now+(+ms||0),int:0});return id};
+ const si=(fn,ms,...a)=>{const id=++tid;ms=Math.max(+ms||0,1);timers.set(id,{fn:fn,a:a,id:id,at:now+ms,int:ms});return id};
+ const ct=id=>{timers.delete(id)};
+ const ffetch=()=>Promise.resolve({ok:true,status:200,json:async()=>({ok:true}),text:async()=>"",headers:{get:()=>null}});
+ const tick=()=>new Promise(r=>setTimeout(r,0));
+ const AsyncFn=Object.getPrototypeOf(async function(){}).constructor;
+ try{
+  const fn=new AsyncFn("console","setTimeout","setInterval","clearTimeout","clearInterval","fetch",code+"\n;"+test);
+  await fn(con,st,si,ct,ct,ffetch);
+ }catch(e){err=e&&e.message?e.message:String(e)}
+ for(let i=0;i<5;i++)await tick();
+ let guard=0;
+ while(timers.size&&guard++<200){
+  let n=null;timers.forEach(t=>{if(!n||t.at<n.at||(t.at===n.at&&t.id<n.id))n=t});
+  if(n.at>2000)break;
+  now=n.at;if(n.int)n.at=now+n.int;else timers.delete(n.id);
+  try{const r=n.fn(...n.a);if(r&&r.then)r.catch(()=>{})}catch(e){err=err||e.message}
+  for(let j=0;j<3;j++)await tick();
+ }
+ return {logs:logs,err:err};
+}
+
+/* ================= CURRICULUM =================
+   exercise types:
+   quiz {t,p?:"",q,o[],a,e}        multiple choice
+   out  {t,c,q,o[],a,e}            predict the output of code
+   fill {t,p,c(contains ____),o[],a,e}  pick the missing line
+   bug  {t,c,q,o[](lines),a,e}     find the buggy line
+   code {t,p,s,r?|tc?,sol,e}       hands-on coding, runs in sandbox
+*/
+const CUR=[
+{ id:"u1", title:"JavaScript Foundations", icon:"leaf", color:"#58cc02", blurb:"Variables to loops",
+ lessons:[
+ {id:"u1l1",title:"Variables & Values",tip:"Variables are labeled boxes for data. Use <b>let</b> when the value will change, <b>const</b> when it won't. Names can't start with a digit!",exs:[
+  {t:"quiz",q:"Which keyword declares a variable that can be reassigned?",o:["const","let","var-let","declare"],a:1,e:"let allows reassignment. const is for constants — reassigning one throws an error."},
+  {t:"out",c:`const name = 'Ada';
+console.log(name);`,q:"What will this log?",o:["name","Ada","'Ada'","undefined"],a:1,e:"console.log prints the VALUE inside the variable — 'Ada' without quotes."},
+  {t:"fill",p:"Set score to the number 10.",c:`let score = ____
+console.log(score)`,o:["'10'","10","ten","score = 10"],a:1,e:"10 is a number. '10' in quotes would be a string — and option 4 isn't valid syntax for a value."},
+  {t:"code",p:"Create a variable <code>greeting</code> holding the string <code>'Hello, world!'</code>, then log it.",s:`// Create the variable, then log it
+`,r:["Hello, world!"],sol:`const greeting = 'Hello, world!';
+console.log(greeting);`,e:"const works here because the greeting never changes."},
+  {t:"quiz",q:"Which statement about const is TRUE?",o:["It can't be reassigned","It only works for numbers","It can be reassigned freely","It's identical to let"],a:0,e:"const prevents reassignment. It's the default choice in modern JavaScript."},
+  {t:"bug",c:`let 1stPlace = 'gold';
+console.log(1stPlace);`,q:"This code crashes. Which line has the bug?",o:["1stPlace = 'gold'","console.log(1stPlace)","let 1stPlace = 'gold'","No bug — it works"],a:2,e:"Variable names can't start with a digit. Try firstPlace or place1."}
+ ]},
+ {id:"u1l2",title:"Numbers & Math",tip:"JS follows math order of operations. <b>%</b> is the remainder operator, and <b>**</b> is exponentiation.",exs:[
+  {t:"quiz",q:"What is 7 % 3?",o:["2","1","3","0"],a:1,e:"% gives the remainder of division: 7 ÷ 3 leaves remainder 1."},
+  {t:"out",c:`console.log(2 + 3 * 4);`,q:"What will this log?",o:["20","14","24","9"],a:1,e:"Multiplication happens before addition: 3*4 = 12, then 2 + 12 = 14."},
+  {t:"quiz",q:"How do you write 2 to the power of 3 in JavaScript?",o:["2 ^ 3","2 ** 3","pow(2, 3)","2 *** 3"],a:1,e:"** is the exponent operator: 2 ** 3 === 8. (^ is bitwise XOR!)"},
+  {t:"code",p:"Log the result of 100 divided by 7, rounded DOWN to a whole number.",s:`// Use Math.floor()
+`,r:["14"],sol:`console.log(Math.floor(100 / 7));`,e:"100/7 is 14.28… — Math.floor always rounds down. (Math.round would give 14 too here, but floor is 'always down'.)"},
+  {t:"fill",p:"Round price to the nearest integer and store it in rounded.",c:`const price = 9.99
+const rounded = ____`,o:["Math.round(price)","price.round()","round(price)","Math.floor(price)"],a:0,e:"Math.round(9.99) is 10. Math.floor would give 9 — that rounds down, not to nearest."},
+  {t:"quiz",q:"What is the result of '5' + 3?",o:["8","'53'","'8'","NaN"],a:1,e:"With +, if either side is a string, JS concatenates: '5' + 3 becomes '53'. A classic JS trap!"}
+ ]},
+ {id:"u1l3",title:"Strings",tip:"Strings are text in quotes. Use backticks <code>` `</code> for template literals — they can embed values with <code>&#36;{...}</code>. Indexes start at 0.",exs:[
+  {t:"quiz",q:"How do you get the length of a string s?",o:["s.length","length(s)","s.size","s.count"],a:0,e:"length is a property, not a function — no parentheses needed."},
+  {t:"out",c:`const s = 'code';
+console.log(s.toUpperCase());`,q:"What will this log?",o:["code","CODE","Code","cODE"],a:1,e:"toUpperCase() returns a NEW string with every letter capitalized."},
+  {t:"quiz",q:"Which one is a valid template literal?",o:["'Hello ${name}'",'"Hello ${name}"',"`Hello ${name}`","(Hello ${name})"],a:2,e:"Only backticks interpolate ${}. Single and double quotes treat ${name} as plain text."},
+  {t:"fill",p:"Log 'JavaScript is fun' using the lang variable.",c:`const lang = 'JavaScript'
+console.log(____)`,o:["`${lang} is fun`","lang + is fun","'{lang} is fun'","lang.is('fun')"],a:0,e:"Template literals with backticks embed variables. Single quotes don't interpolate, and lang + is fun is a syntax error (is isn't a string)."},
+  {t:"code",p:"Declare a variable <code>word</code> holding <code>'hello'</code>, then log its UPPERCASE version.",s:`// word, then uppercase it
+`,r:["HELLO"],sol:`const word = 'hello';
+console.log(word.toUpperCase());`,e:"toUpperCase() gives 'HELLO'. The original word stays 'hello' — strings are immutable."},
+  {t:"quiz",q:"What does 'abc'[1] return?",o:["'a'","'b'","'c'","1"],a:1,e:"String indexing is zero-based: 0→'a', 1→'b', 2→'c'."}
+ ]},
+ {id:"u1l4",title:"Booleans & Conditionals",tip:"A condition decides which branch runs. Remember: <b>0, '', null, undefined, NaN</b> are falsy — everything else is truthy. Prefer <b>===</b> over ==.",exs:[
+  {t:"quiz",q:"Which value is FALSY?",o:["'0'","0","[]","'false'"],a:1,e:"The number 0 is falsy. But the STRING '0' and even 'false' are truthy — any non-empty string is!"},
+  {t:"out",c:`const x = 10;
+if (x > 5) {
+  console.log('big');
+} else {
+  console.log('small');
+}`,q:"What will this log?",o:["small","big","big small","nothing"],a:1,e:"10 > 5 is true, so only the first branch runs."},
+  {t:"fill",p:"Complete the condition so it logs 'adult'.",c:`const age = 20
+if (____) {
+  console.log('adult')
+}`,o:["age >= 18","age > 18 && age < 18","age = 18","age == 'twenty'"],a:0,e:"age >= 18 is true for 20. Watch out: a single = ASSIGNS instead of comparing!"},
+  {t:"quiz",q:"What does === do differently from ==?",o:["Nothing","It compares without type conversion","It's only for objects","It always returns false"],a:1,e:"'5' == 5 is true (coerces types) but '5' === 5 is false. Use === to avoid surprises."},
+  {t:"code",p:"Write an if/else that logs <code>'even'</code> if <code>n</code> is even, otherwise <code>'odd'</code>. (n is already set to 4.)",s:`const n = 4
+// your code here
+`,r:["even"],sol:`const n = 4;
+if (n % 2 === 0) {
+  console.log('even');
+} else {
+  console.log('odd');
+}`,e:"n % 2 gives the remainder — 0 means divisible by 2, i.e. even."},
+  {t:"quiz",q:"Which operator returns true only if BOTH sides are true?",o:["||","&&","!","??"],a:1,e:"&& is AND. || is OR, ! is NOT, ?? is nullish coalescing (you'll meet it later)."}
+ ]},
+ {id:"u1l5",title:"Arrays",tip:"Arrays hold ordered lists. Indexing starts at 0, <code>.length</code> counts items, and <code>push</code> adds to the END.",exs:[
+  {t:"quiz",q:"What is the index of the FIRST element of an array?",o:["1","0","-1","It depends"],a:1,e:"JavaScript is zero-indexed: first item is arr[0]."},
+  {t:"out",c:`const a = [10, 20, 30];
+console.log(a[1]);`,q:"What will this log?",o:["10","20","30","1"],a:1,e:"Index 1 is the second element: 20."},
+  {t:"quiz",q:"What does arr.push('x') do?",o:["Adds to the end","Adds to the start","Removes the last item","Replaces everything"],a:0,e:"push appends to the end. pop() removes from the end — think of a stack of plates."},
+  {t:"fill",p:"Add 'Go' to the END of the langs array.",c:`const langs = ['JS', 'Python']
+langs.____('Go')`,o:["push","pop","shift","slice"],a:0,e:"push adds to the end. pop and shift REMOVE items; slice copies part of an array."},
+  {t:"code",p:"Create an array <code>nums</code> with the values 1, 2 and 3, then log its length.",s:`// create nums, then log its length
+`,r:["3"],sol:`const nums = [1, 2, 3];
+console.log(nums.length);`,e:"length is 3 — and remember, no parentheses: it's a property."},
+  {t:"out",c:`const a = [1, 2, 3];
+a.push(4);
+console.log(a.length);`,q:"What will this log?",o:["3","4","[1,2,3,4]","error"],a:1,e:"After push(4) the array holds 4 items, so a.length is 4."}
+ ]},
+ {id:"u1l6",title:"Loops",tip:"Loops repeat work. A <code>for</code> loop is great when you know the count; <code>for...of</code> walks each item of an array. Never forget the increment — or you'll loop forever!",exs:[
+  {t:"quiz",q:"Which loop is the natural choice when you know exactly how many times to repeat?",o:["for","while","do...when","loop"],a:0,e:"for packs init, condition and increment into one line — perfect for known counts."},
+  {t:"out",c:`for (let i = 0; i < 3; i++) {
+  console.log(i);
+}`,q:"What gets logged?",o:["0 1 2","1 2 3","0 1 2 3","3"],a:0,e:"i starts at 0 and stops when it reaches 3, logging 0, 1, then 2."},
+  {t:"fill",p:"Log each name in the array.",c:`const names = ['Ada', 'Linus']
+for (const n of names) {
+  ____
+}`,o:["console.log(n)","console.log(names)","log(n)","console.log(of)"],a:0,e:"for...of gives you each element one at a time — here as n."},
+  {t:"code",p:"Use a loop to log the numbers 1 to 5, one per line.",s:`// log 1 through 5
+`,r:["1","2","3","4","5"],sol:`for (let i = 1; i <= 5; i++) {
+  console.log(i);
+}`,e:"Start i at 1, keep going while i <= 5, increment each pass."},
+  {t:"bug",c:`for (let i = 0; i < 5; ) {
+  console.log(i);
+}`,q:"This loop never ends. Which part is missing?",o:["The braces { }","i++ (the increment)","console.log(i)","let"],a:1,e:"Without i++, i stays 0 forever and the condition never becomes false — an infinite loop."},
+  {t:"out",c:`let sum = 0;
+for (const n of [1, 2, 3]) {
+  sum += n;
+}
+console.log(sum);`,q:"What will this log?",o:["123","6","3","0"],a:1,e:"sum += n adds each number: 0+1+2+3 = 6. += means 'add to itself'."}
+ ]}
+]},
+{ id:"u2", title:"Functions & Logic", icon:"wrench", color:"#1cb0f6", blurb:"Reusable, powerful code",
+ lessons:[
+ {id:"u2l1",title:"Functions",tip:"A function is a reusable block of code you CALL by name. <code>return</code> hands a value back — <code>console.log</code> only prints it. They're not the same thing!",exs:[
+  {t:"quiz",q:"Which keyword defines a function?",o:["function","def","fun","method"],a:0,e:"JavaScript uses function — Python uses def, but you're not in Python anymore, John."},
+  {t:"out",c:`function hi() {
+  return 'hey';
+}
+console.log(hi());`,q:"What will this log?",o:["hi","hey","undefined","'hey' with quotes"],a:1,e:"hi() calls the function, which returns 'hey' — and console.log prints values without quotes."},
+  {t:"quiz",q:"What's the difference between return and console.log?",o:["Nothing","return gives a value back; log only prints to the console","log also returns the value","return prints in color"],a:1,e:"return hands the value to whoever called the function so it can be USED. log just displays it."},
+  {t:"fill",p:"Make this function return double the input (so double(4) logs 8).",c:`function double(n) {
+  ____
+}
+console.log(double(4))`,o:["return n * 2","console.log(n * 2)","n * 2","return n + 2"],a:0,e:"console.log(n*2) would print 8 but the function returns undefined — so the outer log prints undefined. return is what matters."},
+  {t:"code",p:"Write a function <code>square(x)</code> that returns x squared, then log <code>square(5)</code>.",s:`// function square...
+`,tc:`;(function(){var ok=square(3)===9&&square(0)===0&&square(-4)===16;console.log(ok?'PASS':'FAIL')})()`,sol:`function square(x) {
+  return x * x;
+}
+console.log(square(5));`,e:"The hidden test also calls square(3), square(0) and square(-4) — return must work for any input, not just 5."},
+  {t:"quiz",q:"Which line correctly CALLS the function greet?",o:["greet()","call greet","greet[]","run.greet"],a:0,e:"Call it with the name followed by parentheses — with arguments inside if it needs them."}
+ ]},
+ {id:"u2l2",title:"Parameters & Return",tip:"Parameters are the inputs a function receives. A function without <code>return</code> gives back <code>undefined</code>. Extra arguments? JS politely ignores them.",exs:[
+  {t:"quiz",q:"What are parameters?",o:["Values a function receives when called","Loop counters","Array indexes","Error messages"],a:0,e:"Parameters are the named inputs declared in the function header."},
+  {t:"out",c:`function add(a, b) {
+  return a + b;
+}
+console.log(add(2, 3, 4));`,q:"What will this log?",o:["9","5","Error","NaN"],a:1,e:"add only uses a and b; the extra 4 is ignored. 2 + 3 = 5."},
+  {t:"fill",p:"Give the name parameter a default value so greet() returns 'Hello there'.",c:`function greet(name = ____) {
+  return \`Hello \${name}\`;
+}
+console.log(greet());`,o:["'there'","there","'Hello'","name"],a:0,e:"Defaults apply when no argument is passed. 'there' is a string — unquoted there would be an undefined variable."},
+  {t:"code",p:"Write a function <code>isEven(n)</code> that returns true if n is even, otherwise false. Then log <code>isEven(10)</code>.",s:`// function isEven...
+`,tc:`;(function(){var ok=isEven(2)===true&&isEven(3)===false&&isEven(0)===true;console.log(ok?'PASS':'FAIL')})()`,sol:`function isEven(n) {
+  return n % 2 === 0;
+}
+console.log(isEven(10));`,e:"n % 2 === 0 is already a boolean — no if needed. The test checks 2, 3 and 0."},
+  {t:"quiz",q:"What does a function return if it has no return statement?",o:["null","Its last line","undefined","0"],a:2,e:"Without an explicit return, every function returns undefined."},
+  {t:"out",c:`function check(x) {
+  if (x < 0) return 'negative';
+  return 'positive';
+}
+console.log(check(-5));`,q:"What will this log?",o:["positive","negative","undefined","error"],a:1,e:"return exits the function immediately — the second return never runs for negative numbers."}
+ ]},
+ {id:"u2l3",title:"Arrow Functions",tip:"Arrow functions are the compact modern syntax: <code>(a, b) =&gt; a + b</code>. With no braces, the value is returned automatically. With braces, you need return.",exs:[
+  {t:"quiz",q:"Which one is a valid arrow function?",o:["const f = () => 1","const f => 1","arrow f() { return 1 }","f = arrow() => 1"],a:0,e:"The pattern is: params, then =>, then the body."},
+  {t:"fill",p:"Complete this arrow function so it doubles numbers.",c:`const double = n ____ n * 2`,o:["=>","->","=->","==>"],a:0,e:"The arrow is made of = and > together: =>. (JavaScript is not C#, no -> here.)"},
+  {t:"out",c:`const add = (a, b) => a + b;
+console.log(add(1, 2));`,q:"What will this log?",o:["12","3","NaN","undefined"],a:1,e:"No braces — so a + b is returned implicitly. 1 + 2 = 3."},
+  {t:"quiz",q:"When does an arrow function return a value IMPLICITLY?",o:["When the body has no braces { }","Always","Never","Only with const"],a:0,e:"n => n * 2 returns n*2. But n => { n * 2 } returns undefined — braces need an explicit return."},
+  {t:"code",p:"Write an arrow function <code>triple</code> that triples a number, then log <code>triple(3)</code>.",s:`const triple = `,tc:`;(function(){var ok=triple(4)===12&&triple(0)===0&&triple(-2)===-6;console.log(ok?'PASS':'FAIL')})()`,sol:`const triple = n => n * 3;
+console.log(triple(3));`,e:"One parameter, no parens needed, no braces, implicit return. Clean."},
+  {t:"out",c:`const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2);
+console.log(doubled[2]);`,q:"What will this log?",o:["2","4","6","[2,4,6]"],a:2,e:"map transforms each item: [2, 4, 6]. doubled[2] is the last element, 6. You'll master map soon."}
+ ]},
+ {id:"u2l4",title:"Objects",tip:"Objects group related data as key-value pairs. Access with <code>obj.name</code> or <code>obj['name']</code> — same result. Functions inside objects are called methods.",exs:[
+  {t:"quiz",q:"How do you read the name property of obj?",o:["obj.name","obj->name","obj(name)","get obj.name"],a:0,e:"Dot notation: obj.name. Bracket notation obj['name'] works identically — handy for dynamic keys."},
+  {t:"out",c:`const user = { name: 'Ada', age: 36 };
+console.log(user.age);`,q:"What will this log?",o:["Ada","age","36","user"],a:2,e:"user.age reads the value stored under the key age — 36."},
+  {t:"fill",p:"Add a model property with value 'Corolla'.",c:`const car = {
+  brand: 'Toyota',
+  ____
+}`,o:["model: 'Corolla'","'model' = 'Corolla'","Model: 'Corolla'","model -> 'Corolla'"],a:0,e:"Object properties are key: value pairs, separated by commas."},
+  {t:"quiz",q:"user['name'] compared to user.name gives…",o:["An error","The same result","Only works for numbers","A different type"],a:1,e:"Both read the name property. Brackets are required for keys with spaces or variables: obj[keyVar]."},
+  {t:"code",p:"Create an object <code>hero</code> with properties <code>name</code> = 'Byte' and <code>level</code> = 5, then log <code>hero.level</code>.",s:`// create hero, then log hero.level
+`,r:["5"],sol:`const hero = { name: 'Byte', level: 5 };
+console.log(hero.level);`,e:"Dot notation reaches straight into the level property."},
+  {t:"out",c:`const dog = {
+  name: 'Rex',
+  speak() {
+    return 'Woof! I am ' + this.name;
+  }
+};
+console.log(dog.speak());`,q:"What will this log?",o:["Woof! I am Rex","Woof! I am undefined","Rex","error"],a:0,e:"Inside a method, this refers to the object it lives on — this.name is 'Rex'. You'll use this constantly in Express later."}
+ ]},
+ {id:"u2l5",title:"Array Methods",tip:"map transforms, filter selects, reduce combines, find grabs one. These four power almost all real-world JS. They return NEW arrays — the original stays untouched.",exs:[
+  {t:"quiz",q:"Which method creates a NEW array with each item transformed?",o:["map","forEach","filter","find"],a:0,e:"map applies your function to every item and collects the results. forEach just visits items and returns undefined."},
+  {t:"out",c:`const nums = [1, 2, 3, 4];
+const evens = nums.filter(n => n % 2 === 0);
+console.log(evens.length);`,q:"What will this log?",o:["4","2","1","[2,4]"],a:1,e:"filter keeps items where the callback returns true: 2 and 4 — so evens.length is 2."},
+  {t:"fill",p:"Produce ['ADA', 'LINUS'] from the names array.",c:`const names = ['ada', 'linus']
+const caps = names.____(n => n.toUpperCase())`,o:["map","filter","reduce","find"],a:0,e:"We transform every item — that's map's job. filter would return a subset, not conversions."},
+  {t:"quiz",q:"What does forEach return?",o:["A new array","undefined","The last item","A promise"],a:1,e:"forEach is for side effects (like logging), not transformation. Use map when you want a new array."},
+  {t:"code",p:"Given the array below, use filter to keep only the ODD numbers, then log how many remain.",s:`const nums = [1, 2, 3, 4, 5]
+`,r:["3"],sol:`const nums = [1, 2, 3, 4, 5];
+const odds = nums.filter(n => n % 2 !== 0);
+console.log(odds.length);`,e:"Odds are 1, 3, 5 — three of them. n % 2 !== 0 keeps numbers with a remainder."},
+  {t:"out",c:`const total = [1, 2, 3].reduce((sum, n) => sum + n, 0);
+console.log(total);`,q:"What will this log?",o:["123","6","3","0"],a:1,e:"reduce boils an array to one value: ((0+1)+2)+3 = 6. The 0 is the starting accumulator."}
+ ]},
+ {id:"u2l6",title:"Scope & Closures",tip:"Scope = where a variable is visible. let/const inside { } stay inside. A closure is a function that remembers the variables from the place it was born — even after that place is gone.",exs:[
+  {t:"quiz",q:"A variable declared with let inside a block { } is…",o:["Global","Visible only inside that block","Visible everywhere after","Automatically a constant"],a:1,e:"Block scope keeps variables contained — a big reason let replaced var."},
+  {t:"out",c:`let x = 1;
+function f() {
+  let x = 2;
+}
+f();
+console.log(x);`,q:"What will this log?",o:["2","1","undefined","error"],a:1,e:"The x inside f is a separate variable (block/function scope). The outer x never changes."},
+  {t:"quiz",q:"A closure is…",o:["A function that remembers variables from where it was created","A closed loop","A finished promise","A private class"],a:0,e:"Inner functions keep access to outer variables even after the outer function returns. Counter functions are the classic demo."},
+  {t:"fill",p:"Increment count each time the inner function is called.",c:`function counter() {
+  let count = 0;
+  return function() {
+    ____
+    return count;
+  }
+}`,o:["count++","count = 0","return count","let count"],a:0,e:"count++ adds 1. Because of the closure, count survives between calls — each call sees the previous value."},
+  {t:"out",c:`function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+const add5 = makeAdder(5);
+console.log(add5(3));`,q:"What will this log?",o:["3","5","8","undefined"],a:2,e:"add5 remembers x = 5 forever (closure). add5(3) = 5 + 3 = 8."},
+  {t:"quiz",q:"Why avoid global variables?",o:["They can be overwritten accidentally by any code","They make typing slower","They only hold strings","Browsers ban them"],a:0,e:"Globals are shared by everything — collisions and bugs follow. Keep variables as local as possible."}
+ ]}
+]},
+{ id:"u3", title:"Async & Modern JavaScript", icon:"bolt", color:"#ce82ff", blurb:"Promises, await, fetch",
+ lessons:[
+ {id:"u3l1",title:"Callbacks & Timers",tip:"JavaScript runs one thing at a time, but timers and callbacks let it schedule work. Code in setTimeout always waits — even with a 0ms delay.",exs:[
+  {t:"quiz",q:"setTimeout(fn, 1000) runs fn…",o:["Immediately","After about 1 second","Never","Only once per page"],a:1,e:"The second argument is milliseconds. The rest of your code keeps running while it waits."},
+  {t:"out",c:`console.log('A');
+setTimeout(() => console.log('B'), 0);
+console.log('C');`,q:"In what order do the logs appear?",o:["A B C","A C B","C A B","B A C"],a:1,e:"Even with 0ms, B is scheduled for LATER. Sync code (A, C) always runs first — this trips up everyone at first."},
+  {t:"fill",p:"Say hi one second from now.",c:`setTimeout(____, 1000)`,o:["() => console.log('hi')","'hi'","console.log('hi')","hi()"],a:0,e:"setTimeout needs a FUNCTION to call later — a string isn't code, and passing the result of console.log('hi') would log immediately."},
+  {t:"quiz",q:"A callback is…",o:["A function passed to another function, to be run later","An error handler","A type of loop","A CSS rule"],a:0,e:"You hand a function over; something else decides WHEN to invoke it."},
+  {t:"quiz",q:"Which function stops a running setInterval?",o:["clearInterval","clearTimeout","stopInterval","cancel()"],a:0,e:"Save the id setInterval returns, then pass it to clearInterval. clearTimeout is the twin for setTimeout."},
+  {t:"code",p:"Use <code>setTimeout</code> to log <code>'done'</code> after 100 milliseconds. Our runner simulates the clock, so it will be captured.",s:`// setTimeout(() => ..., 100)
+`,r:["done"],sol:`setTimeout(() => console.log('done'), 100);`,e:"Arrow functions shine as callbacks — short, inline, no name needed."}
+ ]},
+ {id:"u3l2",title:"Promises",tip:"A Promise represents a value that may arrive in the future. It starts pending, then settles as fulfilled (success) or rejected (failure). Chain with .then and .catch.",exs:[
+  {t:"quiz",q:"A Promise represents…",o:["A value available right now","A value that may arrive in the future","Only errors","A DOM element"],a:1,e:"Instead of waiting, you get a placeholder that will settle later — and .then lets you react."},
+  {t:"quiz",q:"Which is NOT a valid Promise state?",o:["pending","fulfilled","rejected","cached"],a:3,e:"Pending, fulfilled, rejected — those are the only three. 'cached' is not a thing (though caching responses is a real technique!)."},
+  {t:"out",c:`const p = new Promise((resolve) => {
+  resolve('ok');
+});
+p.then(v => console.log(v));`,q:"What will this log?",o:["ok","pending","undefined","error"],a:0,e:"Calling resolve('ok') fulfills the promise with that value, so .then receives 'ok'."},
+  {t:"fill",p:"Parse the response body as JSON.",c:`fetch('/api/users')
+  .then(res => res.____())`,o:["json","text","parse","data"],a:0,e:"res.json() is a method on the Response object — and it returns a Promise of its own, so you can keep chaining."},
+  {t:"quiz",q:"When does .catch run?",o:["When the promise rejects","When it fulfills","Always","Never"],a:0,e:"catch handles rejections — failed fetches, thrown errors, reject() calls."},
+  {t:"out",c:`Promise.resolve(2)
+  .then(n => n * 3)
+  .then(n => console.log(n));`,q:"What will this log?",o:["2","3","6","NaN"],a:2,e:"Each .then receives the previous result: 2 → 6 → logged. Chaining is the pipeline pattern."}
+ ]},
+ {id:"u3l3",title:"Async / Await",tip:"async/await is promises with better syntax: mark the function async, then await the promise. The async function PAUSES at await — the rest of your app keeps running.",exs:[
+  {t:"quiz",q:"The await keyword can be used…",o:["Inside any function","Inside async functions","Only in for loops","Only at the very top level"],a:1,e:"await must live inside a function marked async (top-level await exists in modern modules, but the safe rule is: async function)."},
+  {t:"fill",p:"Mark this function so await becomes legal inside it.",c:`____ function load() {
+  const data = await fetch('/api');
+}`,o:["async","await","promise","defer"],a:0,e:"async unlocks the use of await inside the function."},
+  {t:"out",c:`async function f() {
+  return 42;
+}
+f().then(v => console.log(v));`,q:"What will this log?",o:["undefined","42","async","error"],a:1,e:"An async function wraps its return value in a Promise — f() is really Promise.resolve(42)."},
+  {t:"quiz",q:"What does await actually do?",o:["Pauses that async function until the promise settles","Freezes the entire program","Rejects the promise","Caches the result on disk"],a:0,e:"Only that one function waits. Everything else — clicks, timers, other requests — keeps flowing."},
+  {t:"code",p:"Write an async function <code>main()</code> that awaits the promise below (it resolves to 7) and logs the value.",s:`const seven = Promise.resolve(7)
+`,tc:`;main().then(function(){console.log('PASS')}).catch(function(){console.log('FAIL')})`,sol:`const seven = Promise.resolve(7);
+async function main() {
+  const value = await seven;
+  console.log(value);
+}`,e:"await unwraps the promise: value becomes 7, and the test waits for main() to finish."},
+  {t:"quiz",q:"Promise.all([a, b, c]) resolves when…",o:["All promises settle","The first one settles","Each settles one by one","Never — it just polls"],a:0,e:"It runs them concurrently and gives you all results as an array. (Promise.race settles with the first one.)"}
+ ]},
+ {id:"u3l4",title:"fetch & JSON",tip:"fetch() requests data over HTTP. It resolves to a Response — the BODY still needs parsing with .json(). JSON is the universal data format of the web: objects and arrays as text.",exs:[
+  {t:"quiz",q:"fetch('/api/users') resolves to…",o:["The JSON data directly","A Promise of a Response object","An array of users","undefined"],a:1,e:"Common beginner mistake! fetch gives you a Response; res.json() (also async) extracts the body."},
+  {t:"out",c:`// the server responds with {"name": "Ada"}
+const res = await fetch('/user');
+const user = await res.json();
+console.log(user.name);`,q:"What will this log?",o:["res","user","Ada","undefined"],a:2,e:"res.json() turns the JSON text into a real object, so user.name is 'Ada'."},
+  {t:"quiz",q:"JSON.parse() does what?",o:["Turns a JSON string into a JavaScript value","Turns JS into CSS","Sends an HTTP request","Validates HTML"],a:0,e:"Its twin JSON.stringify() does the reverse: JS value → JSON text."},
+  {t:"fill",p:"Send a POST request to create a resource.",c:`const res = await fetch('/api/posts', {
+  method: ____
+})`,o:["'POST'","'GET'","post()","send"],a:0,e:"method is a string like 'POST', 'PUT' or 'DELETE'. GET is the default when you omit it."},
+  {t:"quiz",q:"Which header tells the server your request body is JSON?",o:["Content-Type: application/json","Accept: text/html","Body: json","Type: JSON"],a:0,e:"Without it, Express (and most servers) won't parse your body as JSON. You'll set this a lot."},
+  {t:"code",p:"Given the JSON string below, parse it into an object and log the value of its <code>a</code> property.",s:`const json = '{"a": 1}'
+`,r:["1"],sol:`const json = '{"a": 1}';
+const obj = JSON.parse(json);
+console.log(obj.a);`,e:"Notice the quotes: the JSON is a string, and JSON.parse unlocks it."}
+ ]},
+ {id:"u3l5",title:"Error Handling",tip:"try/catch lets you handle failures gracefully instead of crashing. finally runs ALWAYS — success or failure. In async code, catch is how you survive rejected promises.",exs:[
+  {t:"quiz",q:"try/catch is for…",o:["Handling runtime errors","Making loops faster","Styling pages","Creating servers"],a:0,e:"Wrap risky code in try; if it throws, the catch block runs instead of crashing."},
+  {t:"out",c:`try {
+  throw new Error('boom');
+} catch (e) {
+  console.log(e.message);
+}`,q:"What will this log?",o:["Error","boom","undefined","crash"],a:1,e:"throw new Error('boom') creates an error whose message is 'boom' — catch receives it as e."},
+  {t:"fill",p:"Catch the error if risky() throws.",c:`try {
+  risky();
+} ____ (e) {
+  console.log('failed:', e.message);
+}`,o:["catch","error","except","handle"],a:0,e:"JavaScript says catch — Python says except. Same idea, different spell."},
+  {t:"quiz",q:"A finally block runs…",o:["Always","Only when nothing throws","Only on error","Never"],a:0,e:"finally is perfect for cleanup: closing loaders, resetting state — it runs either way."},
+  {t:"code",p:"Wrap <code>JSON.parse('not json')</code> in try/catch and log <code>'caught'</code> in the catch block.",s:`try {
+`,r:["caught"],sol:`try {
+  JSON.parse('not json');
+} catch (e) {
+  console.log('caught');
+}`,e:"Parsing garbage text throws — catch intercepts it, and the program survives."},
+  {t:"out",c:`function f() {
+  try {
+    return 'try';
+  } finally {
+    console.log('finally');
+  }
+}
+console.log(f());`,q:"What is logged, and in what order?",o:["try","try then finally","finally then try","error"],a:2,e:"finally runs BEFORE the function actually returns — so 'finally' logs first, then the returned 'try' is logged."}
+ ]}
+]},
+{ id:"u4", title:"Node.js & Backend", icon:"server", color:"#ff9600", blurb:"Servers, routes, middleware",
+ lessons:[
+ {id:"u4l1",title:"Node Basics",tip:"Node.js runs JavaScript OUTSIDE the browser — on servers. No DOM, no window. Instead you get process, files, networks. One language, both sides of the app.",exs:[
+  {t:"quiz",q:"Node.js is…",o:["A JavaScript runtime for servers","A database","A CSS framework","A web browser"],a:0,e:"Node took Chrome's V8 engine and made it run on machines — that's why your JS skills transfer to the backend."},
+  {t:"quiz",q:"Which command runs app.js with Node?",o:["node app.js","run app.js","js app.js","npm exec app.js"],a:0,e:"node <file> executes it. npm is for managing packages, not running files directly."},
+  {t:"quiz",q:"In Node, the global process object gives you access to…",o:["Environment & runtime info","The DOM","CSS styles","Browser history"],a:0,e:"process.env holds environment variables, process.argv holds command-line arguments. There's no window or document in Node."},
+  {t:"quiz",q:"Which command creates a new Node project's package.json?",o:["npm init","node new","npm create app","init node"],a:0,e:"npm init walks you through the metadata; npm init -y accepts defaults. package.json is the project's ID card + dependency list."},
+  {t:"out",c:`// file: app.js
+console.log('Server starting...');`,q:"You run: node app.js — what prints?",o:["Server starting...","Nothing","undefined","SyntaxError"],a:0,e:"Node executes the file top to bottom — console.log works here just like in the browser."},
+  {t:"quiz",q:"package.json stores…",o:["Project metadata & dependencies","Only CSS files","Compiled binaries","User passwords"],a:0,e:"Name, version, scripts, and every dependency with its version. NEVER put secrets in it."}
+ ]},
+ {id:"u4l2",title:"Modules",tip:"Modules split code across files so it stays organized. CommonJS uses require / module.exports; modern ES modules use import / export. Know both — you'll see both in the wild.",exs:[
+  {t:"quiz",q:"In CommonJS, how do you export something from a file?",o:["module.exports = ...","return it","send()","export to global"],a:0,e:"Whatever you assign to module.exports is what require returns."},
+  {t:"fill",p:"Import the add function from math.js in CommonJS.",c:`// math.js
+module.exports = { add }
+
+// app.js
+const { add } = ____('./math')`,o:["require","import","load","fetch"],a:0,e:"require returns the module.exports object — destructuring pulls out just add. Note there's no .js extension needed (though it doesn't hurt)."},
+  {t:"out",c:`// greet.js
+module.exports = function greet() {
+  return 'hi';
+}
+
+// app.js
+const greet = require('./greet');
+console.log(greet());`,q:"What will this log?",o:["greet","hi","undefined","module"],a:1,e:"module.exports was set to the greet function itself — so greet() calls it directly."},
+  {t:"quiz",q:"What does ES module syntax look like for importing?",o:["import x from './x.js'","require('./x')","include('./x')","using './x'"],a:0,e:"ES modules: import/export. CommonJS: require/module.exports. Both are everywhere in Node projects."},
+  {t:"quiz",q:"Why split code into modules?",o:["Reuse & organization","It runs faster always","It's required by JavaScript","To use more memory"],a:0,e:"Small files with clear jobs: db.js talks to the database, routes.js defines endpoints, utils.js holds helpers."},
+  {t:"code",p:"Module drill: create an object <code>calc</code> with a method <code>add(a, b)</code>, then log <code>calc.add(2, 3)</code>.",s:`const calc = {
+`,tc:`;(function(){var ok=calc.add(2,3)===5&&calc.add(-1,1)===0;console.log(ok?'PASS':'FAIL')})()`,sol:`const calc = {
+  add(a, b) {
+    return a + b;
+  }
+};
+console.log(calc.add(2, 3));`,e:"Methods are just functions stored as properties — exactly how Express apps are structured."}
+ ]},
+ {id:"u4l3",title:"Your First Server",tip:"Express is the classic Node web framework. app.get(path, handler) matches requests; the handler receives req (request) and res (response). res.send / res.json reply. app.listen starts the server.",exs:[
+  {t:"quiz",q:"Express is…",o:["A Node.js web framework","A database","A browser engine","A CSS library"],a:0,e:"It handles routing, requests and responses so you don't build a server from raw parts."},
+  {t:"out",c:`const app = require('express')();
+app.get('/', (req, res) => {
+  res.send('Hello');
+});
+app.listen(3000);`,q:"A browser requests GET / — what's the response body?",o:["Hello","3000","undefined","Cannot GET /"],a:0,e:"app.get('/') matches the request, and res.send('Hello') is the reply the browser receives."},
+  {t:"fill",p:"Respond to GET requests at /users with JSON.",c:`app.____('/users', (req, res) => {
+  res.json([{ name: 'Ada' }]);
+})`,o:["get","route","listen","use"],a:0,e:"get matches GET requests. There's also app.post, app.put, app.delete — matching HTTP methods."},
+  {t:"quiz",q:"In a route handler (req, res) => {...}, res is used to…",o:["Send the response","Read the URL","Connect to the database","Log to a file"],a:0,e:"req = what the client sent. res = what you send back. res.json() sends JSON; res.send() sends text; res.status() sets the code."},
+  {t:"out",c:`app.get('/hello/:name', (req, res) => {
+  res.send('Hi ' + req.params.name);
+});`,q:"GET /hello/ada arrives. Response?",o:["Hi ada","Hi :name","Hi undefined","Hi req"],a:0,e:":name is a URL parameter — its value lands in req.params.name. This is how /users/42 fetches user 42."},
+  {t:"quiz",q:"app.listen(3000) does what?",o:["Starts the server, listening on port 3000","Listens for mouse clicks","Opens port 3000 in your browser","Loads a module"],a:0,e:"The process keeps running, waiting for connections on that port. localhost:3000 is your app."}
+ ]},
+ {id:"u4l4",title:"Routes & Middleware",tip:"Middleware are functions that run in the middle: (req, res, next). They can inspect or modify the request, then call next() to pass control along. Express chains them in order.",exs:[
+  {t:"quiz",q:"Middleware is…",o:["A function running between request and response","A CSS pattern","A database table","An error type"],a:0,e:"Logging, auth checks, body parsing, static files — all middleware. app.use() mounts them."},
+  {t:"fill",p:"Log every incoming request's HTTP method.",c:`app.use(____)`,o:["(req, res, next) => { console.log(req.method); next(); }","(req) => console.log(req.method)","() => next","res.send('log')"],a:0,e:"Middleware needs the full (req, res, next) signature — and MUST call next(), or the request hangs forever. Option 2 never releases control!"},
+  {t:"quiz",q:"What must middleware usually call to hand control to the next handler?",o:["next()","done()","res.end()","pass()"],a:0,e:"Without next(), the chain stops. With it, the request flows on to the next matching route."},
+  {t:"out",c:`app.use((req, res, next) => {
+  console.log('A');
+  next();
+});
+app.get('/', (req, res) => {
+  console.log('B');
+  res.send('ok');
+});`,q:"A GET / request arrives. What's logged, in order?",o:["A then B","B then A","A only","B only"],a:0,e:"Middleware runs first, calls next(), then the route handler runs. Order = app.use and routes appear top to bottom."},
+  {t:"quiz",q:"req.body contains…",o:["Data the client sent in the request body","URL parameters","Response headers","The server's config"],a:0,e:"Form submissions and API POSTs arrive here — but only after express.json() parses them."},
+  {t:"fill",p:"Enable parsing of JSON request bodies.",c:`app.use(express.____())`,o:["json","body","urlencoded","static"],a:0,e:"express.json() is the middleware that fills req.body for JSON requests. urlencoded handles classic HTML forms; static serves files."}
+ ]},
+ {id:"u4l5",title:"Environment & Config",tip:"Secrets (DB passwords, API keys) NEVER go in your code. They live in environment variables, read via process.env. The ?? operator gives defaults: process.env.PORT ?? 3000.",exs:[
+  {t:"quiz",q:"Database passwords and API keys should live in…",o:["Environment variables","Your source code","An HTML file","The URL"],a:0,e:"Code gets committed and shared; env vars stay on the machine. Anyone with your repo should still have zero secrets."},
+  {t:"quiz",q:"process.env.PORT ?? 3000 means…",o:["Use the PORT env var, or 3000 if it's missing","Always 3000","Add 3000 to PORT","PORT is deleted"],a:0,e:"?? is the nullish coalescing operator — it supplies a fallback when the left side is null/undefined."},
+  {t:"fill",p:"Read the database URL from the environment.",c:`const dbUrl = process.env.____`,o:["DATABASE_URL","DB.URL","env.DB_URL","config.db"],a:0,e:"Convention: SCREAMING_SNAKE_CASE names like DATABASE_URL, JWT_SECRET, NODE_ENV."},
+  {t:"quiz",q:"How do .env files get loaded in Node?",o:["A package like dotenv","Automatically — Node reads them","require('.env')","fs.readFile is built in for this"],a:0,e:"dotenv loads .env into process.env at startup. You import/configure it once, early."},
+  {t:"quiz",q:"Why must .env never be committed to git?",o:["It contains secrets","It's too small","Git rejects it","It slows Node down"],a:0,e:"Push it once and your secrets are in history forever — even if you delete the file later. Add .env to .gitignore on day one."},
+  {t:"quiz",q:"Best practice for errors in production:",o:["Log details privately, send the client a generic message","Send stack traces to everyone","Disable all logging","Show the DB password in the error"],a:0,e:"Stack traces and internals leak your architecture to attackers. 500 + a generic 'Something went wrong' for clients; full details in server logs."}
+ ]},
+ {id:"u4l6",title:"Request Data Deep Dive",tip:"Three ways data arrives: req.params (URL path, /users/:id), req.query (after ?, ?a=1&b=2), req.body (payload). Knowing which is which ends half of all backend bugs.",exs:[
+  {t:"quiz",q:"For GET /search?q=node — where does q live?",o:["req.query.q","req.params.q","req.body.q","req.q"],a:0,e:"Everything after ? is the query string: req.query = { q: 'node' }."},
+  {t:"quiz",q:"For /users/:id with /users/42 — where does 42 end up?",o:["req.params.id","req.query.id","req.body.id","req.url.id"],a:0,e:"Route parameters are defined in the path with : and read from req.params."},
+  {t:"out",c:`app.get('/add', (req, res) => {
+  const sum = Number(req.query.a) + Number(req.query.b);
+  res.send(String(sum));
+});`,q:"GET /add?a=2&b=3 — what's the response?",o:["5","23","NaN","ab"],a:0,e:"Query values arrive as STRINGS — '2' + '3' would be '23'. Number() converts them to real numbers first."},
+  {t:"fill",p:"Read the user data sent by the client in the request.",c:`app.post('/users', (req, res) => {
+  const user = req.____;
+  res.status(201).json(user);
+})`,o:["body","params","query","headers"],a:0,e:"POST data rides in the body, parsed by express.json(). status(201) means 'created'."},
+  {t:"quiz",q:"res.status(201) signals…",o:["Created","OK","Not found","Server error"],a:0,e:"200 OK is generic success; 201 Created specifically answers successful POSTs. Codes are a language — speak it."},
+  {t:"code",p:"Practical drill: write a function <code>parseQuery(str)</code> that turns <code>'a=1&b=2'</code> into <code>{ a: '1', b: '2' }</code>, then log <code>parseQuery('x=5').x</code>.",s:`function parseQuery(str) {
+  // split on '&', then on '='
+}
+`,tc:`;(function(){var r=parseQuery('a=1&b=2');console.log(r.a==='1'&&r.b==='2'?'PASS':'FAIL')})()`,sol:`function parseQuery(str) {
+  const out = {};
+  for (const pair of str.split('&')) {
+    const [key, value] = pair.split('=');
+    out[key] = value;
+  }
+  return out;
+}
+console.log(parseQuery('x=5').x);`,e:"This is literally how Express parses req.query. split, destructure, build the object."}
+ ]}
+]},
+{ id:"u5", title:"APIs & Databases", icon:"database", color:"#00b8a9", blurb:"REST, SQL, auth",
+ lessons:[
+ {id:"u5l1",title:"REST APIs",tip:"REST maps CRUD onto HTTP: GET reads, POST creates, PUT/PATCH updates, DELETE removes. Each resource gets a URL — /api/users is a collection, /api/users/42 is one item.",exs:[
+  {t:"quiz",q:"In REST, GET is for…",o:["Reading data","Creating data","Deleting data","Styling pages"],a:0,e:"GET requests should be safe and repeatable — they read, never modify."},
+  {t:"quiz",q:"Which HTTP method creates a resource?",o:["POST","GET","HEAD","OPTIONS"],a:0,e:"POST /api/users with a JSON body creates a new user. The server answers 201 with the created item."},
+  {t:"quiz",q:"PUT and PATCH typically…",o:["Update data","Delete data","Read data","Log requests"],a:0,e:"PATCH changes part of a resource; PUT replaces it entirely. Both update."},
+  {t:"out",c:`// your routes
+GET /api/users/42`,q:"In REST terms, this request means…",o:["Read user 42","Delete user 42","Update user 42","Create 42 users"],a:0,e:"GET on a specific URL = read that resource. The verb defines the action; the URL defines the target."},
+  {t:"fill",p:"Complete the CRUD route table.",c:`app.get('/posts', getPosts)
+app.____('/posts', createPost)
+app.delete('/posts/:id', deletePost)`,o:["post","get","put","use"],a:0,e:"POST creates. A full table usually also has PUT/PATCH /posts/:id for updates."},
+  {t:"quiz",q:"In a REST API, a resource is identified by…",o:["A URL","A password","A CSS class","A port number"],a:0,e:"Everything is a resource with an address. Clean URLs are API design."}
+ ]},
+ {id:"u5l2",title:"Status Codes",tip:"Status codes are the server's reply language: 2xx success, 3xx redirects, 4xx client messed up, 5xx server messed up. Using the right code is half of good API design.",exs:[
+  {t:"quiz",q:"HTTP 404 means…",o:["Not found","Success","Server error","Created"],a:0,e:"The classic. The URL doesn't match anything — wrong route, or the id doesn't exist."},
+  {t:"quiz",q:"HTTP 500 means…",o:["Server error","Not found","Redirect","OK"],a:0,e:"5xx = your server's fault: unhandled exception, DB down. The client can retry; you should fix it."},
+  {t:"quiz",q:"Which status code means plain success?",o:["200","404","500","301"],a:0,e:"200 OK is the everyday success. 201 for creates, 204 for successful deletes with no body."},
+  {t:"quiz",q:"A client DELETEs /api/todos/999 but it doesn't exist. Best response?",o:["404 Not Found","200 OK","201 Created","302 Found"],a:0,e:"Saying 'deleted' for something that isn't there is a lie — 404 is honest. (Some APIs return 204 anyway; knowing the debate is what matters.)"},
+  {t:"quiz",q:"401 vs 403 — which is right?",o:["401 = not logged in; 403 = logged in but not allowed","They're identical","403 = not found","401 = server crash"],a:0,e:"401 Unauthorized: who ARE you? 403 Forbidden: I know you — and no."},
+  {t:"fill",p:"Respond properly to a request for a missing resource.",c:`res.status(____).json({ error: 'Not found' })`,o:["404","200","500","302"],a:0,e:"404 + a JSON error body. Pair the code with a helpful message — future-you will thank present-you."}
+ ]},
+ {id:"u5l3",title:"CRUD & JSON",tip:"APIs speak JSON. res.json(data) serializes automatically and sets the content type. A full CRUD flow: validate input → touch the database → respond with the right status.",exs:[
+  {t:"quiz",q:"CRUD stands for…",o:["Create, Read, Update, Delete","Code, Run, Use, Debug","Connect, Route, Use, Deliver","Copy, Replace, Undo, Drop"],a:0,e:"Every backend ever is CRUD in a trench coat. Master it and you can build anything."},
+  {t:"out",c:`app.get('/api/todos', (req, res) => {
+  res.json(todos);
+});`,q:"A client GETs /api/todos. What format comes back?",o:["A JSON array","An HTML page","A CSV file","A plain number"],a:0,e:"res.json serializes the array — the client receives something like [{\"id\":1,\"text\":\"learn\"}]."},
+  {t:"fill",p:"Send back the created item with the correct status.",c:`app.post('/todos', (req, res) => {
+  const todo = req.body;
+  todos.push(todo);
+  res.____(todo);
+})`,o:["status(201).json","json().status(201)","send(201)","return 201"],a:0,e:"Chain them: set the status, then send the JSON body. res.json().status() would send before setting — too late."},
+  {t:"quiz",q:"res.json() automatically…",o:["Serializes to JSON and sets Content-Type","Compresses the payload","Validates your schema","Caches the response"],a:0,e:"One call, two jobs done. Sending JSON by hand with res.send(JSON.stringify(x)) sets the wrong content type."},
+  {t:"code",p:"Drill: push <code>{ title: 'Learn Node' }</code> onto the todos array, then log <code>todos.length</code>.",s:`const todos = []
+`,r:["1"],sol:`const todos = [];
+todos.push({ title: 'Learn Node' });
+console.log(todos.length);`,e:"This is the C in CRUD — the array is standing in for a database table here."},
+  {t:"quiz",q:"A typical success response to DELETE is…",o:["204 No Content","404","302","503"],a:0,e:"204 says 'done, nothing to show you'. 200 with a confirmation message is also fine."}
+ ]},
+ {id:"u5l4",title:"SQL Basics",tip:"SQL queries read like sentences: SELECT columns FROM table WHERE condition. Relational databases store data in tables with rows and columns — and a primary key uniquely identifies each row.",exs:[
+  {t:"quiz",q:"SQL is…",o:["The language of relational databases","A JavaScript framework","A web server","A CSS tool"],a:0,e:"PostgreSQL, MySQL, SQLite — same SQL language, different engines. Learn once, use everywhere."},
+  {t:"fill",p:"Write the query that reads ALL columns from users.",c:`____ * FROM users`,o:["SELECT","GET","FETCH","FIND"],a:0,e:"SELECT chooses columns; * means all of them. FROM names the table."},
+  {t:"quiz",q:"SELECT * FROM users WHERE age > 18 returns…",o:["Users older than 18","The first 18 users","All users","An error"],a:0,e:"WHERE filters rows — only rows matching the condition come back."},
+  {t:"fill",p:"Add a new user named Ada.",c:`INSERT ____ users (name) VALUES ('Ada')`,o:["INTO","TO","IN","SET"],a:0,e:"INSERT INTO table (columns) VALUES (values). The column list and values line up in order."},
+  {t:"quiz",q:"A primary key…",o:["Uniquely identifies each row","Speeds up CSS","Encrypts the table","Creates tables"],a:0,e:"Usually an auto-incrementing id. Every table should have one — it's how you say 'THIS row'."},
+  {t:"out",c:`UPDATE users SET name = 'Grace' WHERE id = 1;`,q:"What does this statement do?",o:["Renames user 1 to 'Grace'","Creates a user called Grace","Deletes user 1","Drops the table"],a:0,e:"UPDATE changes, WHERE aims. Forgetting WHERE updates EVERY row — one of the most dangerous typos in SQL."}
+ ]},
+ {id:"u5l5",title:"Databases in Node",tip:"You rarely write raw SQL strings in app code — query builders and ORMs (Prisma, Knex) let you talk to the DB in JavaScript. And NEVER concatenate user input into SQL — parameterized queries stop SQL injection.",exs:[
+  {t:"quiz",q:"An ORM or query builder (like Prisma) lets you…",o:["Talk to the database using JavaScript objects","Style pages","Host the server","Write HTML faster"],a:0,e:"prisma.user.findMany() instead of hand-written SELECTs — plus type safety and injection protection for free."},
+  {t:"fill",p:"Fetch the user with id 1 using Prisma-style syntax.",c:`const user = await prisma.user.____({
+  where: { id: 1 }
+})`,o:["findUnique","SELECT","getById","fetch"],a:0,e:"where describes the condition — the query builder translates it to SQL safely."},
+  {t:"quiz",q:"SQL injection is prevented by…",o:["Parameterized queries / placeholders","String concatenation","Hiding the URL","Longer passwords"],a:0,e:"'SELECT * FROM users WHERE id = ' + req.params.id lets an attacker type anything. Placeholders ($1, ?) treat input as DATA, never code."},
+  {t:"quiz",q:"NoSQL databases like MongoDB store data as…",o:["Documents similar to JSON","Only tables","CSS files","Excel sheets only"],a:0,e:"A Mongo document looks like the JS objects you already know: { name: 'Ada', tags: ['admin'] }."},
+  {t:"out",c:`const user = await db.query(
+  'SELECT * FROM users WHERE id = $1',
+  [1]
+);`,q:"In this query, $1 is…",o:["A parameter placeholder","A dollar amount","Invalid SQL","The first column name"],a:0,e:"The driver swaps in the value from the array, safely. This is the parameterized pattern that defeats injection."},
+  {t:"quiz",q:"Why create ONE database connection and reuse it?",o:["Connection pooling is efficient","It's required by law","It uses more memory","It prevents JSON"],a:0,e:"Opening a connection is slow and expensive. A pool keeps a few warm connections ready — every route shares them."}
+ ]},
+ {id:"u5l6",title:"Authentication Basics",tip:"Auth has three pillars: hash passwords with salt (bcrypt) so leaks aren't fatal, sign tokens (JWT) to prove identity across requests, and serve everything over HTTPS. Never roll your own crypto.",exs:[
+  {t:"quiz",q:"Passwords in the database must be stored…",o:["Hashed with a salt","In plain text","In localStorage","In the URL"],a:0,e:"Hashing is one-way — even if the DB leaks, attackers get gibberish. A salt defeats rainbow tables."},
+  {t:"quiz",q:"bcrypt is…",o:["A password-hashing library","A database","A web framework","A browser API"],a:0,e:"It hashes slowly ON PURPOSE — that makes brute-force attacks painful. Fast hashes like SHA-256 are wrong for passwords."},
+  {t:"quiz",q:"A JWT (JSON Web Token) is used to…",o:["Prove identity across requests","Compress images","Style the UI","Store passwords"],a:0,e:"After login, the server signs a token; the client sends it with every request. Stateless auth."},
+  {t:"fill",p:"Create a signed token containing the user's id.",c:`const token = jwt.____({ id: user.id }, SECRET)`,o:["sign","verify","encode","hash"],a:0,e:"jwt.sign creates, jwt.verify checks. The SECRET must live in an environment variable — never in code."},
+  {t:"quiz",q:"On each authenticated request, the server…",o:["Verifies the token's signature","Asks for the password again","Resets the database","Logs the user out"],a:0,e:"A valid signature + trusted payload = identity proven. Middleware does this check before protected routes."},
+  {t:"quiz",q:"Why is HTTPS essential for login?",o:["It encrypts credentials in transit","It makes JavaScript faster","JWT requires it","It stops SQL injection"],a:0,e:"Over plain HTTP, anyone on the network can read the password. HTTPS encrypts everything between browser and server."}
+ ]}
+]},
+{ id:"u6", title:"Full-Stack & Frontend", icon:"palette", color:"#ff6bcb", blurb:"HTML, CSS, DOM, integration",
+ lessons:[
+ {id:"u6l1",title:"HTML Structure",tip:"HTML is the skeleton: tags describe structure. Browsers forgive a lot, but clean, semantic markup matters — it's what CSS hooks onto and what screen readers use.",exs:[
+  {t:"quiz",q:"Which tag is the largest heading?",o:["<h1>","<h6>","<head>","<header>"],a:0,e:"h1 is biggest, h6 smallest. <head> is metadata, <header> is a page section — different things!"},
+  {t:"fill",p:"Make this text a working link to the site.",c:`<a ____="https://devlingo.dev">Visit</a>`,o:["href","src","link","url"],a:0,e:"<a> uses href. src is for <img>, <script>, <iframe> — the two are a classic mix-up."},
+  {t:"quiz",q:"Which tag creates a clickable button?",o:["<button>","<btn>","<click>","<input-button>"],a:0,e:"<button> is semantic and keyboard-accessible for free. Don't fake it with a <div>."},
+  {t:"out",c:`<ul>
+  <li>JavaScript</li>
+  <li>Node.js</li>
+</ul>`,q:"How many list items render?",o:["2","1","3","0"],a:0,e:"Each <li> is one item inside the unordered list <ul>. Two items, two bullets."},
+  {t:"quiz",q:"Which attribute provides an <img> with its image file?",o:["src","href","alt","file"],a:0,e:"src points to the image URL. alt is the text description — also required for accessibility."},
+  {t:"quiz",q:"Where does the visible page content go?",o:["<body>","<head>","<meta>","<title>"],a:0,e:"<head> holds metadata and the tab title; <body> holds everything rendered on screen."}
+ ]},
+ {id:"u6l2",title:"CSS Styling",tip:"CSS selects elements and sets properties. # selects by id, . by class. Flexbox (display: flex) arranges children in rows or columns — it's how most modern layouts are built.",exs:[
+  {t:"quiz",q:"Which property changes TEXT color?",o:["color","text-color","font-color","fg"],a:0,e:"color styles text. background (or background-color) styles behind it."},
+  {t:"fill",p:"Round the card's corners.",c:`.card {
+  ____: 8px;
+}`,o:["border-radius","corner-round","radius","curve"],a:0,e:"border-radius: 8px gives soft corners. Push it to 999px for pill shapes."},
+  {t:"quiz",q:"Which selector targets an element with id=\"logo\"?",o:["#logo",".logo","logo","*logo"],a:0,e:"# is id, . is class. Ids are unique; classes repeat across many elements."},
+  {t:"out",c:`.btn {
+  background: blue;
+  color: white;
+}`,q:"<button class=\"btn\">Go</button> — what color is its TEXT?",o:["white","blue","black","transparent"],a:0,e:"color = text color, background = behind it. White text on the blue button."},
+  {t:"quiz",q:"display: flex is for…",o:["Laying out children in a row or column","Making text bold","Hiding elements","Adding borders"],a:0,e:"Flexbox distributes space along one axis — centering, gaps, alignment without hacks."},
+  {t:"fill",p:"Center the title text horizontally.",c:`.title {
+  text-____: center;
+}`,o:["align","center","middle","justify"],a:0,e:"text-align handles inline text; justify-content is flexbox's alignment. Another classic mix-up."}
+ ]},
+ {id:"u6l3",title:"DOM with JavaScript",tip:"The DOM is the page as a live JS object tree. querySelector grabs elements, textContent changes text, classList toggles styles, createElement + append build new nodes. THIS is how JS meets HTML.",exs:[
+  {t:"quiz",q:"document.querySelector('h1') returns…",o:["The first matching element","All matching elements","A string","A Promise"],a:0,e:"querySelector takes CSS selectors and returns one element (or null). querySelectorAll returns all of them."},
+  {t:"fill",p:"Change the heading's text.",c:`const el = document.querySelector('h1');
+el.____ = 'Hello, DevLingo!';`,o:["textContent","innerHTML only","value","html"],a:0,e:"textContent sets plain text safely. value is for form inputs — not headings."},
+  {t:"quiz",q:"Which creates a new DOM element?",o:["document.createElement('div')","new Element('div')","document.newDiv()","make('<div>')"],a:0,e:"createElement makes it; appendChild (or append) places it in the page. Until then it floats in memory."},
+  {t:"out",c:`const p = document.querySelector('p');
+p.classList.add('done');`,q:"What happens?",o:["p gains the class 'done'","p is deleted","The text becomes 'done'","It throws an error"],a:0,e:"classList.add/remove/toggle manipulates CSS classes — the styling follows automatically from your stylesheet."},
+  {t:"quiz",q:"Which REMOVES an element from the page?",o:["el.remove()","el.delete()","remove(el)","el.kill()"],a:0,e:"el.remove() is the modern way. (el.parentNode.removeChild(el) is the old ritual.)"},
+  {t:"quiz",q:"textContent vs innerHTML with user data:",o:["textContent is safe — it never parses HTML","They're identical","innerHTML is always safer","innerHTML only works on inputs"],a:0,e:"el.innerHTML = userInput runs whatever HTML the user typed — an XSS hole. Prefer textContent for untrusted text."}
+ ]},
+ {id:"u6l4",title:"Events",tip:"Events make pages interactive: clicks, typing, submits. addEventListener('click', fn) registers a reaction. In handlers, event.preventDefault() stops the browser's default behavior — like a form reloading the page.",exs:[
+  {t:"quiz",q:"Which registers a click handler?",o:["el.addEventListener('click', fn)","el.onClick(fn)","el.click = fn","listen(el, 'click')"],a:0,e:"addEventListener is the standard; you can attach several listeners to the same event."},
+  {t:"fill",p:"Log 'clicked' when the button is pressed.",c:`btn.addEventListener('click', ____)`,o:["() => console.log('clicked')","console.log('clicked')","'clicked'","click('clicked')"],a:0,e:"The listener must be a function to call LATER. Passing console.log('clicked') executes it immediately during setup."},
+  {t:"quiz",q:"event.preventDefault() in a submit handler…",o:["Stops the default behavior (like the page reloading)","Removes the form","Deletes the event","Pauses all JavaScript"],a:0,e:"Classic pattern: intercept the form's submit, prevent the reload, and handle the data with fetch instead."},
+  {t:"out",c:`let count = 0;
+btn.addEventListener('click', () => {
+  count++;
+  console.log(count);
+});`,q:"The user clicks the button 3 times. What was the LAST log?",o:["3","1","0","undefined"],a:0,e:"Every click re-runs the handler, and count persists in the closure — 1, then 2, then 3."},
+  {t:"quiz",q:"Event delegation means…",o:["One listener on a parent handles events from its children","Every element needs its own listener","Using no listeners at all","Forwarding events to the server"],a:0,e:"Listen on the <ul> and check which <li> was clicked — one listener for a thousand items."},
+  {t:"quiz",q:"The 'submit' event fires on…",o:["A form when it's submitted","Any click anywhere","Page load","Every key press"],a:0,e:"Forms fire submit (on Enter too!). Buttons fire click. Pick the right event for the job."}
+ ]},
+ {id:"u6l5",title:"Frontend ↔ Backend",tip:"The frontend never touches the database — it asks YOUR server via fetch. The server holds the secrets, checks permissions, and returns JSON. fetch + async/await + JSON is the bridge.",exs:[
+  {t:"quiz",q:"How does the frontend get data from a backend?",o:["An HTTP request like fetch","Reading the database directly","Importing SQL files","Using CSS"],a:0,e:"The browser can only speak HTTP to your API. The database stays locked behind the server."},
+  {t:"fill",p:"Parse the todos from the response.",c:`const res = await fetch('/api/todos');
+const todos = await res.____();`,o:["json","parse","data","text"],a:0,e:"res.json() again — fetch gives a Response, and the body needs parsing."},
+  {t:"quiz",q:"Why can't the frontend query the database directly?",o:["Security — credentials and permissions must stay server-side","It's slower","Databases render HTML","CSS forbids it"],a:0,e:"Anything in the browser is public. DB credentials in frontend code = handing strangers the keys."},
+  {t:"out",c:`fetch('/api/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ user: 'ada' })
+});`,q:"What does JSON.stringify do in this code?",o:["Turns the object into a JSON string","Parses the response","Sets the headers","Encrypts the body"],a:0,e:"The body must be a string to travel over HTTP. The server parses it back into an object."},
+  {t:"quiz",q:"CORS issues appear when…",o:["Frontend and backend are on different origins","You use CSS","The database is SQL","fetch is async"],a:0,e:"Cross-Origin Resource Sharing: the server must allow the frontend's origin (Access-Control-Allow-Origin), or use a same-origin proxy."},
+  {t:"code",p:"Integration drill: build the fetch OPTIONS for a JSON POST of <code>data</code>, then log <code>options.method</code> and <code>options.body</code>.",s:`const data = { user: 'ada' }
+`,r:["POST",`{"user":"ada"}`],sol:`const data = { user: 'ada' };
+const options = {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+};
+console.log(options.method);
+console.log(options.body);`,e:"Three parts every JSON POST needs: method 'POST', the Content-Type header, and a stringified body."}
+ ]},
+ {id:"u6l6",title:"Capstone: Mini Full-Stack App",tip:"Time to think like an architect: browser renders UI and calls your API; Express routes handle logic; the database stores truth. Follow a request's journey end to end — that's full-stack thinking.",exs:[
+  {t:"quiz",q:"An app needs data shared across ALL users, stored permanently. Where does it live?",o:["A database on the server","localStorage","A JavaScript variable","A CSS file"],a:0,e:"Browser storage is per-device and erasable; variables vanish on refresh. The database is the single source of truth."},
+  {t:"out",c:`// the full journey
+fetch('/api/todos')
+  .then(r => r.json())
+  .then(render);`,q:"In this flow, where is the data stored permanently?",o:["The database","The fetch call","The .then()","render()"],a:0,e:"fetch only CARRIES data; render only DISPLAYS it. The database on the server holds the real thing."},
+  {t:"fill",p:"Complete the endpoint that reads all todos from the database.",c:`app.get('/api/todos', async (req, res) => {
+  const todos = await db.todo.____();
+  res.json(todos);
+})`,o:["findMany","SELECT *","getAll()","list()"],a:0,e:"Prisma-style: findMany reads all rows. The async handler awaits the DB, then res.json ships the results."},
+  {t:"quiz",q:"After the frontend receives todos, it usually…",o:["Renders them into the DOM","Restarts the server","Deletes the database","Compiles CSS"],a:0,e:"The loop you now know: fetch → json → map/forEach → createElement/textContent → the user sees data."},
+  {t:"code",p:"Final challenge: write an async function <code>loadTodos()</code> that fetches <code>'/api/todos'</code> (fetch is already mocked for you), parses JSON, and returns it. The test checks the result.",s:`// async function loadTodos() ...
+`,tc:`;loadTodos().then(function(t){console.log(t&&t.ok===true?'PASS':'FAIL')}).catch(function(){console.log('FAIL')})`,sol:`async function loadTodos() {
+  const res = await fetch('/api/todos');
+  return res.json();
+}`,e:"Two lines. Fetch, await, parse, return — the single most common pattern in all of frontend development. You just wrote a real API client."},
+  {t:"quiz",q:"Last one — /api/admin must be protected. What actually secures it?",o:["Server middleware that verifies the token","Hiding the button in CSS","display: none","A hard-to-guess URL"],a:0,e:"Client-side hiding is theater — anyone can send the request with curl. Only server-side checks enforce security. And with that, you're thinking full-stack."}
+ ]}
+]},
+{ id:"u7", title:"Git & GitHub Workflow", icon:"code", color:"#455a64", blurb:"Commits, branches, collaboration",
+ lessons:[
+ {id:"u7l1",title:"Git: Save Points & History",tip:"Git tracks changes on your machine. A commit is a named snapshot; stage only the changes you intend to include. Small, focused commits make history easier to understand and undo.",exs:[
+  {t:"quiz",q:"What does <code>git status</code> show?",o:["Changed, staged, and untracked files","The remote website","All project bugs","The latest deployment"],a:0,e:"Use status often: it tells you what Git sees and what will go into the next commit."},
+  {t:"fill",p:"Stage only app.js for the next commit.",c:`git ____ app.js`,o:["add","commit","push","merge"],a:0,e:"git add stages a chosen file. git add . stages everything, which can accidentally include generated files or secrets."},
+  {t:"quiz",q:"What is a commit?",o:["A snapshot of staged changes with a message","A copy of GitHub","A temporary branch","A code review"],a:0,e:"A commit records a snapshot and its parent in local history. Write a message that explains the change."},
+  {t:"out",c:`git add app.js
+git commit -m "Handle empty search"
+git status`,q:"After a successful commit, what should status generally report for app.js?",o:["No uncommitted changes","It was deleted","It was pushed to GitHub","It is still staged"],a:0,e:"Commit saves the staged snapshot locally. It does NOT send it to GitHub."},
+  {t:"quiz",q:"Which file should usually be excluded with .gitignore?",o:["node_modules/","src/app.js","README.md","package.json"],a:0,e:"node_modules is reproducible from the package manifest and can be huge. Ignore generated files, but commit the manifest and lockfile."}
+ ]},
+ {id:"u7l2",title:"Branches, Remotes & Pull Requests",tip:"A branch lets you work on a change separately. Push sends commits to a remote; a pull request asks teammates to review and merge that work. Resolve conflicts by understanding both edits, not blindly deleting markers.",exs:[
+  {t:"fill",p:"Create and switch to a branch called fix/search.",c:`git ____ -b fix/search`,o:["switch","push","commit","fetch"],a:0,e:"git switch -c (or git checkout -b) creates a branch and switches to it."},
+  {t:"quiz",q:"What does <code>git push</code> do?",o:["Sends local commits to a remote repository","Downloads the latest remote changes","Creates a commit","Opens a pull request"],a:0,e:"Push publishes commits to a configured remote. Fetch/pull bring remote changes into your local repository."},
+  {t:"quiz",q:"A pull request is primarily for…",o:["Reviewing and proposing changes before merging","Saving a local snapshot","Installing dependencies","Deploying automatically in every project"],a:0,e:"A PR gives collaborators a place to discuss code, review diffs, and run checks before merging."},
+  {t:"quiz",q:"You find conflict markers in a file after a merge. What should you do?",o:["Choose or combine the intended changes, remove markers, then test","Delete the whole file","Commit the markers unchanged","Run git push --force"],a:0,e:"Conflict markers are not valid final code. Understand both sides, edit the intended result, then run tests before committing."},
+  {t:"out",c:`git add src/search.js
+git commit -m "Fix search"
+git push -u origin fix/search`,q:"Where does the new commit exist after these commands succeed?",o:["Locally and on the origin remote","Only in the browser","Only in the staging area","It has already been merged"],a:0,e:"The commit is saved locally, then pushed to origin. A PR/merge is a separate collaboration step."}
+ ]}
+]},
+{ id:"u8", title:"Debugging & Documentation", icon:"bug", color:"#e45757", blurb:"Errors, stack traces, reliable research",
+ lessons:[
+ {id:"u8l1",title:"Read Errors & Stack Traces",tip:"Start with the exact error message, then find the first stack-trace frame that points to your own code. Reproduce the smallest failing case, inspect the values at that point, and change one thing at a time.",exs:[
+  {t:"quiz",q:"A stack trace lists library frames followed by <code>src/cart.js:28</code>. Which is usually the best first place to inspect?",o:["Your own file at src/cart.js:28","The last library frame","A random file","The browser's CSS panel"],a:0,e:"The first relevant frame in your code is often where the bad value was used. Trace backward from there to find where it came from."},
+  {t:"quiz",q:"What does <code>TypeError: Cannot read properties of undefined</code> usually tell you?",o:["A value was undefined when code tried to access a property","The server is always offline","A CSS selector is invalid","The database is corrupt"],a:0,e:"Inspect the variable immediately before the property access. Then trace why that value was missing."},
+  {t:"out",c:`function total(cart) {
+  return cart.items.length;
+}
+console.log(total({}));`,q:"Which value is missing when this throws?",o:["items","total","console","length"],a:0,e:"The object exists, but it has no items property. Check assumptions at boundaries and handle missing data deliberately."},
+  {t:"quiz",q:"What makes a useful minimal reproduction?",o:["The smallest input and steps that still trigger the error","A screenshot with no steps","The whole codebase copied into a message","A guess about the cause"],a:0,e:"Removing unrelated parts narrows the cause and makes debugging, searching, and asking for help much more effective."},
+  {t:"quiz",q:"A bug appears after changing one function. A good next step is…",o:["Set a breakpoint and inspect inputs and the failing line","Rewrite the whole app","Hide the error","Add random console logs everywhere"],a:0,e:"A targeted breakpoint shows the actual runtime values and control flow at the point of failure."}
+ ]},
+ {id:"u8l2",title:"Find Answers in Docs",tip:"Use official documentation to verify APIs and version-specific behavior. Search the exact error text, identify your runtime or library version, and compare examples against the docs rather than pasting a fix you don't understand.",exs:[
+  {t:"quiz",q:"Before applying an online fix for a library API, check…",o:["The docs for the version your project uses","The author's profile picture","Whether the snippet is shortest","Only the page title"],a:0,e:"APIs change. Check package.json/lockfile and use docs or migration notes for that installed version."},
+  {t:"quiz",q:"Which search query is usually most useful for a precise error?",o:["The exact error text plus the library/runtime name","'My code is broken'","The project name only","A search for all programming tips"],a:0,e:"Exact wording plus context cuts noise. Remove private data before sharing logs or searching publicly."},
+  {t:"quiz",q:"Why should you understand a suggested fix before using it?",o:["It may hide the symptom, weaken safety, or not match your case","Understanding code slows computers","Every online answer is correct","Docs are only for beginners"],a:0,e:"Validate the cause and expected behavior. A workaround that suppresses an error can create a harder bug."},
+  {t:"fill",p:"Print the value of result before the failing property access.",c:`const result = getResult();
+console.____(result);
+return result.name;`,o:["log","read","write","traceAll"],a:0,e:"A targeted console.log can confirm a hypothesis. Remove or appropriately route debugging output before shipping."},
+  {t:"quiz",q:"A reliable debugging loop is…",o:["Reproduce, inspect evidence, form a hypothesis, change, verify","Guess, rewrite, deploy","Ignore, restart, hope","Search, paste, commit"],a:0,e:"A repeatable loop keeps evidence connected to the fix and ensures the original failure is actually resolved."}
+ ]}
+]},
+{ id:"u9", title:"React Fundamentals", icon:"palette", color:"#149eca", blurb:"Components, state, effects",
+ lessons:[
+ {id:"u9l1",title:"Components, JSX & Props",tip:"React components are functions that describe UI. JSX looks like HTML but is JavaScript syntax; props pass data in. Keep components focused and render lists with stable keys.",exs:[
+  {t:"quiz",q:"A React component is commonly…",o:["A function that returns UI","A database table","A CSS selector","An HTTP method"],a:0,e:"A function component receives props and returns React elements (often written with JSX)."},
+  {t:"fill",p:"Pass the title value to the Heading component.",c:`<Heading ____={title} />`,o:["text","class","key","state"],a:0,e:"Props are named inputs: Heading receives a prop called text with the value of title."},
+  {t:"quiz",q:"In JSX, a JavaScript expression is embedded with…",o:["Curly braces: {value}","Square brackets: [value]","A dollar sign: $value","HTML comments"],a:0,e:"JSX uses curly braces to evaluate JavaScript expressions inside markup."},
+  {t:"quiz",q:"Why does React ask for a key when rendering an array of elements?",o:["To identify items consistently across renders","To encrypt each item","To set a CSS class","To sort the array"],a:0,e:"Stable keys help React match items when a list changes. Prefer a persistent item ID, not the array index when order can change."},
+  {t:"quiz",q:"Which is the better component design?",o:["Small components with clear props and one responsibility","One component for the entire application","Components that mutate global DOM directly","A component per CSS property"],a:0,e:"Composing focused components makes UI easier to reuse, test, and change."}
+ ]},
+ {id:"u9l2",title:"State, Events & Effects",tip:"State represents values that change over time; update it with the setter from useState instead of mutating it. Effects synchronize with external systems, and should clean up subscriptions or timers when needed.",exs:[
+  {t:"quiz",q:"When a React state value changes through its setter, React…",o:["Schedules a render using the new state","Edits the source file","Reloads the whole browser by definition","Writes directly to the database"],a:0,e:"State updates tell React to render the component again. Mutating an object or array in place can prevent the change from being noticed."},
+  {t:"fill",p:"Update count by one using its state setter.",c:`setCount(count => count + ____);`,o:["1","count","setCount","true"],a:0,e:"The updater form receives the latest state, which is especially useful when the next value depends on the previous one."},
+  {t:"quiz",q:"A useEffect cleanup function is useful for…",o:["Unsubscribing or clearing a timer when the effect is replaced or removed","Changing props","Rendering JSX","Validating TypeScript"],a:0,e:"Clean up subscriptions, event listeners, and timers to avoid stale work and resource leaks."},
+  {t:"quiz",q:"For a form input that React state controls, the usual pattern is…",o:["value plus an onChange handler that updates state","Read its text only after deployment","Use a global variable","Put the value in a CSS rule"],a:0,e:"A controlled input displays state and updates it in onChange, giving the app one clear source of truth."},
+  {t:"quiz",q:"While a request is in progress, a data-fetching UI should usually…",o:["Represent loading, success, and error states","Show stale success for every result","Disable all error handling","Assume the request always finishes"],a:0,e:"Explicit states let users understand whether data is loading, available, or failed and can retry."}
+ ]}
+]},
+{ id:"u10", title:"TypeScript", icon:"code", color:"#3377c8", blurb:"Types, unions, safe API data",
+ lessons:[
+ {id:"u10l1",title:"Types & Narrowing",tip:"TypeScript checks JavaScript before it runs. Add types where they clarify contracts; let inference handle obvious local values. Union types model alternatives, and narrowing proves which case you have.",exs:[
+  {t:"quiz",q:"What does a TypeScript type error mean?",o:["The checker found a mismatch before runtime; it does not prove the program is bug-free","The program can never run","The browser failed to load CSS","The database rejected a query"],a:0,e:"TypeScript catches many mistakes at development/build time, but runtime validation and tests are still needed."},
+  {t:"fill",p:"Give age the number type.",c:`let age: ____ = 20;`,o:["number","string","integer","NumberOnly"],a:0,e:"number is the TypeScript primitive type for numeric values."},
+  {t:"quiz",q:"What is the type of <code>string | null</code>?",o:["A union that can be a string or null","A string that cannot be empty","An array","An unknown string"],a:0,e:"The vertical bar combines possible types. Check for null before treating the value as a string."},
+  {t:"quiz",q:"How should code safely use a value typed <code>string | undefined</code>?",o:["Check that it exists before using string-only operations","Cast it to any","Assume it always exists","Disable type checking"],a:0,e:"A guard such as if (value !== undefined) narrows the type inside the branch."},
+  {t:"quiz",q:"Why avoid using <code>any</code> everywhere?",o:["It disables useful checking and lets mistakes pass unnoticed","It makes every function asynchronous","It is slower than all other types","It only works for numbers"],a:0,e:"Prefer a specific type or unknown at untrusted boundaries, then validate/narrow it."}
+ ]},
+ {id:"u10l2",title:"Typed Props & API Boundaries",tip:"Give components explicit prop contracts when useful. Treat network JSON as untrusted: a TypeScript annotation cannot validate data at runtime, so check the response and parse/validate its shape.",exs:[
+  {t:"quiz",q:"What does a TypeScript interface for React props describe?",o:["The shape of values a component accepts","The component's CSS","A database migration","An HTTP response automatically"],a:0,e:"A type or interface documents and checks the component contract during development."},
+  {t:"fill",p:"Complete the prop type for an onClick callback with no arguments.",c:`type Props = { onSave: ____ };`,o:["() => void","string","boolean","void()"],a:0,e:"() => void is a function type that takes no arguments and returns no meaningful value."},
+  {t:"quiz",q:"Does <code>const user: User = await response.json()</code> validate the server response at runtime?",o:["No — the annotation is erased; runtime data must still be checked","Yes, it validates every field","Only in production","Only if User is an interface"],a:0,e:"TypeScript types do not exist at runtime. Validate external data with explicit checks or a runtime schema parser."},
+  {t:"quiz",q:"When should you use <code>unknown</code> rather than <code>any</code> for untrusted input?",o:["When you want to require checks before using the value","Never; unknown disables checking","Only for CSS","When you want to skip all validation"],a:0,e:"unknown makes you narrow the value before using it, preserving a safety boundary."},
+  {t:"quiz",q:"What is a useful outcome of typing a component's props?",o:["Call sites get feedback when required data is missing or has the wrong type","The component automatically gets deployed","The browser validates API responses","The component no longer needs tests"],a:0,e:"Types improve editor feedback and catch contract mistakes, alongside runtime checks and tests."}
+ ]}
+]},
+{ id:"u11", title:"PostgreSQL & ORM", icon:"database", color:"#167c80", blurb:"Relational data, migrations, Prisma",
+ lessons:[
+ {id:"u11l1",title:"PostgreSQL & Relational Design",tip:"PostgreSQL is a server database that stores structured data in tables. Use primary keys to identify rows, foreign keys to represent relationships, and constraints to protect data integrity.",exs:[
+  {t:"quiz",q:"A relational database stores data primarily in…",o:["Tables of rows and columns connected by relationships","Browser components","Git branches","CSS rules"],a:0,e:"PostgreSQL tables hold structured rows; SQL queries read and change those rows."},
+  {t:"quiz",q:"What is a primary key?",o:["A column or set of columns that uniquely identifies a row","A password for the database","A query cache","A table description"],a:0,e:"A primary key is unique and not null, giving each row a reliable identity."},
+  {t:"fill",p:"Select all columns from the users table.",c:`SELECT ____ FROM users;`,o:["*","all","users","rows"],a:0,e:"SELECT * returns all columns. In production queries, explicitly choosing needed columns is often clearer and more efficient."},
+  {t:"quiz",q:"A foreign key from orders.user_id to users.id ensures…",o:["Each referenced user exists","Passwords are encrypted","Orders are sorted","The query runs only once"],a:0,e:"A foreign key enforces a relationship at the database level and prevents references to missing rows."},
+  {t:"quiz",q:"Why wrap related database updates in a transaction?",o:["So they commit together or roll back together","To make SQL into TypeScript","To expose credentials in the browser","To skip constraints"],a:0,e:"Transactions protect consistency when one logical operation needs multiple database changes."}
+ ]},
+ {id:"u11l2",title:"ORMs, Prisma & Migrations",tip:"An ORM maps application objects to database operations, but SQL concepts still matter. Define the schema, create reviewed migrations, and use parameterized ORM methods rather than building queries by concatenating user input.",exs:[
+  {t:"quiz",q:"What does an ORM do?",o:["Maps application code to database queries and records","Hosts the database in the browser","Replaces all data modeling","Automatically makes every query fast"],a:0,e:"An ORM can improve developer workflow, but you still need to understand schema design, queries, and transactions."},
+  {t:"fill",p:"Use Prisma to retrieve users whose email matches email.",c:`const user = await prisma.user.____({
+  where: { email }
+});`,o:["findUnique","findHTML","getURL","selectText"],a:0,e:"findUnique is appropriate when email is declared unique in the Prisma schema."},
+  {t:"quiz",q:"What is a database migration?",o:["A versioned change to database schema or data","A React component","A GitHub issue","A password hash"],a:0,e:"Migrations let teams apply schema changes consistently across development, test, and production databases."},
+  {t:"quiz",q:"Why review a migration before deploying it?",o:["It may lock, rewrite, or remove production data and needs a safe rollout","Migrations only change local CSS","It is always reversible automatically","It replaces backups"],a:0,e:"Understand data impact, compatibility, runtime, and rollback options before applying production schema changes."},
+  {t:"quiz",q:"Where should a PostgreSQL connection string with credentials live?",o:["In server-side environment configuration, not browser code or Git","In a public React constant","In a URL shared in chat","In a committed .env file"],a:0,e:"Treat connection strings as secrets. Keep them out of source control and frontend bundles."}
+ ]}
+]},
+{ id:"u12", title:"Implementing Authentication", icon:"lock", color:"#7d57a5", blurb:"Registration, login, sessions, access",
+ lessons:[
+ {id:"u12l1",title:"Registration & Password Storage",tip:"A real registration flow validates input on the server, normalizes identifiers consistently, hashes passwords with a dedicated slow password-hashing function, and handles duplicate accounts without trusting client-side checks.",exs:[
+  {t:"quiz",q:"What should registration store instead of the user's password?",o:["A password hash from a password-hashing function such as Argon2id or bcrypt","A reversible Base64 string","The password in plain text","A browser-generated token only"],a:0,e:"Use a purpose-built password hash with safe parameters. Never invent your own password storage scheme."},
+  {t:"out",c:`const hash = await argon2.hash(password);
+await db.user.create({ data: { email, passwordHash: hash } });`,q:"Which value is persisted as passwordHash?",o:["The derived hash, not the original password","The email address","A JWT","The plain password"],a:0,e:"The password is transformed by the password-hashing function; the stored hash is later used to verify a login attempt."},
+  {t:"quiz",q:"Where must registration validation happen?",o:["On the server, even if the UI also validates","Only in the browser","Only in CSS","After saving the password"],a:0,e:"Clients can be bypassed. The server validates every request before changing data."},
+  {t:"quiz",q:"A user submits an email that already exists. The server should…",o:["Handle the unique constraint and return a deliberate response","Create a second account with the same unique email","Crash without logging","Return the database password"],a:0,e:"Use a database uniqueness constraint as the final guard and map the conflict to a safe, intentional response."},
+  {t:"quiz",q:"Why use a password-hashing algorithm designed for passwords?",o:["It is intentionally costly to slow offline guessing","It makes passwords reversible","It removes the need for HTTPS","It guarantees accounts cannot be stolen"],a:0,e:"Password hashes are not encryption. A deliberately slow hash raises the cost of guessing if hashes are exposed."}
+ ]},
+ {id:"u12l2",title:"Login, Sessions & Authorization",tip:"After verifying a password hash, create a server-managed session or a carefully designed token. For browser sessions, secure HttpOnly cookies reduce script access; authorization checks must protect every sensitive server route.",exs:[
+  {t:"quiz",q:"During login, how should the server compare the submitted password?",o:["Use the password-hash library's verify/compare function","Compare it to a plaintext database column","Decode the stored hash","Trust a client-side success flag"],a:0,e:"Password hashes are one-way; use the library's verification function to check a candidate password."},
+  {t:"quiz",q:"What does the HttpOnly cookie flag do?",o:["Prevents JavaScript from reading the cookie through document.cookie","Encrypts the database","Makes the cookie public","Checks the user's role"],a:0,e:"HttpOnly reduces exposure to script-based theft. Also use Secure over HTTPS and an appropriate SameSite policy."},
+  {t:"fill",p:"Mark an authentication cookie as inaccessible to JavaScript.",c:`res.cookie('session', token, {
+  httpOnly: ____,
+  secure: true,
+  sameSite: 'lax'
+});`,o:["true","false","'public'","null"],a:0,e:"httpOnly: true prevents client-side scripts from reading the cookie. Cookie settings should match the app's deployment and threat model."},
+  {t:"quiz",q:"Authentication answers 'who are you?'; authorization answers…",o:["'What are you allowed to do?'","'What is your password?'","'Which CSS do you use?'","'Where is the database?'"],a:0,e:"A valid login does not automatically grant every permission. Check ownership and role at each protected operation."},
+  {t:"quiz",q:"Where should the authorization check for DELETE /api/users/42 run?",o:["On the server before deleting, checking identity and permission","Only when hiding the delete button","In a CSS media query","In the browser's localStorage"],a:0,e:"The server is the enforcement point. Users can call the API directly, so UI restrictions are not access control."}
+ ]}
+]},
+{ id:"u13", title:"Testing & Deployment", icon:"globe", color:"#d88524", blurb:"Confidence, production, operations",
+ lessons:[
+ {id:"u13l1",title:"Test the Behavior",tip:"Tests turn expectations into repeatable checks. Unit tests isolate small logic; integration tests exercise boundaries such as HTTP routes and a test database. Assert behavior users rely on, not private implementation details.",exs:[
+  {t:"quiz",q:"A unit test is best suited to…",o:["Checking a small function's behavior in isolation","Proving the entire production system works","Replacing code review","Deploying a database"],a:0,e:"Unit tests are fast and focused. Integration and end-to-end tests cover interactions across components."},
+  {t:"fill",p:"Assert that add(2, 3) returns 5 with a Vitest-style matcher.",c:`expect(add(2, 3)).to____(5);`,o:["Be","Equal","MatchExactly","Have"],a:0,e:"toBe checks the expected primitive value in Vitest/Jest-style assertions."},
+  {t:"quiz",q:"A route writes to a database. Which test gives confidence about the route and persistence together?",o:["An integration test against an isolated test database","A CSS snapshot only","A test that mocks every layer","No test because the ORM is typed"],a:0,e:"A test database exercises real query and route behavior without touching production data."},
+  {t:"quiz",q:"When is a mock useful?",o:["When isolating a dependency or simulating a controlled failure","To prove the real database schema works","As a replacement for every integration test","To hide a failing assertion"],a:0,e:"Mocks help control external boundaries, but keep tests with real integrations where those interactions matter."},
+  {t:"quiz",q:"A test fails only on CI. A productive first step is…",o:["Compare runtime, environment, test data, and the exact failure output","Delete the test","Assume CI is wrong","Commit a skipped test"],a:0,e:"Reproduce with evidence: inspect logs and versions, then isolate environmental assumptions such as time, ordering, and shared state."}
+ ]},
+ {id:"u13l2",title:"Deploy & Operate an App",tip:"Deployment moves a tested build into an environment that serves real users. Configure secrets and database access on the server, apply reviewed migrations deliberately, verify health, and watch logs and error rates after release.",exs:[
+  {t:"quiz",q:"Where should production secrets be configured?",o:["In the hosting provider's secret/environment settings","In the public JavaScript bundle","In a committed .env file","In a GitHub issue"],a:0,e:"Keep secrets server-side and out of Git, logs, screenshots, and client bundles."},
+  {t:"quiz",q:"Before a production deployment, a database migration should be…",o:["Reviewed, tested, and applied through the planned release process","Run manually with guessed SQL","Ignored because ORM handles everything","Copied into the frontend"],a:0,e:"Migrations can affect availability and data. Test them and plan compatible rollout and recovery."},
+  {t:"quiz",q:"After a deployment, what is a useful verification?",o:["Check the health endpoint, logs, and a key user flow","Assume green means everything works","Delete the previous release immediately","Share all environment variables"],a:0,e:"Confirm the running app behaves correctly and look for errors or unusual latency."},
+  {t:"quiz",q:"Why keep a rollback or recovery plan?",o:["To restore service safely if the release causes problems","To avoid running tests","To make secrets public","To skip monitoring"],a:0,e:"A release plan should include a safe path to recover application and database state if something goes wrong."},
+  {t:"quiz",q:"What does HTTPS provide for a deployed site?",o:["Encrypted communication between client and server","Database backups automatically","Protection from every application bug","Authentication by itself"],a:0,e:"HTTPS protects data in transit, but does not replace authorization, secure storage, or input validation."}
+ ]}
+]}
+];
+/* ================= ACHIEVEMENTS ================= */
+const ACH=[
+ {id:"first", ic:"book", name:"First Steps", desc:"Complete your first lesson", t:s=>countDone()>=1},
+ {id:"sharp", ic:"target", name:"Sharpshooter", desc:"Finish a lesson with zero mistakes", t:s=>s.perfects>=1},
+ {id:"streak3", ic:"flame", name:"Warming Up", desc:"Reach a 3-day streak", t:s=>s.streak>=3},
+ {id:"streak7", ic:"bolt", name:"Unstoppable", desc:"Reach a 7-day streak", t:s=>s.streak>=7},
+ {id:"xp500", ic:"gem", name:"Gem Hunter", desc:"Earn 500 XP", t:s=>s.xp>=500},
+ {id:"xp2k", ic:"trophy", name:"XP Machine", desc:"Earn 2,000 XP", t:s=>s.xp>=2000},
+ {id:"unit1", ic:"leaf", name:"Rooted", desc:"Finish JavaScript Foundations", t:()=>unitDone(0)},
+ {id:"unit4", ic:"server", name:"Server Whisperer", desc:"Finish the Node.js & Backend unit", t:()=>unitDone(3)},
+ {id:"grad", ic:"graduation", name:"Full-Stack Graduate", desc:"Complete every unit", t:()=>CUR.every((_,i)=>unitDone(i))},
+ {id:"coder", ic:"code", name:"Code Runner", desc:"Solve a hands-on coding exercise", t:s=>s.codeSolved>=1}
+];
+function countDone(){let n=0;for(const k in S.lessons)if(S.lessons[k].done)n++;return n}
+function unitDone(ui){return CUR[ui].lessons.every(l=>S.lessons[l.id]&&S.lessons[l.id].done)}
+function isUnlocked(ui,li){return true}
+function isNext(ui,li){for(let a=0;a<CUR.length;a++)for(let b=0;b<CUR[a].lessons.length;b++)if(!(S.lessons[CUR[a].lessons[b].id]||{}).done)return a===ui&&b===li;return false}
+function levelOf(xp){return Math.floor(xp/100)+1}
+function levelName(l){const n=["Hello World","Var Wrangler","Function Fan","Array Ace","Promise Keeper","Async Artist","Node Navigator","API Architect","Data Druid","Stack Sage"];return l<=10?n[l-1]:"Sage+"+(l-10)}
+function checkAch(){ACH.forEach(a=>{if(!S.ach.includes(a.id)&&a.t(S)){S.ach.push(a.id);toast(a.ic,a.name,a.desc);Sfx.win()}});save()}
+function toast(ic,name,desc){const d=document.createElement("div");d.className="toast";d.innerHTML=`<span class="ti">${icon(ic,28)}</span><span>${name}<small>${desc}</small></span>`;$("#toasts").appendChild(d);setTimeout(()=>{d.style.transition="opacity .4s,transform .4s";d.style.opacity="0";d.style.transform="translateX(120%)";setTimeout(()=>d.remove(),400)},3400)}
+
+/* ================= HEADER / TABS ================= */
+var hpNow=5;
+function updateHeader(){$("#st-hp").innerHTML=iconHeart()+" "+hpNow;$("#st-streak").innerHTML=icon("flame",17)+" "+S.streak;$("#st-xp").innerHTML=icon("star",17)+" "+S.xp}
+/* ================= VIEWS ================= */
+const App={currentTab:"learn",
+ tab(v){Sfx.click();this.currentTab=v;document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.v===v));this.render()},
+ render(){hpNow=5;updateHeader();document.body.classList.remove("in-lesson");if(this.currentTab==="learn")renderLearn();else if(this.currentTab==="league")renderLeague();else if(this.currentTab==="ach")renderAch();else renderMe();window.scrollTo(0,0)},
+ open(u,l){const L=CUR[u].lessons[l];if(!isUnlocked(u,l))return;Sfx.click();
+  sheet(`<span class="mascot">${icon("owl",58)}</span>
+   <div class="un">${CUR[u].title} · Lesson ${l+1}</div>
+   <h2>${L.title}</h2>
+   <div class="tipbox"><b>${icon("sparkles",16)} Coach Bit says:</b> ${L.tip}</div>
+   <div class="meta">${L.exs.length} exercises · up to ${L.exs.length*10+20} XP</div>
+   <button class="btn btn-green btn-big" onclick="App.start(${u},${l})">Start Lesson</button>
+   <button class="btn btn-ghost" style="margin-top:10px" onclick="closeSheet()">Maybe later</button>`)},
+ start(u,l){closeSheet();Sfx.click();
+  this.L={u:u,l:l,d:shuffled(CUR[u].lessons[l]),i:0,hearts:5,xp:0,wrong:0,sel:null,answered:false,attempts:0,correct:0};
+  function shuffled(lesson){
+  return {...lesson,exs:lesson.exs.map(ex=>{
+    if(!ex.o)return ex;
+    const idx=ex.o.map((_,i)=>i);
+    for(let i=idx.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
+    return {...ex,o:idx.map(i=>ex.o[i]),a:idx.indexOf(ex.a)};
+  })};
+}
+  this.renderLesson()},
+ /* ---------- lesson rendering ---------- */
+ renderLesson(){const L=this.L,ex=L.d.exs[L.i];hpNow=L.hearts;updateHeader();document.body.classList.add("in-lesson");
+  const typeName={quiz:"Multiple Choice",out:"Predict the Output",fill:"Fill the Blank",bug:"Find the Bug",code:"Write Code"}[ex.t];
+  const pct=Math.round((L.i)/L.d.exs.length*100);
+  let body="";
+  if(ex.t==="quiz"){body=`<div class="prompt">${esc(ex.q)}</div><div class="opts">${ex.o.map((o,i)=>`<button class="opt" data-i="${i}" onclick="App.pick(${i})"><span class="k">${i+1}</span><span>${esc(o)}</span></button>`).join("")}</div>`}
+  else if(ex.t==="out"){body=`<div class="prompt">${esc(ex.q)}</div><div class="code">${esc(ex.c)}</div><div class="opts">${ex.o.map((o,i)=>`<button class="opt" data-i="${i}" onclick="App.pick(${i})"><span class="k">${i+1}</span><span>${esc(o)}</span></button>`).join("")}</div>`}
+  else if(ex.t==="fill"){body=`<div class="prompt">${ex.p}</div><div class="code">${esc(ex.c).replace("____",'<span class="blank">&nbsp;?&nbsp;</span>')}</div><div class="opts">${ex.o.map((o,i)=>`<button class="opt" data-i="${i}" onclick="App.pick(${i})"><span class="k">${i+1}</span><span><code>${esc(o)}</code></span></button>`).join("")}</div>`}
+  else if(ex.t==="bug"){const lines=ex.c.split("\n");body=`<div class="prompt">${esc(ex.q)}</div><div class="code">${lines.map((ln,i)=>`<span class="ln">${i+1}</span>${esc(ln)}\n`).join("")}</div><div class="opts">${ex.o.map((o,i)=>`<button class="opt" data-i="${i}" onclick="App.pick(${i})"><span class="k">${i+1}</span><span><code>${esc(o)}</code></span></button>`).join("")}</div>`}
+  else if(ex.t==="code"){body=`<div class="prompt">${ex.p}</div><textarea class="editor" id="editor" spellcheck="false">${esc(ex.s||"")}</textarea><div id="runpanel"></div>`}
+  $("#view").innerHTML=`
+   <div class="lesson-top">
+     <button class="xbtn" aria-label="Quit lesson" onclick="App.quit()">${icon("close",20)}</button>
+     <div class="ptrack"><div class="pfill" style="width:${pct}%"></div></div>
+     <span class="lhearts" id="lhearts">${iconHeart()} ${L.hearts}</span>
+   </div>
+   <div class="extype">${icon(ex.t==="code"?"code":"book",18)} ${typeName} <span style="margin-left:auto;color:var(--gray)">${L.i+1} / ${L.d.exs.length}</span></div>
+   <div class="excard" id="excard">${body}</div>
+   <div class="lesson-foot">
+     <div class="feedback" id="fb"></div>
+     ${S.device==="pc"?`<div class="kbhint">${ex.t==="code"?"Ctrl+Enter to run":"Press 1–"+ex.o.length+" to choose · Enter to check / continue"}</div>`:""}
+     <div class="rowbtns" style="display:flex;gap:10px">
+       <button class="btn ${ex.t==="code"?"btn-blue":"btn-green"} btn-big" id="checkbtn" ${ex.t==="code"?"":"disabled"} onclick="App.check()">${ex.t==="code"?"Run & Check":"Check"}</button>
+     </div>
+   </div>`;
+  if(ex.t==="code"){const ed=$("#editor");
+   ed.addEventListener("input",()=>{if(!L.answered)$("#checkbtn").disabled=false});
+   ed.addEventListener("keydown",e=>{if(e.key==="Tab"&&!e.shiftKey){e.preventDefault();ed.setRangeText("  ",ed.selectionStart,ed.selectionEnd,"end")}});
+   if(S.device!=="mobile"){ed.focus();ed.setSelectionRange(ed.value.length,ed.value.length)}}
+ },
+ pick(i){const L=this.L;if(L.answered)return;Sfx.click();L.sel=i;document.querySelectorAll(".opt").forEach(b=>b.classList.toggle("sel",+b.dataset.i===i));$("#checkbtn").disabled=false},
+ async check(){const L=this.L,ex=L.d.exs[L.i];
+  if(L.answered)return;
+  if(ex.t==="code"){
+   const code=$("#editor").value;
+   $("#checkbtn").disabled=true;$("#checkbtn").textContent="Running…";
+   const res=await runCode(code,ex.tc||"");
+   L.attempts++;
+   let ok=false;
+   if(!res.err){
+    if(ex.tc)ok=res.logs[res.logs.length-1]==="PASS";
+    else ok=JSON.stringify(res.logs)===JSON.stringify(ex.r);
+   }
+   const rp=$("#runpanel");
+   if(res.err)rp.innerHTML=`<div class="runout err">Error: ${esc(res.err)}</div>`;
+   else rp.innerHTML=`<div class="runout okl">${icon("code",16)} Your output:\n${esc(res.logs.join("\n")||"(nothing logged)")}</div>`;
+   const btn=$("#checkbtn");btn.disabled=false;
+   if(ok){this.judge(true)}
+   else if(L.attempts<2){btn.textContent="Try Again";this.fb(false,"Not quite — check the output above.",esc(ex.e)+"<br><br>"+icon("sparkles",16)+" Tip: one more try, then I'll show you the answer.",false)}
+   else{L.answered=true;L.wrong++;L.hearts--;Sfx.no();this.fb(false,"Here's a working solution:",`<div class="code" style="text-align:left">${esc(ex.sol)}</div><br>${esc(ex.e)}`,false);this.afterAnswer(false)}
+   return;
+  }
+  if(L.sel==null)return;
+  this.judge(L.sel===ex.a);
+ },
+ judge(ok){const L=this.L,ex=L.d.exs[L.i];L.answered=true;
+  document.querySelectorAll(".opt").forEach(b=>{const i=+b.dataset.i;if(i===ex.a)b.classList.add("right");else if(i===L.sel&&!ok)b.classList.add("wrong")});
+  const btn=$("#checkbtn");btn.className="btn "+(ok?"btn-green":"btn-red")+" btn-big";btn.disabled=false;btn.textContent="Continue";btn.onclick=()=>App.next();
+  this.fb(ok,ok?"Nice! "+icon("check",16):"Correct answer: <b>"+esc(ex.o?ex.o[ex.a]:"")+"</b>",esc(ex.e),true);
+  if(ok){L.xp+=10;L.correct++;Sfx.ok();if(ex.t==="code"){S.codeSolved++;save()}}
+  else{L.hearts--;L.wrong++;Sfx.no()}
+  this.afterAnswer(ok);
+ },
+ fb(good,title,html,auto){const f=$("#fb");f.className="feedback show "+(good?"good":"bad");f.innerHTML=`<h3>${title}</h3><p>${html}</p>`;if(!auto){const btn=$("#checkbtn");btn.className="btn btn-blue btn-big";btn.textContent="Try Again";btn.onclick=()=>{f.className="feedback";btn.className="btn btn-blue btn-big";btn.textContent="Run & Check";btn.onclick=()=>App.check()};if(L0().attempts>=2&&L0().answered){btn.textContent="Continue";btn.className="btn btn-red btn-big";btn.onclick=()=>App.next()}}
+  f.scrollIntoView({block:"nearest",behavior:"smooth"})},
+ afterAnswer(ok){const L=this.L;hpNow=L.hearts;updateHeader();const h=$("#lhearts");if(h)h.innerHTML=iconHeart()+" "+L.hearts;
+  const pf=document.querySelector(".pfill");if(pf)pf.style.width=Math.round((L.i+1)/L.d.exs.length*100)+"%"},
+ next(){const L=this.L;
+  if(L.hearts<=0){this.renderFail();return}
+  if(L.i>=L.d.exs.length-1){this.finish();return}
+  L.i++;L.sel=null;L.answered=false;L.attempts=0;Sfx.click();this.renderLesson()},
+ quit(){Sfx.click();hpNow=5;updateHeader();document.body.classList.remove("in-lesson");this.currentTab="learn";document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.v==="learn"));renderLearn()},
+ finish(){const L=this.L;const perfect=L.wrong===0;if(perfect)L.xp+=20;
+  const key=L.d.id,prev=S.lessons[key]||{};
+  S.lessons[key]={done:true,perfect:prev.perfect||perfect};
+  bumpStreak();S.xp+=L.xp;S.today.xp+=L.xp;if(perfect)S.perfects=(S.perfects||0)+1;
+  save();checkAch();updateHeader();Sfx.win();
+  const all=unitDone(L.u)?`<div class="flaw">${icon("award",18)} Unit complete: ${CUR[L.u].title}!</div>`:"";
+  $("#view").innerHTML=`<div class="endcard">
+    <span class="bigowl">${icon("owl",76)}</span>
+    <h2>Lesson complete!</h2>
+    <div class="sub">${L.d.title}</div>
+    ${perfect?`<div class="flaw">${icon("sparkles",18)} FLAWLESS — no mistakes!</div>`:""}
+    ${all}
+    <div class="xpbar">${icon("bolt",20)} +${L.xp} XP</div>
+    <div class="rows">
+      <div class="row"><span>Exercises correct</span><span>${L.correct} / ${L.d.exs.length}</span></div>
+      <div class="row"><span>Hearts left</span><span>${L.hearts>0?iconHeart(16)+" "+L.hearts:"None"}</span></div>
+      <div class="row"><span>Total XP</span><span>${icon("star",16)} ${S.xp}</span></div>
+    </div>
+    <button class="btn btn-green btn-big" onclick="App.quit()">Continue</button>
+    <button class="btn btn-ghost" style="margin-top:10px" onclick="App.start(${L.u},${L.l})">Practice again</button>
+  </div>`;window.scrollTo(0,0)},
+ renderFail(){Sfx.no();const L=this.L;
+  $("#view").innerHTML=`<div class="endcard">
+    <span class="bigowl">${icon("heart",76)}</span>
+    <h2>Out of hearts!</h2>
+    <div class="sub">Don't worry — even senior devs Google 'how to exit vim'. Try again!</div>
+    <div class="rows"><div class="row"><span>Progress kept</span><span>${L.correct} correct answers banked in your brain</span></div></div>
+    <button class="btn btn-red btn-big" onclick="App.start(${L.u},${L.l})">Try Again</button>
+    <button class="btn btn-ghost" style="margin-top:10px" onclick="App.quit()">Back to tree</button>
+  </div>`;window.scrollTo(0,0)}
+};
+function L0(){return App.L}
+/* ---------- sheet ---------- */
+function sheet(html){$("#overlay").innerHTML=`<div class="overlay" onclick="if(event.target===this)closeSheet()"><div class="sheet">${html}</div></div>`}
+function closeSheet(){$("#overlay").innerHTML=""}
+/* ================= LEARN VIEW ================= */
+function renderLearn(){const goal=30,ring=Math.min(S.today.xp/goal,1),C=2*Math.PI*30;
+ $("#view").innerHTML=`
+  <div class="greet">
+   <div><h1>Hi ${esc(S.name)}</h1><p>${S.streak>0?`You're on a <b style="color:#ff9600">${S.streak}-day streak</b> — keep it alive!`:"Start a streak today!"}</p></div>
+    <div class="ringbox" title="Daily goal: 30 XP">
+      <svg width="74" height="74"><circle cx="37" cy="37" r="30" fill="none" stroke="#e5e5e5" stroke-width="8"/>
+      <circle cx="37" cy="37" r="30" fill="none" stroke="#ffc800" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-ring)}"/></svg>
+      <div class="rtxt">${S.today.xp}<small>/ ${goal} XP</small></div>
+    </div>
+  </div>
+  ${CUR.map((u,ui)=>{
+    const done=u.lessons.filter(l=>(S.lessons[l.id]||{}).done).length;
+    return `<div class="unit" style="--uc:${u.color}">
+      <div class="unit-head" style="background-color:${u.color}">
+        <span class="uic">${icon(u.icon,30)}</span>
+        <div><h2>${u.title}</h2></div>
+        <span class="prog">${done}/${u.lessons.length}</span>
+      </div>
+      <div class="unit-body" style="background:radial-gradient(circle at 50% 0,#fff 55%,${u.color}18)">
+        ${u.lessons.map((l,li)=>{
+          const st=S.lessons[l.id]||{};
+          const unlocked=isUnlocked(ui,li);
+          const cls=!unlocked?"locked":st.done?(st.perfect?"done perfect":"done"):"open"+(isNext(ui,li)?" bounce":"");
+          const ic=!unlocked?"lock":st.done?"star":"book";
+          return `<div class="node-row r${li%3}"><div class="nodecell">
+            <button class="node ${cls}" style="--uc:${u.color}" aria-label="${esc(l.title)}${unlocked?"":" (locked)"}" onclick="App.open(${ui},${li})">${icon(ic,30)}</button>
+            <span class="node-label">${l.title}</span>
+          </div></div>`}).join("")}
+      </div>
+    </div>`}).join("")}
+  <div class="center">${icon("owl",24)} Keep going — build, test, and ship something real!</div>`;
+}
+/* ================= LEAGUE ================= */
+function ensureBots(){if(S.bots&&S.botsDay===dstr(0))return;const names=[["xX_syntax_Xx","bug"],["null_ada","calculator"],["async_andy","hourglass"],["seg_fault","bug"],["0xKira","hash"],["bracket_bender","paperclip"],["todo_warrior","clipboard"],["npm_god","package"],["camelCaseKing","globe"],["stack_smasher","layers"]];const offs=[260,190,150,110,80,45,10,-35,-80,-140];S.bots=names.map((n,i)=>({name:n[0],av:n[1],xp:Math.max(0,S.xp+offs[i])}));S.botsDay=dstr(0);save()}
+function renderLeague(){ensureBots();const rows=[...S.bots.map(b=>({...b,me:false})),{name:S.name+" (you)",av:"owl",xp:S.xp,me:true}].sort((a,b)=>b.xp-a.xp);
+ const me=rows.findIndex(r=>r.me),league=["Bronze","Silver","Gold","Sapphire","Diamond","Obsidian"][Math.min(5,Math.floor(S.xp/300))];
+ $("#view").innerHTML=`<div class="lghead"><div class="t">${icon("trophy",38)}</div><h2>${league} League</h2><div class="secsub">Top 4 advance · bottom 3 drop</div></div>
+ <div class="pbar"><div style="width:${Math.max(4,100-me*10)}%"></div></div>
+ ${rows.map((r,i)=>`<div class="lgrow ${r.me?"me":""}"><span class="rk">${i+1}</span><span class="av">${icon(r.av,20)}</span><span>${esc(r.name)}</span><span class="xp">${icon("bolt",16)} ${r.xp}</span></div>`).join("")}
+ <div class="center">Finish lessons to climb past the bots. They never sleep. (They also never learn async/await — you do.)</div>`}
+/* ================= ACHIEVEMENTS ================= */
+function renderAch(){$("#view").innerHTML=`
+ <div class="sechead">${icon("award",22)} Badges</div>
+ <div class="secsub">${S.ach.length} of ${ACH.length} unlocked</div>
+ <div class="achgrid">${ACH.map(a=>{const un=S.ach.includes(a.id);return `<div class="ach ${un?"":"locked"}"><div class="ic">${icon(a.ic,40)}</div><h4>${a.name}</h4><p>${a.desc}</p>${un?`<p style="color:var(--green)">${icon("check",14)} Unlocked</p>`:""}</div>`}).join("")}</div>`}
+/* ================= PROFILE ================= */
+function renderMe(){const lvl=levelOf(S.xp),into=S.xp%100,done=countDone(),total=CUR.reduce((n,u)=>n+u.lessons.length,0);
+ $("#view").innerHTML=`
+ <div class="pcard">
+   <div class="avatar">${icon("owl",52)}</div>
+   <h2>${esc(S.name)}</h2>
+   <div class="lvl">Level ${lvl} · ${levelName(lvl)}</div>
+   <div class="lvlbar"><div style="width:${into}%"></div></div>
+   <div class="lvlxp">${into} / 100 XP to level ${lvl+1}</div>
+ </div>
+ <div class="statgrid">
+   <div class="statg"><div class="v" style="color:var(--gold)">${icon("star",22)} ${S.xp}</div><div class="l">Total XP</div></div>
+   <div class="statg"><div class="v" style="color:#ff9600">${icon("flame",22)} ${S.streak}</div><div class="l">Day streak</div></div>
+   <div class="statg"><div class="v" style="color:var(--green)">${done} / ${total}</div><div class="l">Lessons done</div></div>
+   <div class="statg"><div class="v" style="color:var(--purple)">${S.ach.length} / ${ACH.length}</div><div class="l">Badges</div></div>
+ </div>
+ <div class="pcard" style="text-align:left;font-size:14px;font-weight:700;line-height:1.7">
+   <b>${icon("map",18)} Your path:</b> JavaScript Foundations → Functions & Logic → Async & Modern JS → Node.js & Backend → APIs & Databases → Full-Stack & Frontend
+ </div>
+ <div class="center" style="padding-bottom:12px"><a class="btn btn-blue" href="ans.html" style="display:inline-block;text-decoration:none">View Answers</a></div>
+ <div class="center" style="padding-bottom:12px"><button class="btn btn-ghost" onclick="S.device=null;save();applyDevice();showWelcome()">${icon(S.device==='mobile'?'phone':'monitor',16)} Switch device (now: ${S.device==='mobile'?'Mobile':'PC'})</button></div>
+ <div class="center" style="padding-top:0"><button class="btn btn-ghost" onclick="if(confirm('Reset ALL progress? This cannot be undone.')){try{localStorage.removeItem(KEY)}catch(e){}location.reload()}">Reset progress</button></div>`}
+/* ================= INIT ================= */
+function applyDevice(){document.body.classList.remove("dev-mobile","dev-pc");if(S.device==="mobile"||S.device==="pc")document.body.classList.add("dev-"+S.device)}
+function showWelcome(){
+ if($("#welcome"))return;
+ const guess=(matchMedia("(pointer:coarse)").matches||innerWidth<700)?"mobile":"pc";
+ const tag=d=>guess===d?"<em>Suggested</em>":"";
+ const el=document.createElement("div");el.id="welcome";
+ el.innerHTML=`<div class="wcard"><span class="wowl">${icon("owl",64)}</span><h1>devlingo</h1><p>Learn to code, 5 minutes at a time.</p>
+  <h2>Which device are you on?</h2>
+  <div class="devrow">
+   <button class="devbtn" data-d="mobile">${tag("mobile")}${icon("phone",42)}<b>Mobile</b><small>Big touch buttons<br>Bottom menu</small></button>
+   <button class="devbtn" data-d="pc">${tag("pc")}${icon("monitor",42)}<b>PC</b><small>Wide layout<br>Keyboard shortcuts</small></button>
+  </div><p class="whint">You can switch anytime in Profile.</p></div>`;
+ document.body.appendChild(el);
+ el.querySelectorAll(".devbtn").forEach(b=>b.onclick=()=>{S.device=b.dataset.d;save();applyDevice();el.remove();Sfx.click();App.render()});
+}
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){closeSheet();return}
+ if(S.device!=="pc"||!document.body.classList.contains("in-lesson")||!App.L)return;
+ const tb=$("#checkbtn");
+ if(e.target.tagName==="TEXTAREA"){if(e.key==="Enter"&&(e.ctrlKey||e.metaKey)){e.preventDefault();if(tb&&!tb.disabled)tb.click()}return}
+ if(/^[1-9]$/.test(e.key)){const b=document.querySelector('.opt[data-i="'+(+e.key-1)+'"]');if(b){e.preventDefault();b.click()}}
+ else if(e.key==="Enter"){e.preventDefault();if(tb&&!tb.disabled)tb.click()}
+});
+touchDaily();applyDevice();save();checkAch();updateHeader();App.render();if(!S.device)showWelcome();
+</script>
+</body>
+</html>

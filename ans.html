@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>devlingo — Answer Key</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f7f7f7;color:#3c3c3c;font-family:'Nunito','Segoe UI',system-ui,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:24px 18px 56px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.brand{font-size:22px;font-weight:900;color:#58a900}
+.back{display:inline-block;border-radius:12px;background:#1cb0f6;color:#fff;text-decoration:none;font-weight:900;padding:10px 16px;box-shadow:0 4px 0 #1899d6}
+article{background:#fff;border:2px solid #e5e5e5;border-radius:20px;padding:24px}
+h1{font-size:28px;line-height:1.2;color:#3c3c3c}
+h1.unit{margin:36px -24px 18px;padding:14px 24px;background:#e8f8dc;border-left:6px solid #58cc02}
+h1:first-child{margin-top:0}
+h2{margin:30px 0 12px;padding-bottom:8px;border-bottom:2px solid #e5e5e5;font-size:22px}
+h3{font-size:16px;line-height:1.5;margin:20px 0 8px}
+p{line-height:1.65;margin:10px 0}
+.notice{margin:0 0 16px;padding:12px 14px;border:2px solid #ffc800;border-radius:12px;background:#fff7d6;font-weight:700;line-height:1.5}
+ul{list-style:none;padding:0;margin:8px 0 18px}
+li{margin:7px 0;padding:10px 12px;border:1px solid #e5e5e5;border-radius:10px;font-weight:700}
+li.correct{border-color:#9cdb6e;background:#f1ffe6}
+pre{overflow:auto;padding:16px;border-radius:12px;background:#263238;color:#e8f0f2;font:14px/1.6 ui-monospace,Consolas,monospace}
+code{font-family:ui-monospace,Consolas,monospace}
+@media(max-width:520px){.wrap{padding:16px 12px 40px}.top{align-items:flex-start}article{padding:18px 14px}h1.unit{margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="top"><div class="brand">devlingo · Answer Key</div><a class="back" href="js.html">Back to lessons</a></header>
+  <aside class="notice">The supplied text describes 13 units and 49 lessons, but the attached answer list contains Units 1–6 (35 lessons).</aside>
+  <article>
+<h1>devlingo — All Questions &amp; Answers</h1>
+<p>Full question bank from the app: 13 units, 49 lessons. Correct answers are marked with ✅. Coding exercises show the working solution.</p>
+<hr>
+<h1 class="unit">Unit 1 — JavaScript Foundations</h1>
+<h2>Lesson 1.1 — Variables &amp; Values</h2>
+<h3><span>Q1.</span> Which keyword declares a variable that can be reassigned?</h3>
+<ul>
+<li>const</li>
+<li><strong>let</strong> ✅</li>
+<li>var-let</li>
+<li>declare</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+const name = 'Ada';
+console.log(name);
+</code></pre>
+<ul>
+<li>name</li>
+<li><strong>Ada</strong> ✅</li>
+<li>'Ada'</li>
+<li>undefined</li>
+</ul>
+<h3><span>Q3.</span> Set score to the number 10.</h3>
+<pre><code>
+let score = ____
+console.log(score)
+</code></pre>
+<ul>
+<li>'10'</li>
+<li><strong>10</strong> ✅</li>
+<li>ten</li>
+<li>score = 10</li>
+</ul>
+<h3><span>Q4.</span> Create a variable <code>greeting</code> holding <code>'Hello, world!'</code>, then log it.</h3>
+<pre><code>
+const greeting = 'Hello, world!';
+console.log(greeting);
+</code></pre>
+<h3><span>Q5.</span> Which statement about const is TRUE?</h3>
+<ul>
+<li><strong>It can't be reassigned</strong> ✅</li>
+<li>It only works for numbers</li>
+<li>It can be reassigned freely</li>
+<li>It's identical to let</li>
+</ul>
+<h3><span>Q6.</span> This code crashes. Which line has the bug?</h3>
+<pre><code>
+let 1stPlace = 'gold';
+console.log(1stPlace);
+</code></pre>
+<ul>
+<li>1stPlace = 'gold'</li>
+<li>console.log(1stPlace)</li>
+<li><strong>let 1stPlace = 'gold'</strong> ✅ (names can't start with a digit)</li>
+<li>No bug — it works</li>
+</ul>
+<h2>Lesson 1.2 — Numbers &amp; Math</h2>
+<h3><span>Q1.</span> What is 7 % 3?</h3>
+<ul>
+<li>2</li>
+<li><strong>1</strong> ✅</li>
+<li>3</li>
+<li>0</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+console.log(2 + 3 * 4);
+</code></pre>
+<ul>
+<li>20</li>
+<li><strong>14</strong> ✅</li>
+<li>24</li>
+<li>9</li>
+</ul>
+<h3><span>Q3.</span> How do you write 2 to the power of 3?</h3>
+<ul>
+<li>2 ^ 3</li>
+<li><strong>2 </strong> 3** ✅</li>
+<li>pow(2, 3)</li>
+<li>2 *** 3</li>
+</ul>
+<h3><span>Q4.</span> Log 100 divided by 7, rounded DOWN to a whole number.</h3>
+<pre><code>
+console.log(Math.floor(100 / 7));
+</code></pre>
+<h3><span>Q5.</span> Round price to the nearest integer.</h3>
+<pre><code>
+const price = 9.99
+const rounded = ____
+</code></pre>
+<ul>
+<li><strong>Math.round(price)</strong> ✅</li>
+<li>price.round()</li>
+<li>round(price)</li>
+<li>Math.floor(price)</li>
+</ul>
+<h3><span>Q6.</span> What is the result of `'5' + 3`?</h3>
+<ul>
+<li>8</li>
+<li><strong>'53'</strong> ✅</li>
+<li>'8'</li>
+<li>NaN</li>
+</ul>
+<h2>Lesson 1.3 — Strings</h2>
+<h3><span>Q1.</span> How do you get the length of a string s?</h3>
+<ul>
+<li><strong>s.length</strong> ✅</li>
+<li>length(s)</li>
+<li>s.size</li>
+<li>s.count</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+const s = 'code';
+console.log(s.toUpperCase());
+</code></pre>
+<ul>
+<li>code</li>
+<li><strong>CODE</strong> ✅</li>
+<li>Code</li>
+<li>cODE</li>
+</ul>
+<h3><span>Q3.</span> Which one is a valid template literal?</h3>
+<ul>
+<li>'Hello ${name}'</li>
+<li>"Hello ${name}"</li>
+<li><strong><code>Hello ${name}</code></strong> ✅</li>
+<li>(Hello ${name})</li>
+</ul>
+<h3><span>Q4.</span> Log 'JavaScript is fun' using the lang variable.</h3>
+<pre><code>
+const lang = 'JavaScript'
+console.log(____)
+</code></pre>
+<ul>
+<li><strong><code>${lang} is fun</code></strong> ✅</li>
+<li>lang + is fun</li>
+<li>'{lang} is fun'</li>
+<li>lang.is('fun')</li>
+</ul>
+<h3><span>Q5.</span> Declare `word` as `'hello'`, then log its UPPERCASE version.</h3>
+<pre><code>
+const word = 'hello';
+console.log(word.toUpperCase());
+</code></pre>
+<h3><span>Q6.</span> What does `'abc'[1]` return?</h3>
+<ul>
+<li>'a'</li>
+<li><strong>'b'</strong> ✅</li>
+<li>'c'</li>
+<li>1</li>
+</ul>
+<h2>Lesson 1.4 — Booleans &amp; Conditionals</h2>
+<h3><span>Q1.</span> Which value is FALSY?</h3>
+<ul>
+<li>'0'</li>
+<li><strong>0</strong> ✅</li>
+<li>[]</li>
+<li>'false'</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+const x = 10;
+if (x &gt; 5) {
+  console.log('big');
+} else {
+  console.log('small');
+}
+</code></pre>
+<ul>
+<li>small</li>
+<li><strong>big</strong> ✅</li>
+<li>big small</li>
+<li>nothing</li>
+</ul>
+<h3><span>Q3.</span> Complete the condition so it logs 'adult'.</h3>
+<pre><code>
+const age = 20
+if (____) {
+  console.log('adult')
+}
+</code></pre>
+<ul>
+<li><strong>age &gt;= 18</strong> ✅</li>
+<li>age &gt; 18 &amp;&amp; age &lt; 18</li>
+<li>age = 18</li>
+<li>age == 'twenty'</li>
+</ul>
+<h3><span>Q4.</span> What does `===` do differently from `==`?</h3>
+<ul>
+<li>Nothing</li>
+<li><strong>It compares without type conversion</strong> ✅</li>
+<li>It's only for objects</li>
+<li>It always returns false</li>
+</ul>
+<h3><span>Q5.</span> Log `'even'` if n (= 4) is even, otherwise `'odd'`.</h3>
+<pre><code>
+const n = 4;
+if (n % 2 === 0) {
+  console.log('even');
+} else {
+  console.log('odd');
+}
+</code></pre>
+<h3><span>Q6.</span> Which operator returns true only if BOTH sides are true?</h3>
+<ul>
+<li>||</li>
+<li><strong>&amp;&amp;</strong> ✅</li>
+<li>!</li>
+<li class="correct">??</li>
+</ul>
+<h2>Lesson 1.5 — Arrays</h2>
+<h3><span>Q1.</span> What is the index of the FIRST element of an array?</h3>
+<ul>
+<li>1</li>
+<li><strong>0</strong> ✅</li>
+<li>-1</li>
+<li>It depends</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+const a = [10, 20, 30];
+console.log(a[1]);
+</code></pre>
+<ul>
+<li>10</li>
+<li><strong>20</strong> ✅</li>
+<li>30</li>
+<li>1</li>
+</ul>
+<h3><span>Q3.</span> What does `arr.push('x')` do?</h3>
+<ul>
+<li><strong>Adds to the end</strong> ✅</li>
+<li>Adds to the start</li>
+<li>Removes the last item</li>
+<li>Replaces everything</li>
+</ul>
+<h3><span>Q4.</span> Add 'Go' to the END of the array.</h3>
+<pre><code>
+const langs = ['JS', 'Python']
+langs.____('Go')
+</code></pre>
+<ul>
+<li><strong>push</strong> ✅</li>
+<li>pop</li>
+<li>shift</li>
+<li>slice</li>
+</ul>
+<h3><span>Q5.</span> Create `nums` with 1, 2, 3, then log its length.</h3>
+<pre><code>
+const nums = [1, 2, 3];
+console.log(nums.length);
+</code></pre>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+const a = [1, 2, 3];
+a.push(4);
+console.log(a.length);
+</code></pre>
+<ul>
+<li>3</li>
+<li><strong>4</strong> ✅</li>
+<li>[1,2,3,4]</li>
+<li>error</li>
+</ul>
+<h2>Lesson 1.6 — Loops</h2>
+<h3><span>Q1.</span> Which loop fits when you know exactly how many times to repeat?</h3>
+<ul>
+<li><strong>for</strong> ✅</li>
+<li>while</li>
+<li>do...when</li>
+<li>loop</li>
+</ul>
+<h3><span>Q2.</span> What gets logged?</h3>
+<pre><code>
+for (let i = 0; i &lt; 3; i++) {
+  console.log(i);
+}
+</code></pre>
+<ul>
+<li><strong>0 1 2</strong> ✅</li>
+<li>1 2 3</li>
+<li>0 1 2 3</li>
+<li>3</li>
+</ul>
+<h3><span>Q3.</span> Log each name in the array.</h3>
+<pre><code>
+const names = ['Ada', 'Linus']
+for (const n of names) {
+  ____
+}
+</code></pre>
+<ul>
+<li><strong>console.log(n)</strong> ✅</li>
+<li>console.log(names)</li>
+<li>log(n)</li>
+<li>console.log(of)</li>
+</ul>
+<h3><span>Q4.</span> Log the numbers 1 to 5, one per line.</h3>
+<pre><code>
+for (let i = 1; i &lt;= 5; i++) {
+  console.log(i);
+}
+</code></pre>
+<h3><span>Q5.</span> This loop never ends. What is missing?</h3>
+<pre><code>
+for (let i = 0; i &lt; 5; ) {
+  console.log(i);
+}
+</code></pre>
+<ul>
+<li>The braces { }</li>
+<li><strong>i++ (the increment)</strong> ✅</li>
+<li>console.log(i)</li>
+<li>let</li>
+</ul>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+let sum = 0;
+for (const n of [1, 2, 3]) {
+  sum += n;
+}
+console.log(sum);
+</code></pre>
+<ul>
+<li>123</li>
+<li><strong>6</strong> ✅</li>
+<li>3</li>
+<li>0</li>
+</ul>
+<p>---</p>
+<h1 class="unit">Unit 2 — Functions &amp; Logic</h1>
+<h2>Lesson 2.1 — Functions</h2>
+<h3><span>Q1.</span> Which keyword defines a function?</h3>
+<ul>
+<li><strong>function</strong> ✅</li>
+<li>def</li>
+<li>fun</li>
+<li>method</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+function hi() {
+  return 'hey';
+}
+console.log(hi());
+</code></pre>
+<ul>
+<li>hi</li>
+<li><strong>hey</strong> ✅</li>
+<li>undefined</li>
+<li>'hey' with quotes</li>
+</ul>
+<h3><span>Q3.</span> What's the difference between `return` and `console.log`?</h3>
+<ul>
+<li>Nothing</li>
+<li><strong>return gives a value back; log only prints to the console</strong> ✅</li>
+<li>log also returns the value</li>
+<li>return prints in color</li>
+</ul>
+<h3><span>Q4.</span> Make double(4) log 8.</h3>
+<pre><code>
+function double(n) {
+  ____
+}
+console.log(double(4))
+</code></pre>
+<ul>
+<li><strong>return n * 2</strong> ✅</li>
+<li>console.log(n * 2)</li>
+<li>n * 2</li>
+<li>return n + 2</li>
+</ul>
+<h3><span>Q5.</span> Write `square(x)` returning x squared, then log `square(5)`. (Hidden test: 3, 0, -4.)</h3>
+<pre><code>
+function square(x) {
+  return x * x;
+}
+console.log(square(5));
+</code></pre>
+<h3><span>Q6.</span> Which line correctly CALLS the function greet?</h3>
+<ul>
+<li><strong>greet()</strong> ✅</li>
+<li>call greet</li>
+<li>greet[]</li>
+<li>run.greet</li>
+</ul>
+<h2>Lesson 2.2 — Parameters &amp; Return</h2>
+<h3><span>Q1.</span> What are parameters?</h3>
+<ul>
+<li><strong>Values a function receives when called</strong> ✅</li>
+<li>Loop counters</li>
+<li>Array indexes</li>
+<li>Error messages</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+function add(a, b) {
+  return a + b;
+}
+console.log(add(2, 3, 4));
+</code></pre>
+<ul>
+<li>9</li>
+<li><strong>5</strong> ✅</li>
+<li>Error</li>
+<li>NaN</li>
+</ul>
+<h3><span>Q3.</span> Give name a default so greet() returns 'Hello there'.</h3>
+<pre><code>
+function greet(name = ____) {
+  return `Hello ${name}`;
+}
+console.log(greet());
+</code></pre>
+<ul>
+<li><strong>'there'</strong> ✅</li>
+<li>there</li>
+<li>'Hello'</li>
+<li>name</li>
+</ul>
+<h3><span>Q4.</span> Write `isEven(n)` returning true/false, then log `isEven(10)`. (Hidden test: 2, 3, 0.)</h3>
+<pre><code>
+function isEven(n) {
+  return n % 2 === 0;
+}
+console.log(isEven(10));
+</code></pre>
+<h3><span>Q5.</span> What does a function return with no return statement?</h3>
+<ul>
+<li>null</li>
+<li>Its last line</li>
+<li><strong>undefined</strong> ✅</li>
+<li>0</li>
+</ul>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+function check(x) {
+  if (x &lt; 0) return 'negative';
+  return 'positive';
+}
+console.log(check(-5));
+</code></pre>
+<ul>
+<li>positive</li>
+<li><strong>negative</strong> ✅</li>
+<li>undefined</li>
+<li>error</li>
+</ul>
+<h2>Lesson 2.3 — Arrow Functions</h2>
+<h3><span>Q1.</span> Which is a valid arrow function?</h3>
+<ul>
+<li><strong>const f = () =&gt; 1</strong> ✅</li>
+<li>const f =&gt; 1</li>
+<li>arrow f() { return 1 }</li>
+<li>f = arrow() =&gt; 1</li>
+</ul>
+<h3><span>Q2.</span> Complete the arrow function.</h3>
+<pre><code>
+const double = n ____ n * 2
+</code></pre>
+<ul>
+<li><strong>=&gt;</strong> ✅</li>
+<li>-&gt;</li>
+<li>=-&gt;</li>
+<li>==&gt;</li>
+</ul>
+<h3><span>Q3.</span> What will this log?</h3>
+<pre><code>
+const add = (a, b) =&gt; a + b;
+console.log(add(1, 2));
+</code></pre>
+<ul>
+<li>12</li>
+<li><strong>3</strong> ✅</li>
+<li>NaN</li>
+<li>undefined</li>
+</ul>
+<h3><span>Q4.</span> When does an arrow function return IMPLICITLY?</h3>
+<ul>
+<li><strong>When the body has no braces { }</strong> ✅</li>
+<li>Always</li>
+<li>Never</li>
+<li>Only with const</li>
+</ul>
+<h3><span>Q5.</span> Write arrow function `triple`, then log `triple(3)`. (Hidden test: 4, 0, -2.)</h3>
+<pre><code>
+const triple = n =&gt; n * 3;
+console.log(triple(3));
+</code></pre>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+const nums = [1, 2, 3];
+const doubled = nums.map(n =&gt; n * 2);
+console.log(doubled[2]);
+</code></pre>
+<ul>
+<li>2</li>
+<li>4</li>
+<li><strong>6</strong> ✅</li>
+<li>[2,4,6]</li>
+</ul>
+<h2>Lesson 2.4 — Objects</h2>
+<h3><span>Q1.</span> How do you read the name property of obj?</h3>
+<ul>
+<li><strong>obj.name</strong> ✅</li>
+<li>obj-&gt;name</li>
+<li>obj(name)</li>
+<li>get obj.name</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+const user = { name: 'Ada', age: 36 };
+console.log(user.age);
+</code></pre>
+<ul>
+<li>Ada</li>
+<li>age</li>
+<li><strong>36</strong> ✅</li>
+<li>user</li>
+</ul>
+<h3><span>Q3.</span> Add a model property with value 'Corolla'.</h3>
+<pre><code>
+const car = {
+  brand: 'Toyota',
+  ____
+}
+</code></pre>
+<ul>
+<li><strong>model: 'Corolla'</strong> ✅</li>
+<li>'model' = 'Corolla'</li>
+<li>Model: 'Corolla'</li>
+<li>model -&gt; 'Corolla'</li>
+</ul>
+<h3><span>Q4.</span> `user['name']` compared to `user.name` gives…</h3>
+<ul>
+<li>An error</li>
+<li><strong>The same result</strong> ✅</li>
+<li>Only works for numbers</li>
+<li>A different type</li>
+</ul>
+<h3><span>Q5.</span> Create `hero` with name 'Byte' and level 5, then log `hero.level`.</h3>
+<pre><code>
+const hero = { name: 'Byte', level: 5 };
+console.log(hero.level);
+</code></pre>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+const dog = {
+  name: 'Rex',
+  speak() {
+    return 'Woof! I am ' + this.name;
+  }
+};
+console.log(dog.speak());
+</code></pre>
+<ul>
+<li><strong>Woof! I am Rex</strong> ✅</li>
+<li>Woof! I am undefined</li>
+<li>Rex</li>
+<li>error</li>
+</ul>
+<h2>Lesson 2.5 — Array Methods</h2>
+<h3><span>Q1.</span> Which method creates a NEW array with each item transformed?</h3>
+<ul>
+<li><strong>map</strong> ✅</li>
+<li>forEach</li>
+<li>filter</li>
+<li>find</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+const nums = [1, 2, 3, 4];
+const evens = nums.filter(n =&gt; n % 2 === 0);
+console.log(evens.length);
+</code></pre>
+<ul>
+<li>4</li>
+<li><strong>2</strong> ✅</li>
+<li>1</li>
+<li>[2,4]</li>
+</ul>
+<h3><span>Q3.</span> Produce ['ADA', 'LINUS'].</h3>
+<pre><code>
+const names = ['ada', 'linus']
+const caps = names.____(n =&gt; n.toUpperCase())
+</code></pre>
+<ul>
+<li><strong>map</strong> ✅</li>
+<li>filter</li>
+<li>reduce</li>
+<li>find</li>
+</ul>
+<h3><span>Q4.</span> What does forEach return?</h3>
+<ul>
+<li>A new array</li>
+<li><strong>undefined</strong> ✅</li>
+<li>The last item</li>
+<li>A promise</li>
+</ul>
+<h3><span>Q5.</span> Filter only the ODD numbers, then log how many remain.</h3>
+<pre><code>
+const nums = [1, 2, 3, 4, 5];
+const odds = nums.filter(n =&gt; n % 2 !== 0);
+console.log(odds.length);
+</code></pre>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+const total = [1, 2, 3].reduce((sum, n) =&gt; sum + n, 0);
+console.log(total);
+</code></pre>
+<ul>
+<li>123</li>
+<li><strong>6</strong> ✅</li>
+<li>3</li>
+<li>0</li>
+</ul>
+<h2>Lesson 2.6 — Scope &amp; Closures</h2>
+<h3><span>Q1.</span> A variable declared with let inside a block { } is…</h3>
+<ul>
+<li>Global</li>
+<li><strong>Visible only inside that block</strong> ✅</li>
+<li>Visible everywhere after</li>
+<li>Automatically a constant</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+let x = 1;
+function f() {
+  let x = 2;
+}
+f();
+console.log(x);
+</code></pre>
+<ul>
+<li>2</li>
+<li><strong>1</strong> ✅</li>
+<li>undefined</li>
+<li>error</li>
+</ul>
+<h3><span>Q3.</span> A closure is…</h3>
+<ul>
+<li><strong>A function that remembers variables from where it was created</strong> ✅</li>
+<li>A closed loop</li>
+<li>A finished promise</li>
+<li>A private class</li>
+</ul>
+<h3><span>Q4.</span> Increment count each time the inner function is called.</h3>
+<pre><code>
+function counter() {
+  let count = 0;
+  return function() {
+    ____
+    return count;
+  }
+}
+</code></pre>
+<ul>
+<li><strong>count++</strong> ✅</li>
+<li>count = 0</li>
+<li>return count</li>
+<li>let count</li>
+</ul>
+<h3><span>Q5.</span> What will this log?</h3>
+<pre><code>
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+const add5 = makeAdder(5);
+console.log(add5(3));
+</code></pre>
+<ul>
+<li>3</li>
+<li>5</li>
+<li><strong>8</strong> ✅</li>
+<li>undefined</li>
+</ul>
+<h3><span>Q6.</span> Why avoid global variables?</h3>
+<ul>
+<li><strong>They can be overwritten accidentally by any code</strong> ✅</li>
+<li>They make typing slower</li>
+<li>They only hold strings</li>
+<li>Browsers ban them</li>
+</ul>
+<p>---</p>
+<h1 class="unit">Unit 3 — Async &amp; Modern JavaScript</h1>
+<h2>Lesson 3.1 — Callbacks &amp; Timers</h2>
+<h3><span>Q1.</span> `setTimeout(fn, 1000)` runs fn…</h3>
+<ul>
+<li>Immediately</li>
+<li><strong>After about 1 second</strong> ✅</li>
+<li>Never</li>
+<li>Only once per page</li>
+</ul>
+<h3><span>Q2.</span> In what order do the logs appear?</h3>
+<pre><code>
+console.log('A');
+setTimeout(() =&gt; console.log('B'), 0);
+console.log('C');
+</code></pre>
+<ul>
+<li>A B C</li>
+<li><strong>A C B</strong> ✅</li>
+<li>C A B</li>
+<li>B A C</li>
+</ul>
+<h3><span>Q3.</span> Say hi one second from now.</h3>
+<pre><code>
+setTimeout(____, 1000)
+</code></pre>
+<ul>
+<li><strong>() =&gt; console.log('hi')</strong> ✅</li>
+<li>'hi'</li>
+<li>console.log('hi')</li>
+<li>hi()</li>
+</ul>
+<h3><span>Q4.</span> A callback is…</h3>
+<ul>
+<li><strong>A function passed to another function, to be run later</strong> ✅</li>
+<li>An error handler</li>
+<li>A type of loop</li>
+<li>A CSS rule</li>
+</ul>
+<h3><span>Q5.</span> Which function stops a running setInterval?</h3>
+<ul>
+<li><strong>clearInterval</strong> ✅</li>
+<li>clearTimeout</li>
+<li>stopInterval</li>
+<li>cancel()</li>
+</ul>
+<h3><span>Q6.</span> Log `'done'` after 100 milliseconds.</h3>
+<pre><code>
+setTimeout(() =&gt; console.log('done'), 100);
+</code></pre>
+<h2>Lesson 3.2 — Promises</h2>
+<h3><span>Q1.</span> A Promise represents…</h3>
+<ul>
+<li>A value available right now</li>
+<li><strong>A value that may arrive in the future</strong> ✅</li>
+<li>Only errors</li>
+<li>A DOM element</li>
+</ul>
+<h3><span>Q2.</span> Which is NOT a valid Promise state?</h3>
+<ul>
+<li>pending</li>
+<li>fulfilled</li>
+<li>rejected</li>
+<li><strong>cached</strong> ✅</li>
+</ul>
+<h3><span>Q3.</span> What will this log?</h3>
+<pre><code>
+const p = new Promise((resolve) =&gt; {
+  resolve('ok');
+});
+p.then(v =&gt; console.log(v));
+</code></pre>
+<ul>
+<li><strong>ok</strong> ✅</li>
+<li>pending</li>
+<li>undefined</li>
+<li>error</li>
+</ul>
+<h3><span>Q4.</span> Parse the response body as JSON.</h3>
+<pre><code>
+fetch('/api/users')
+  .then(res =&gt; res.____())
+</code></pre>
+<ul>
+<li><strong>json</strong> ✅</li>
+<li>text</li>
+<li>parse</li>
+<li>data</li>
+</ul>
+<h3><span>Q5.</span> When does `.catch` run?</h3>
+<ul>
+<li><strong>When the promise rejects</strong> ✅</li>
+<li>When it fulfills</li>
+<li>Always</li>
+<li>Never</li>
+</ul>
+<h3><span>Q6.</span> What will this log?</h3>
+<pre><code>
+Promise.resolve(2)
+  .then(n =&gt; n * 3)
+  .then(n =&gt; console.log(n));
+</code></pre>
+<ul>
+<li>2</li>
+<li>3</li>
+<li><strong>6</strong> ✅</li>
+<li>NaN</li>
+</ul>
+<h2>Lesson 3.3 — Async / Await</h2>
+<h3><span>Q1.</span> The await keyword can be used…</h3>
+<ul>
+<li>Inside any function</li>
+<li><strong>Inside async functions</strong> ✅</li>
+<li>Only in for loops</li>
+<li>Only at the very top level</li>
+</ul>
+<h3><span>Q2.</span> Make await legal inside this function.</h3>
+<pre><code>
+____ function load() {
+  const data = await fetch('/api');
+}
+</code></pre>
+<ul>
+<li><strong>async</strong> ✅</li>
+<li>await</li>
+<li>promise</li>
+<li>defer</li>
+</ul>
+<h3><span>Q3.</span> What will this log?</h3>
+<pre><code>
+async function f() {
+  return 42;
+}
+f().then(v =&gt; console.log(v));
+</code></pre>
+<ul>
+<li>undefined</li>
+<li><strong>42</strong> ✅</li>
+<li>async</li>
+<li>error</li>
+</ul>
+<h3><span>Q4.</span> What does await actually do?</h3>
+<ul>
+<li><strong>Pauses that async function until the promise settles</strong> ✅</li>
+<li>Freezes the entire program</li>
+<li>Rejects the promise</li>
+<li>Caches the result on disk</li>
+</ul>
+<h3><span>Q5.</span> Write async `main()` that awaits `seven` (resolves to 7) and logs it.</h3>
+<pre><code>
+const seven = Promise.resolve(7);
+async function main() {
+  const value = await seven;
+  console.log(value);
+}
+</code></pre>
+<h3><span>Q6.</span> `Promise.all([a, b, c])` resolves when…</h3>
+<ul>
+<li><strong>All promises settle</strong> ✅</li>
+<li>The first one settles</li>
+<li>Each settles one by one</li>
+<li>Never — it just polls</li>
+</ul>
+<h2>Lesson 3.4 — fetch &amp; JSON</h2>
+<h3><span>Q1.</span> `fetch('/api/users')` resolves to…</h3>
+<ul>
+<li>The JSON data directly</li>
+<li><strong>A Promise of a Response object</strong> ✅</li>
+<li>An array of users</li>
+<li>undefined</li>
+</ul>
+<h3><span>Q2.</span> The server responds with `{"name": "Ada"}`. What will this log?</h3>
+<pre><code>
+const res = await fetch('/user');
+const user = await res.json();
+console.log(user.name);
+</code></pre>
+<ul>
+<li>res</li>
+<li>user</li>
+<li><strong>Ada</strong> ✅</li>
+<li>undefined</li>
+</ul>
+<h3><span>Q3.</span> `JSON.parse()` does what?</h3>
+<ul>
+<li><strong>Turns a JSON string into a JavaScript value</strong> ✅</li>
+<li>Turns JS into CSS</li>
+<li>Sends an HTTP request</li>
+<li>Validates HTML</li>
+</ul>
+<h3><span>Q4.</span> Send a POST request.</h3>
+<pre><code>
+const res = await fetch('/api/posts', {
+  method: ____
+})
+</code></pre>
+<ul>
+<li><strong>'POST'</strong> ✅</li>
+<li>'GET'</li>
+<li>post()</li>
+<li>send</li>
+</ul>
+<h3><span>Q5.</span> Which header tells the server your request body is JSON?</h3>
+<ul>
+<li><strong>Content-Type: application/json</strong> ✅</li>
+<li>Accept: text/html</li>
+<li>Body: json</li>
+<li>Type: JSON</li>
+</ul>
+<h3><span>Q6.</span> Parse the JSON string and log its `a` property.</h3>
+<pre><code>
+const json = '{"a": 1}';
+const obj = JSON.parse(json);
+console.log(obj.a);
+</code></pre>
+<h2>Lesson 3.5 — Error Handling</h2>
+<h3><span>Q1.</span> try/catch is for…</h3>
+<ul>
+<li><strong>Handling runtime errors</strong> ✅</li>
+<li>Making loops faster</li>
+<li>Styling pages</li>
+<li>Creating servers</li>
+</ul>
+<h3><span>Q2.</span> What will this log?</h3>
+<pre><code>
+try {
+  throw new Error('boom');
+} catch (e) {
+  console.log(e.message);
+}
+</code></pre>
+<ul>
+<li>Error</li>
+<li><strong>boom</strong> ✅</li>
+<li>undefined</li>
+<li>crash</li>
+</ul>
+<h3><span>Q3.</span> Catch the error if risky() throws.</h3>
+<pre><code>
+try {
+  risky();
+} ____ (e) {
+  console.log('failed:', e.message);
+}
+</code></pre>
+<ul>
+<li><strong>catch</strong> ✅</li>
+<li>error</li>
+<li>except</li>
+<li>handle</li>
+</ul>
+<h3><span>Q4.</span> A finally block runs…</h3>
+<ul>
+<li><strong>Always</strong> ✅</li>
+<li>Only when nothing throws</li>
+<li>Only on error</li>
+<li>Never</li>
+</ul>
+<h3><span>Q5.</span> Wrap `JSON.parse('not json')` in try/catch and log `'caught'`.</h3>
+<pre><code>
+try {
+  JSON.parse('not json');
+} catch (e) {
+  console.log('caught');
+}
+</code></pre>
+<h3><span>Q6.</span> What is logged, and in what order?</h3>
+<pre><code>
+function f() {
+  try {
+    return 'try';
+  } finally {
+    console.log('finally');
+  }
+}
+console.log(f());
+</code></pre>
+<ul>
+<li>try</li>
+<li>try then finally</li>
+<li><strong>finally then try</strong> ✅</li>
+<li>error</li>
+</ul>
+<p>---</p>
+<h1 class="unit">Unit 4 — Node.js &amp; Backend</h1>
+<h2>Lesson 4.1 — Node Basics</h2>
+<h3><span>Q1.</span> Node.js is…</h3>
+<ul>
+<li><strong>A JavaScript runtime for servers</strong> ✅</li>
+<li>A database</li>
+<li>A CSS framework</li>
+<li>A web browser</li>
+</ul>
+<h3><span>Q2.</span> Which command runs app.js with Node?</h3>
+<ul>
+<li><strong>node app.js</strong> ✅</li>
+<li>run app.js</li>
+<li>js app.js</li>
+<li>npm exec app.js</li>
+</ul>
+<h3><span>Q3.</span> In Node, the global `process` object gives you access to…</h3>
+<ul>
+<li><strong>Environment &amp; runtime info</strong> ✅</li>
+<li>The DOM</li>
+<li>CSS styles</li>
+<li>Browser history</li>
+</ul>
+<h3><span>Q4.</span> Which command creates a new project's package.json?</h3>
+<ul>
+<li><strong>npm init</strong> ✅</li>
+<li>node new</li>
+<li>npm create app</li>
+<li>init node</li>
+</ul>
+<h3><span>Q5.</span> You run `node app.js`. What prints?</h3>
+<pre><code>
+// file: app.js
+console.log('Server starting...');
+</code></pre>
+<ul>
+<li><strong>Server starting...</strong> ✅</li>
+<li>Nothing</li>
+<li>undefined</li>
+<li>SyntaxError</li>
+</ul>
+<h3><span>Q6.</span> package.json stores…</h3>
+<ul>
+<li><strong>Project metadata &amp; dependencies</strong> ✅</li>
+<li>Only CSS files</li>
+<li>Compiled binaries</li>
+<li>User passwords</li>
+</ul>
+<h2>Lesson 4.2 — Modules</h2>
+<h3><span>Q1.</span> In CommonJS, how do you export something from a file?</h3>
+<ul>
+<li><strong>module.exports = ...</strong> ✅</li>
+<li>return it</li>
+<li>send()</li>
+<li>export to global</li>
+</ul>
+<h3><span>Q2.</span> Import the add function from math.js in CommonJS.</h3>
+<pre><code>
+// math.js
+module.exports = { add }
+
+// app.js
+const { add } = ____('./math')
+</code></pre>
+<ul>
+<li><strong>require</strong> ✅</li>
+<li>import</li>
+<li>load</li>
+<li>fetch</li>
+</ul>
+<h3><span>Q3.</span> What will this log?</h3>
+<pre><code>
+// greet.js
+module.exports = function greet() {
+  return 'hi';
+}
+
+// app.js
+const greet = require('./greet');
+console.log(greet());
+</code></pre>
+<ul>
+<li>greet</li>
+<li><strong>hi</strong> ✅</li>
+<li>undefined</li>
+<li>module</li>
+</ul>
+<h3><span>Q4.</span> What does ES module syntax look like for importing?</h3>
+<ul>
+<li><strong>import x from './x.js'</strong> ✅</li>
+<li>require('./x')</li>
+<li>include('./x')</li>
+<li>using './x'</li>
+</ul>
+<h3><span>Q5.</span> Why split code into modules?</h3>
+<ul>
+<li><strong>Reuse &amp; organization</strong> ✅</li>
+<li>It runs faster always</li>
+<li>It's required by JavaScript</li>
+<li>To use more memory</li>
+</ul>
+<h3><span>Q6.</span> Create `calc` with a method `add(a, b)`, then log `calc.add(2, 3)`. (Hidden test: 2+3, -1+1.)</h3>
+<pre><code>
+const calc = {
+  add(a, b) {
+    return a + b;
+  }
+};
+console.log(calc.add(2, 3));
+</code></pre>
+<h2>Lesson 4.3 — Your First Server</h2>
+<h3><span>Q1.</span> Express is…</h3>
+<ul>
+<li><strong>A Node.js web framework</strong> ✅</li>
+<li>A database</li>
+<li>A browser engine</li>
+<li>A CSS library</li>
+</ul>
+<h3><span>Q2.</span> A browser requests GET / — what's the response body?</h3>
+<pre><code>
+const app = require('express')();
+app.get('/', (req, res) =&gt; {
+  res.send('Hello');
+});
+app.listen(3000);
+</code></pre>
+<ul>
+<li><strong>Hello</strong> ✅</li>
+<li>3000</li>
+<li>undefined</li>
+<li>Cannot GET /</li>
+</ul>
+<h3><span>Q3.</span> Respond to GET requests at /users with JSON.</h3>
+<pre><code>
+app.____('/users', (req, res) =&gt; {
+  res.json([{ name: 'Ada' }]);
+})
+</code></pre>
+<ul>
+<li><strong>get</strong> ✅</li>
+<li>route</li>
+<li>listen</li>
+<li>use</li>
+</ul>
+<h3><span>Q4.</span> In a route handler `(req, res)`, res is used to…</h3>
+<ul>
+<li><strong>Send the response</strong> ✅</li>
+<li>Read the URL</li>
+<li>Connect to the database</li>
+<li>Log to a file</li>
+</ul>
+<h3><span>Q5.</span> GET /hello/ada arrives. Response?</h3>
+<pre><code>
+app.get('/hello/:name', (req, res) =&gt; {
+  res.send('Hi ' + req.params.name);
+});
+</code></pre>
+<ul>
+<li><strong>Hi ada</strong> ✅</li>
+<li>Hi :name</li>
+<li>Hi undefined</li>
+<li>Hi req</li>
+</ul>
+<h3><span>Q6.</span> `app.listen(3000)` does what?</h3>
+<ul>
+<li><strong>Starts the server, listening on port 3000</strong> ✅</li>
+<li>Listens for mouse clicks</li>
+<li>Opens port 3000 in your browser</li>
+<li>Loads a module</li>
+</ul>
+<h2>Lesson 4.4 — Routes &amp; Middleware</h2>
+<h3><span>Q1.</span> Middleware is…</h3>
+<ul>
+<li><strong>A function running between request and response</strong> ✅</li>
+<li>A CSS pattern</li>
+<li>A database table</li>
+<li>An error type</li>
+</ul>
+<h3><span>Q2.</span> Log every incoming request's HTTP method.</h3>
+<pre><code>
+app.use(____)
+</code></pre>
+<ul>
+<li><strong>(req, res, next) =&gt; { console.log(req.method); next(); }</strong> ✅</li>
+<li>(req) =&gt; console.log(req.method)</li>
+<li>() =&gt; next</li>
+<li>res.send('log')</li>
+</ul>
+<h3><span>Q3.</span> What must middleware usually call to hand control onward?</h3>
+<ul>
+<li><strong>next()</strong> ✅</li>
+<li>done()</li>
+<li>res.end()</li>
+<li>pass()</li>
+</ul>
+<h3><span>Q4.</span> A GET / request arrives. What's logged, in order?</h3>
+<pre><code>
+app.use((req, res, next) =&gt; {
+  console.log('A');
+  next();
+});
+app.get('/', (req, res) =&gt; {
+  console.log('B');
+  res.send('ok');
+});
+</code></pre>
+<ul>
+<li><strong>A then B</strong> ✅</li>
+<li>B then A</li>
+<li>A only</li>
+<li>B only</li>
+</ul>
+<h3><span>Q5.</span> `req.body` contains…</h3>
+<ul>
+<li><strong>Data the client sent in the request body</strong> ✅</li>
+<li>URL parameters</li>
+<li>Response headers</li>
+<li>The server's config</li>
+</ul>
+<h3><span>Q6.</span> Enable parsing of JSON request bodies.</h3>
+<pre><code>
+app.use(express.____())
+</code></pre>
+<ul>
+<li><strong>json</strong> ✅</li>
+<li>body</li>
+<li>urlencoded</li>
+<li>static</li>
+</ul>
+<h2>Lesson 4.5 — Environment &amp; Config</h2>
+<h3><span>Q1.</span> Database passwords and API keys should live in…</h3>
+<ul>
+<li><strong>Environment variables</strong> ✅</li>
+<li>Your source code</li>
+<li>An HTML file</li>
+<li>The URL</li>
+</ul>
+<h3><span>Q2.</span> `process.env.PORT ?? 3000` means…</h3>
+<ul>
+<li><strong>Use the PORT env var, or 3000 if it's missing</strong> ✅</li>
+<li>Always 3000</li>
+<li>Add 3000 to PORT</li>
+<li>PORT is deleted</li>
+</ul>
+<h3><span>Q3.</span> Read the database URL from the environment.</h3>
+<pre><code>
+const dbUrl = process.env.____
+</code></pre>
+<ul>
+<li><strong>DATABASE_URL</strong> ✅</li>
+<li>DB.URL</li>
+<li>env.DB_URL</li>
+<li>config.db</li>
+</ul>
+<h3><span>Q4.</span> How do .env files get loaded in Node?</h3>
+<ul>
+<li><strong>A package like dotenv</strong> ✅</li>
+<li>Automatically — Node reads them</li>
+<li>require('.env')</li>
+<li>fs.readFile is built in for this</li>
+</ul>
+<h3><span>Q5.</span> Why must .env never be committed to git?</h3>
+<ul>
+<li><strong>It contains secrets</strong> ✅</li>
+<li>It's too small</li>
+<li>Git rejects it</li>
+<li>It slows Node down</li>
+</ul>
+<h3><span>Q6.</span> Best practice for errors in production:</h3>
+<ul>
+<li><strong>Log details privately, send the client a generic message</strong> ✅</li>
+<li>Send stack traces to everyone</li>
+<li>Disable all logging</li>
+<li>Show the DB password in the error</li>
+</ul>
+<h2>Lesson 4.6 — Request Data Deep Dive</h2>
+<h3><span>Q1.</span> For `GET /search?q=node` — where does q live?</h3>
+<ul>
+<li><strong>req.query.q</strong> ✅</li>
+<li>req.params.q</li>
+<li>req.body.q</li>
+<li>req.q</li>
+</ul>
+<h3><span>Q2.</span> For `/users/:id` with `/users/42` — where does 42 end up?</h3>
+<ul>
+<li><strong>req.params.id</strong> ✅</li>
+<li>req.query.id</li>
+<li>req.body.id</li>
+<li>req.url.id</li>
+</ul>
+<h3><span>Q3.</span> `GET /add?a=2&amp;b=3` — what's the response?</h3>
+<pre><code>
+app.get('/add', (req, res) =&gt; {
+  const sum = Number(req.query.a) + Number(req.query.b);
+  res.send(String(sum));
+});
+</code></pre>
+<ul>
+<li><strong>5</strong> ✅</li>
+<li>23</li>
+<li>NaN</li>
+<li>ab</li>
+</ul>
+<h3><span>Q4.</span> Read the user data sent by the client.</h3>
+<pre><code>
+app.post('/users', (req, res) =&gt; {
+  const user = req.____;
+  res.status(201).json(user);
+})
+</code></pre>
+<ul>
+<li><strong>body</strong> ✅</li>
+<li>params</li>
+<li>query</li>
+<li>headers</li>
+</ul>
+<h3><span>Q5.</span> `res.status(201)` signals…</h3>
+<ul>
+<li><strong>Created</strong> ✅</li>
+<li>OK</li>
+<li>Not found</li>
+<li>Server error</li>
+</ul>
+<h3><span>Q6.</span> Write `parseQuery(str)` turning `'a=1&amp;b=2'` into `{ a: '1', b: '2' }`, then log `parseQuery('x=5').x`.</h3>
+<pre><code>
+function parseQuery(str) {
+  const out = {};
+  for (const pair of str.split('&amp;')) {
+    const [key, value] = pair.split('=');
+    out[key] = value;
+  }
+  return out;
+}
+console.log(parseQuery('x=5').x);
+</code></pre>
+<p>---</p>
+<h1 class="unit">Unit 5 — APIs &amp; Databases</h1>
+<h2>Lesson 5.1 — REST APIs</h2>
+<h3><span>Q1.</span> In REST, GET is for…</h3>
+<ul>
+<li><strong>Reading data</strong> ✅</li>
+<li>Creating data</li>
+<li>Deleting data</li>
+<li>Styling pages</li>
+</ul>
+<h3><span>Q2.</span> Which HTTP method creates a resource?</h3>
+<ul>
+<li><strong>POST</strong> ✅</li>
+<li>GET</li>
+<li>HEAD</li>
+<li>OPTIONS</li>
+</ul>
+<h3><span>Q3.</span> PUT and PATCH typically…</h3>
+<ul>
+<li><strong>Update data</strong> ✅</li>
+<li>Delete data</li>
+<li>Read data</li>
+<li>Log requests</li>
+</ul>
+<h3><span>Q4.</span> In REST terms, `GET /api/users/42` means…</h3>
+<ul>
+<li><strong>Read user 42</strong> ✅</li>
+<li>Delete user 42</li>
+<li>Update user 42</li>
+<li>Create 42 users</li>
+</ul>
+<h3><span>Q5.</span> Complete the CRUD route table.</h3>
+<pre><code>
+app.get('/posts', getPosts)
+app.____('/posts', createPost)
+app.delete('/posts/:id', deletePost)
+</code></pre>
+<ul>
+<li><strong>post</strong> ✅</li>
+<li>get</li>
+<li>put</li>
+<li>use</li>
+</ul>
+<h3><span>Q6.</span> In a REST API, a resource is identified by…</h3>
+<ul>
+<li><strong>A URL</strong> ✅</li>
+<li>A password</li>
+<li>A CSS class</li>
+<li>A port number</li>
+</ul>
+<h2>Lesson 5.2 — Status Codes</h2>
+<h3><span>Q1.</span> HTTP 404 means…</h3>
+<ul>
+<li><strong>Not found</strong> ✅</li>
+<li>Success</li>
+<li>Server error</li>
+<li>Created</li>
+</ul>
+<h3><span>Q2.</span> HTTP 500 means…</h3>
+<ul>
+<li><strong>Server error</strong> ✅</li>
+<li>Not found</li>
+<li>Redirect</li>
+<li>OK</li>
+</ul>
+<h3><span>Q3.</span> Which status code means plain success?</h3>
+<ul>
+<li><strong>200</strong> ✅</li>
+<li>404</li>
+<li>500</li>
+<li>301</li>
+</ul>
+<h3><span>Q4.</span> A client DELETEs /api/todos/999 but it doesn't exist. Best response?</h3>
+<ul>
+<li><strong>404 Not Found</strong> ✅</li>
+<li>200 OK</li>
+<li>201 Created</li>
+<li>302 Found</li>
+</ul>
+<h3><span>Q5.</span> 401 vs 403 — which is right?</h3>
+<ul>
+<li><strong>401 = not logged in; 403 = logged in but not allowed</strong> ✅</li>
+<li>They're identical</li>
+<li>403 = not found</li>
+<li>401 = server crash</li>
+</ul>
+<h3><span>Q6.</span> Respond properly to a request for a missing resource.</h3>
+<pre><code>
+res.status(____).json({ error: 'Not found' })
+</code></pre>
+<ul>
+<li><strong>404</strong> ✅</li>
+<li>200</li>
+<li>500</li>
+<li>302</li>
+</ul>
+<h2>Lesson 5.3 — CRUD &amp; JSON</h2>
+<h3><span>Q1.</span> CRUD stands for…</h3>
+<ul>
+<li><strong>Create, Read, Update, Delete</strong> ✅</li>
+<li>Code, Run, Use, Debug</li>
+<li>Connect, Route, Use, Deliver</li>
+<li>Copy, Replace, Undo, Drop</li>
+</ul>
+<h3><span>Q2.</span> A client GETs /api/todos. What format comes back?</h3>
+<pre><code>
+app.get('/api/todos', (req, res) =&gt; {
+  res.json(todos);
+});
+</code></pre>
+<ul>
+<li><strong>A JSON array</strong> ✅</li>
+<li>An HTML page</li>
+<li>A CSV file</li>
+<li>A plain number</li>
+</ul>
+<h3><span>Q3.</span> Send back the created item with the correct status.</h3>
+<pre><code>
+app.post('/todos', (req, res) =&gt; {
+  const todo = req.body;
+  todos.push(todo);
+  res.____(todo);
+})
+</code></pre>
+<ul>
+<li><strong>status(201).json</strong> ✅</li>
+<li>json().status(201)</li>
+<li>send(201)</li>
+<li>return 201</li>
+</ul>
+<h3><span>Q4.</span> `res.json()` automatically…</h3>
+<ul>
+<li><strong>Serializes to JSON and sets Content-Type</strong> ✅</li>
+<li>Compresses the payload</li>
+<li>Validates your schema</li>
+<li>Caches the response</li>
+</ul>
+<h3><span>Q5.</span> Push `{ title: 'Learn Node' }` onto todos, then log `todos.length`.</h3>
+<pre><code>
+const todos = [];
+todos.push({ title: 'Learn Node' });
+console.log(todos.length);
+</code></pre>
+<h3><span>Q6.</span> A typical success response to DELETE is…</h3>
+<ul>
+<li><strong>204 No Content</strong> ✅</li>
+<li>404</li>
+<li>302</li>
+<li>503</li>
+</ul>
+<h2>Lesson 5.4 — SQL Basics</h2>
+<h3><span>Q1.</span> SQL is…</h3>
+<ul>
+<li><strong>The language of relational databases</strong> ✅</li>
+<li>A JavaScript framework</li>
+<li>A web server</li>
+<li>A CSS tool</li>
+</ul>
+<h3><span>Q2.</span> Read ALL columns from users.</h3>
+<pre><code>
+____ * FROM users
+</code></pre>
+<ul>
+<li><strong>SELECT</strong> ✅</li>
+<li>GET</li>
+<li>FETCH</li>
+<li>FIND</li>
+</ul>
+<h3><span>Q3.</span> `SELECT * FROM users WHERE age &gt; 18` returns…</h3>
+<ul>
+<li><strong>Users older than 18</strong> ✅</li>
+<li>The first 18 users</li>
+<li>All users</li>
+<li>An error</li>
+</ul>
+<h3><span>Q4.</span> Add a new user named Ada.</h3>
+<pre><code>
+INSERT ____ users (name) VALUES ('Ada')
+</code></pre>
+<ul>
+<li><strong>INTO</strong> ✅</li>
+<li>TO</li>
+<li>IN</li>
+<li>SET</li>
+</ul>
+<h3><span>Q5.</span> A primary key…</h3>
+<ul>
+<li><strong>Uniquely identifies each row</strong> ✅</li>
+<li>Speeds up CSS</li>
+<li>Encrypts the table</li>
+<li>Creates tables</li>
+</ul>
+<h3><span>Q6.</span> What does this statement do?</h3>
+<pre><code>
+UPDATE users SET name = 'Grace' WHERE id = 1;
+</code></pre>
+<ul>
+<li><strong>Renames user 1 to 'Grace'</strong> ✅</li>
+<li>Creates a user called Grace</li>
+<li>Deletes user 1</li>
+<li>Drops the table</li>
+</ul>
+<h2>Lesson 5.5 — Databases in Node</h2>
+<h3><span>Q1.</span> An ORM or query builder (like Prisma) lets you…</h3>
+<ul>
+<li><strong>Talk to the database using JavaScript objects</strong> ✅</li>
+<li>Style pages</li>
+<li>Host the server</li>
+<li>Write HTML faster</li>
+</ul>
+<h3><span>Q2.</span> Fetch the user with id 1, Prisma-style.</h3>
+<pre><code>
+const user = await prisma.user.____({
+  where: { id: 1 }
+})
+</code></pre>
+<ul>
+<li><strong>findUnique</strong> ✅</li>
+<li>SELECT</li>
+<li>getById</li>
+<li>fetch</li>
+</ul>
+<h3><span>Q3.</span> SQL injection is prevented by…</h3>
+<ul>
+<li><strong>Parameterized queries / placeholders</strong> ✅</li>
+<li>String concatenation</li>
+<li>Hiding the URL</li>
+<li>Longer passwords</li>
+</ul>
+<h3><span>Q4.</span> NoSQL databases like MongoDB store data as…</h3>
+<ul>
+<li><strong>Documents similar to JSON</strong> ✅</li>
+<li>Only tables</li>
+<li>CSS files</li>
+<li>Excel sheets only</li>
+</ul>
+<h3><span>Q5.</span> In this query, `$1` is…</h3>
+<pre><code>
+const user = await db.query(
+  'SELECT * FROM users WHERE id = $1',
+  [1]
+);
+</code></pre>
+<ul>
+<li><strong>A parameter placeholder</strong> ✅</li>
+<li>A dollar amount</li>
+<li>Invalid SQL</li>
+<li>The first column name</li>
+</ul>
+<h3><span>Q6.</span> Why create ONE database connection and reuse it?</h3>
+<ul>
+<li><strong>Connection pooling is efficient</strong> ✅</li>
+<li>It's required by law</li>
+<li>It uses more memory</li>
+<li>It prevents JSON</li>
+</ul>
+<h2>Lesson 5.6 — Authentication Basics</h2>
+<h3><span>Q1.</span> Passwords in the database must be stored…</h3>
+<ul>
+<li><strong>Hashed with a salt</strong> ✅</li>
+<li>In plain text</li>
+<li>In localStorage</li>
+<li>In the URL</li>
+</ul>
+<h3><span>Q2.</span> bcrypt is…</h3>
+<ul>
+<li><strong>A password-hashing library</strong> ✅</li>
+<li>A database</li>
+<li>A web framework</li>
+<li>A browser API</li>
+</ul>
+<h3><span>Q3.</span> A JWT (JSON Web Token) is used to…</h3>
+<ul>
+<li><strong>Prove identity across requests</strong> ✅</li>
+<li>Compress images</li>
+<li>Style the UI</li>
+<li>Store passwords</li>
+</ul>
+<h3><span>Q4.</span> Create a signed token containing the user's id.</h3>
+<pre><code>
+const token = jwt.____({ id: user.id }, SECRET)
+</code></pre>
+<ul>
+<li><strong>sign</strong> ✅</li>
+<li>verify</li>
+<li>encode</li>
+<li>hash</li>
+</ul>
+<h3><span>Q5.</span> On each authenticated request, the server…</h3>
+<ul>
+<li><strong>Verifies the token's signature</strong> ✅</li>
+<li>Asks for the password again</li>
+<li>Resets the database</li>
+<li>Logs the user out</li>
+</ul>
+<h3><span>Q6.</span> Why is HTTPS essential for login?</h3>
+<ul>
+<li><strong>It encrypts credentials in transit</strong> ✅</li>
+<li>It makes JavaScript faster</li>
+<li>JWT requires it</li>
+<li>It stops SQL injection</li>
+</ul>
+<p>---</p>
+<h1 class="unit">Unit 6 — Full-Stack &amp; Frontend</h1>
+<h2>Lesson 6.1 — HTML Structure</h2>
+<h3><span>Q1.</span> Which tag is the largest heading?</h3>
+<ul>
+<li><strong><code>&lt;h1&gt;</code></strong> ✅</li>
+<li><code>&lt;h6&gt;</code></li>
+<li><code>&lt;head&gt;</code></li>
+<li><code>&lt;header&gt;</code></li>
+</ul>
+<h3><span>Q2.</span> Make this text a working link.</h3>
+<pre><code>
+&lt;a ____="https://devlingo.dev"&gt;Visit&lt;/a&gt;
+</code></pre>
+<ul>
+<li><strong>href</strong> ✅</li>
+<li>src</li>
+<li>link</li>
+<li>url</li>
+</ul>
+<h3><span>Q3.</span> Which tag creates a clickable button?</h3>
+<ul>
+<li><strong><code>&lt;button&gt;</code></strong> ✅</li>
+<li><code>&lt;btn&gt;</code></li>
+<li><code>&lt;click&gt;</code></li>
+<li><code>&lt;input-button&gt;</code></li>
+</ul>
+<h3><span>Q4.</span> How many list items render?</h3>
+<pre><code>
+&lt;ul&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+  &lt;li&gt;Node.js&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<ul>
+<li><strong>2</strong> ✅</li>
+<li>1</li>
+<li>3</li>
+<li>0</li>
+</ul>
+<h3><span>Q5.</span> Which attribute provides an `&lt;img&gt;` with its image file?</h3>
+<ul>
+<li><strong>src</strong> ✅</li>
+<li>href</li>
+<li>alt</li>
+<li>file</li>
+</ul>
+<h3><span>Q6.</span> Where does the visible page content go?</h3>
+<ul>
+<li><strong><code>&lt;body&gt;</code></strong> ✅</li>
+<li><code>&lt;head&gt;</code></li>
+<li><code>&lt;meta&gt;</code></li>
+<li><code>&lt;title&gt;</code></li>
+</ul>
+<h2>Lesson 6.2 — CSS Styling</h2>
+<h3><span>Q1.</span> Which property changes TEXT color?</h3>
+<ul>
+<li><strong>color</strong> ✅</li>
+<li>text-color</li>
+<li>font-color</li>
+<li>fg</li>
+</ul>
+<h3><span>Q2.</span> Round the card's corners.</h3>
+<pre><code>
+.card {
+  ____: 8px;
+}
+</code></pre>
+<ul>
+<li><strong>border-radius</strong> ✅</li>
+<li>corner-round</li>
+<li>radius</li>
+<li>curve</li>
+</ul>
+<h3><span>Q3.</span> Which selector targets an element with id="logo"?</h3>
+<ul>
+<li><strong>#logo</strong> ✅</li>
+<li>.logo</li>
+<li>logo</li>
+<li>*logo</li>
+</ul>
+<h3><span>Q4.</span> `&lt;button class="btn"&gt;Go&lt;/button&gt;` — what color is its TEXT?</h3>
+<pre><code>
+.btn {
+  background: blue;
+  color: white;
+}
+</code></pre>
+<ul>
+<li><strong>white</strong> ✅</li>
+<li>blue</li>
+<li>black</li>
+<li>transparent</li>
+</ul>
+<h3><span>Q5.</span> `display: flex` is for…</h3>
+<ul>
+<li><strong>Laying out children in a row or column</strong> ✅</li>
+<li>Making text bold</li>
+<li>Hiding elements</li>
+<li>Adding borders</li>
+</ul>
+<h3><span>Q6.</span> Center the title text horizontally.</h3>
+<pre><code>
+.title {
+  text-____: center;
+}
+</code></pre>
+<ul>
+<li><strong>align</strong> ✅</li>
+<li>center</li>
+<li>middle</li>
+<li>justify</li>
+</ul>
+<h2>Lesson 6.3 — DOM with JavaScript</h2>
+<h3><span>Q1.</span> `document.querySelector('h1')` returns…</h3>
+<ul>
+<li><strong>The first matching element</strong> ✅</li>
+<li>All matching elements</li>
+<li>A string</li>
+<li>A Promise</li>
+</ul>
+<h3><span>Q2.</span> Change the heading's text.</h3>
+<pre><code>
+const el = document.querySelector('h1');
+el.____ = 'Hello, DevLingo!';
+</code></pre>
+<ul>
+<li><strong>textContent</strong> ✅</li>
+<li>innerHTML only</li>
+<li>value</li>
+<li>html</li>
+</ul>
+<h3><span>Q3.</span> Which creates a new DOM element?</h3>
+<ul>
+<li><strong>document.createElement('div')</strong> ✅</li>
+<li>new Element('div')</li>
+<li>document.newDiv()</li>
+<li>make('&lt;div&gt;')</li>
+</ul>
+<h3><span>Q4.</span> What happens?</h3>
+<pre><code>
+const p = document.querySelector('p');
+p.classList.add('done');
+</code></pre>
+<ul>
+<li><strong>p gains the class 'done'</strong> ✅</li>
+<li>p is deleted</li>
+<li>The text becomes 'done'</li>
+<li>It throws an error</li>
+</ul>
+<h3><span>Q5.</span> Which REMOVES an element from the page?</h3>
+<ul>
+<li><strong>el.remove()</strong> ✅</li>
+<li>el.delete()</li>
+<li>remove(el)</li>
+<li>el.kill()</li>
+</ul>
+<h3><span>Q6.</span> textContent vs innerHTML with user data:</h3>
+<ul>
+<li><strong>textContent is safe — it never parses HTML</strong> ✅</li>
+<li>They're identical</li>
+<li>innerHTML is always safer</li>
+<li>innerHTML only works on inputs</li>
+</ul>
+<h2>Lesson 6.4 — Events</h2>
+<h3><span>Q1.</span> Which registers a click handler?</h3>
+<ul>
+<li><strong>el.addEventListener('click', fn)</strong> ✅</li>
+<li>el.onClick(fn)</li>
+<li>el.click = fn</li>
+<li>listen(el, 'click')</li>
+</ul>
+<h3><span>Q2.</span> Log 'clicked' when the button is pressed.</h3>
+<pre><code>
+btn.addEventListener('click', ____)
+</code></pre>
+<ul>
+<li><strong>() =&gt; console.log('clicked')</strong> ✅</li>
+<li>console.log('clicked')</li>
+<li>'clicked'</li>
+<li>click('clicked')</li>
+</ul>
+<h3><span>Q3.</span> `event.preventDefault()` in a submit handler…</h3>
+<ul>
+<li><strong>Stops the default behavior (like the page reloading)</strong> ✅</li>
+<li>Removes the form</li>
+<li>Deletes the event</li>
+<li>Pauses all JavaScript</li>
+</ul>
+<h3><span>Q4.</span> The user clicks the button 3 times. What was the LAST log?</h3>
+<pre><code>
+let count = 0;
+btn.addEventListener('click', () =&gt; {
+  count++;
+  console.log(count);
+});
+</code></pre>
+<ul>
+<li><strong>3</strong> ✅</li>
+<li>1</li>
+<li>0</li>
+<li>undefined</li>
+</ul>
+<h3><span>Q5.</span> Event delegation means…</h3>
+<ul>
+<li><strong>One listener on a parent handles events from its children</strong> ✅</li>
+<li>Every element needs its own listener</li>
+<li>Using no listeners at all</li>
+<li>Forwarding events to the server</li>
+</ul>
+<h3><span>Q6.</span> The 'submit' event fires on…</h3>
+<ul>
+<li><strong>A form when it's submitted</strong> ✅</li>
+<li>Any click anywhere</li>
+<li>Page load</li>
+<li>Every key press</li>
+</ul>
+<h2>Lesson 6.5 — Frontend ↔ Backend</h2>
+<h3><span>Q1.</span> How does the frontend get data from a backend?</h3>
+<ul>
+<li><strong>An HTTP request like fetch</strong> ✅</li>
+<li>Reading the database directly</li>
+<li>Importing SQL files</li>
+<li>Using CSS</li>
+</ul>
+<h3><span>Q2.</span> Parse the todos from the response.</h3>
+<pre><code>
+const res = await fetch('/api/todos');
+const todos = await res.____();
+</code></pre>
+<ul>
+<li><strong>json</strong> ✅</li>
+<li>parse</li>
+<li>data</li>
+<li>text</li>
+</ul>
+<h3><span>Q3.</span> Why can't the frontend query the database directly?</h3>
+<ul>
+<li><strong>Security — credentials and permissions must stay server-side</strong> ✅</li>
+<li>It's slower</li>
+<li>Databases render HTML</li>
+<li>CSS forbids it</li>
+</ul>
+<h3><span>Q4.</span> What does `JSON.stringify` do in this code?</h3>
+<pre><code>
+fetch('/api/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ user: 'ada' })
+});
+</code></pre>
+<ul>
+<li><strong>Turns the object into a JSON string</strong> ✅</li>
+<li>Parses the response</li>
+<li>Sets the headers</li>
+<li>Encrypts the body</li>
+</ul>
+<h3><span>Q5.</span> CORS issues appear when…</h3>
+<ul>
+<li><strong>Frontend and backend are on different origins</strong> ✅</li>
+<li>You use CSS</li>
+<li>The database is SQL</li>
+<li>fetch is async</li>
+</ul>
+<h3><span>Q6.</span> Build the fetch options for a JSON POST of `data`, then log `options.method` and `options.body`. (Expected output: `POST`, then `{"user":"ada"}`)</h3>
+<pre><code>
+const data = { user: 'ada' };
+const options = {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+};
+console.log(options.method);
+console.log(options.body);
+</code></pre>
+<h2>Lesson 6.6 — Capstone: Mini Full-Stack App</h2>
+<h3><span>Q1.</span> Data shared across ALL users, stored permanently. Where does it live?</h3>
+<ul>
+<li><strong>A database on the server</strong> ✅</li>
+<li>localStorage</li>
+<li>A JavaScript variable</li>
+<li>A CSS file</li>
+</ul>
+<h3><span>Q2.</span> In this flow, where is the data stored permanently?</h3>
+<pre><code>
+fetch('/api/todos')
+  .then(r =&gt; r.json())
+  .then(render);
+</code></pre>
+<ul>
+<li><strong>The database</strong> ✅</li>
+<li>The fetch call</li>
+<li>The .then()</li>
+<li>render()</li>
+</ul>
+<h3><span>Q3.</span> Complete the endpoint that reads all todos.</h3>
+<pre><code>
+app.get('/api/todos', async (req, res) =&gt; {
+  const todos = await db.todo.____();
+  res.json(todos);
+})
+</code></pre>
+<ul>
+<li><strong>findMany</strong> ✅</li>
+<li>SELECT *</li>
+<li>getAll()</li>
+<li>list()</li>
+</ul>
+<h3><span>Q4.</span> After the frontend receives todos, it usually…</h3>
+<ul>
+<li><strong>Renders them into the DOM</strong> ✅</li>
+<li>Restarts the server</li>
+<li>Deletes the database</li>
+<li>Compiles CSS</li>
+</ul>
+<h3><span>Q5.</span> Write async `loadTodos()` that fetches `'/api/todos'` (fetch is mocked), parses JSON, and returns it.</h3>
+<pre><code>
+async function loadTodos() {
+  const res = await fetch('/api/todos');
+  return res.json();
+}
+</code></pre>
+<h3><span>Q6.</span> `/api/admin` must be protected. What actually secures it?</h3>
+<ul>
+<li><strong>Server middleware that verifies the token</strong> ✅</li>
+<li>Hiding the button in CSS</li>
+<li>display: none</li>
+<li>A hard-to-guess URL</li>
+</ul>
+  </article>
+</main>
+</body>
+</html>
